@@ -1,0 +1,80 @@
+----------------------------------------------------------------------
+--
+-- Honmokデータベース設定
+--
+--   Date   : 2014/03/10
+--   Author : Koji HIJIKURO <koji0903@gmail.com>
+--
+----------------------------------------------------------------------
+
+■ データベースの作成（最初の一回のみ）
+
+　※既存データがあった場合は、すべて削除されるので注意！
+
+1. コマンドプロンプトを開く
+2. 下記コマンドを実行
+    % mysql -u root -p < ${HONMOK}/db/HonmokDB_create.sql
+
+■ 実行確認
+ 
+1. データベース確認
+
+ % show databases;
+ を実行して、Databaseテーブルに"honmokdb"が入っていることを確認。
+
+2. テーブル確認
+
+%mysql> show tables;
++--------------------+
+| Tables_in_honmokdb |
++--------------------+
+| book               |
+| circulation        |
+| user               |
++--------------------+
+
+と表示されることを確認
+
+3. テーブル内カラム確認
+
+%mysql> desc users;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| uid        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| rid        | int(11)     | NO   | UNI | NULL    |                |
+| uname      | varchar(50) | NO   |     | NULL    |                |
+| address    | varchar(50) | NO   |     | NULL    |                |
+| tel        | varchar(30) | NO   |     | NULL    |                |
+| limitFlag  | tinyint(1)  | NO   |     | 0       |                |
+| deleteFlag | tinyint(1)  | NO   |     | 0       |                |
++------------+-------------+------+-----+---------+----------------+
+
+%mysql> desc books;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| bid        | int(11)     | NO   | PRI | NULL    | auto_increment |
+| isbn       | int(11)     | YES  |     | NULL    |                |
+| bname      | varchar(30) | NO   |     | NULL    |                |
+| author     | varchar(30) | NO   |     | NULL    |                |
+| publisher  | varchar(30) | NO   |     | NULL    |                |
+| page       | int(11)     | YES  |     | NULL    |                |
+| deleteFlag | tinyint(1)  | NO   |     | 0       |                |
++------------+-------------+------+-----+---------+----------------+
+
+%mysql> desc circulations;
++------------+------------+------+-----+---------+----------------+
+| Field      | Type       | Null | Key | Default | Extra          |
++------------+------------+------+-----+---------+----------------+
+| cid        | int(11)    | NO   | PRI | NULL    | auto_increment |
+| issueDay   | datetime   | NO   |     | NULL    |                |
+| returnDay  | datetime   | YES  |     | NULL    |                |
+| uid        | int(11)    | NO   |     | NULL    |                |
+| bid        | int(11)    | NO   |     | NULL    |                |
+| term       | int(11)    | YES  |     | 7       |                |
+| deleteFlag | tinyint(1) | NO   |     | 0       |                |
++------------+------------+------+-----+---------+----------------+
+
+
+END

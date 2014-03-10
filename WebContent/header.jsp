@@ -10,10 +10,10 @@
 <body>
 <div id="logo">Honmok</div>
 <ul id="navi">
-<li>貸し出し</li>
-<li>本の情報表示</li>
-<li>返却</li>
-<li>利用者登録</li>
+<li><a href="rent">貸し出し</a></li>
+<li><a href="search_book">本の情報表示</a></li>
+<li><a href="return">返却</a></li>
+<li><a href="register">利用者登録</a></li>
 </ul>
 </body>
 </html>

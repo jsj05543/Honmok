@@ -10,9 +10,9 @@
 <body>
 <div id="logo">Honmok</div>
 <ul id="navi">
-<li>延滞リスト表示</li>
-<li>利用者情報表示</li>
-<li>利用者登録</li>
+<li><a href="over_due">延滞リスト表示</a></li>
+<li><a href="user_info">利用者情報表示</a></li>
+<li><a href="register">利用者登録</a></li>
 </ul>
 </body>
 </html>

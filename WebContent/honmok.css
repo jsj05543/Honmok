@@ -30,6 +30,11 @@ ul#navi li {
 	display: inline;
 	margin: 10px;
 }
+ul#navi a:LINK {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
 
 /* 利用者情報一覧用 class=usertable */
 table.usertable {

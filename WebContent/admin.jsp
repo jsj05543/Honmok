@@ -7,9 +7,20 @@
 <title>Honmok</title>
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true" />
+<!-- 利用者ヘッダ -->
+<jsp:include page="header_admin.jsp" flush="true" />
 
-<h1>テスト用JSPファイル</h1>
+<!-- タイトル -->
+<h1>管理者トップ画面</h1>
+
+<!-- コンテンツ -->
+サンプル
+
+<ul>
+	<li>延滞リスト表示</li>
+	<li>利用者情報表示</li>
+	<li>利用者登録</li>
+</ul>
 
 </body>
 </html>

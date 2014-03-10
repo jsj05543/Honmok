@@ -36,6 +36,12 @@ ul#navi a:LINK {
 	font-weight: bold;
 }
 
+ul#navi a:VISITED {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
 /* 利用者情報一覧用 class=usertable */
 table.usertable {
 	color: red; /* デバッグ用 */
@@ -59,4 +65,14 @@ table.userinfotable {
 /* 借りている本のリスト表示用 class=userbooktable */
 table.userbooktable {
 	color: red; /* デバッグ用 */
+}
+
+.form_text {
+	/* あとでやる なんか回り込みがおかしい */
+	display: inline;
+	float: left;
+}
+
+.form_textbox {
+	display: block;
 }

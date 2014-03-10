@@ -4,25 +4,46 @@
 package serv;
 
 /**
+ * Bookテーブルのフィールドを表現したクラス。Bookテーブルから取り込んだデータは、このクラスのオブジェクトとなる。
+ * Bookテーブルの詳細は（ https://docs.google.com/spreadsheets/d/1q4n8OspzfguMMyw81PzMV2DuyXX8DAA5NSqxy6kBJ7c/edit#gid=0 ）
+ *
  * @author Koji Hijikuro
- * Bookテーブルのフィールドを表現したクラス。Bookテーブルから取り込んだデータは、Bookクラスに入る。
- * Bookテーブルの詳細は（https://docs.google.com/spreadsheets/d/1q4n8OspzfguMMyw81PzMV2DuyXX8DAA5NSqxy6kBJ7c/edit#gid=0）
  */
 public class Book {
-	private String isbn;        // ISBN番号（現時点では使用しない。予約フィールド）
-	private String bname;       // 書籍名
-	private String author;      // 著者
-	private String publisher;   // 出版社
-	private int page;           // ページ数（現時点では使用しない。予約フィールド）
-	private Boolean deleteFlag; // 削除フラグ（現時点では使用しない。予約フィールド）
 	/**
-	 * @return isbn
+	 * ISBN番号（現時点では使用しない。予約フィールド）
+	 */
+	private String isbn;
+	/**
+	 * 書籍名
+	 */
+	private String bname;
+	/**
+	 * 著者
+	 */
+	private String author;
+	/**
+	 * 出版社
+	 */
+	private String publisher;
+	/**
+	 * ページ数（現時点では使用しない。予約フィールド）
+	 */
+	private int page;
+	/**
+	 * 削除フラグ（本情報を削除する場合に、値にTRUEをセットする。）
+	 */
+	private Boolean deleteFlag;
+
+
+	/**
+	 * @return isbn ISBN番号
 	 */
 	public String getIsbn() {
 		return isbn;
 	}
 	/**
-	 * @param isbn セットする isbn
+	 * @param isbn セットするISBN番号
 	 */
 	public void setIsbn(String isbn) {
 		this.isbn = isbn;
@@ -34,7 +55,7 @@ public class Book {
 		return bname;
 	}
 	/**
-	 * @param bname セットする bname
+	 * @param bname セットする書籍名
 	 */
 	public void setBname(String bname) {
 		this.bname = bname;
@@ -46,7 +67,7 @@ public class Book {
 		return author;
 	}
 	/**
-	 * @param author セットする author
+	 * @param author セットする著者名
 	 */
 	public void setAuthor(String author) {
 		this.author = author;
@@ -58,7 +79,7 @@ public class Book {
 		return publisher;
 	}
 	/**
-	 * @param publisher セットする publisher
+	 * @param publisher セットする出版社名
 	 */
 	public void setPublisher(String publisher) {
 		this.publisher = publisher;
@@ -70,7 +91,7 @@ public class Book {
 		return page;
 	}
 	/**
-	 * @param page セットする page
+	 * @param page セットするページ数
 	 */
 	public void setPage(int page) {
 		this.page = page;

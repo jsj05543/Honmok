@@ -35,3 +35,23 @@ ul#navi li {
 table.usertable {
 	color: red; /* デバッグ用 */
 }
+
+/* 書籍情報一覧用 class=booktable */
+table.booktable {
+	color: red; /* デバッグ用 */
+}
+
+/* 延滞リスト表示用 class=overduetable */
+table.overduetable {
+	color: red; /* デバッグ用 */
+}
+
+/* 利用者情報表示用 class=userinfotable */
+table.userinfotable {
+	color: red; /* デバッグ用 */
+}
+
+/* 借りている本のリスト表示用 class=userbooktable */
+table.userbooktable {
+	color: red; /* デバッグ用 */
+}

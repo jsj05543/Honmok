@@ -8,8 +8,8 @@
 <link rel="stylesheet" type="text/css" href="./honmok.css" />
 </head>
 <body>
-<div class="logo">Honmok</div>
-<ul class="navi">
+<div id="logo">Honmok</div>
+<ul id="navi">
 <li>貸し出し</li>
 <li>本の情報表示</li>
 <li>返却</li>

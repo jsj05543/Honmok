@@ -9,11 +9,14 @@
 
 ■ データベースの作成（最初の一回のみ）
 
-　※既存データがあった場合は、すべて削除されるので注意！
+　　　※既存データがあった場合は、すべて削除されるので注意！
 
 1. コマンドプロンプトを開く
-2. 下記コマンドを実行
+2. データベースおよびテーブルの作成
     % mysql -u root -p < ${HONMOK}/db/HonmokDB_create.sql
+3. テストデータを挿入（任意）
+    % mysql -u root -p honmokdb < ${HONMOK}/db/HonmokDB_TestDataInsert.sql
+
 
 ■ 実行確認
  
@@ -24,25 +27,12 @@
 
 2. テーブル確認
 
-%mysql> show tables;
-+--------------------+
-| Tables_in_honmokdb |
-+--------------------+
-| book               |
-| circulation        |
-| user               |
-+--------------------+
-
-と表示されることを確認
-
-3. テーブル内カラム確認
-
-%mysql> desc users;
+mysql> desc users;
 +------------+-------------+------+-----+---------+----------------+
 | Field      | Type        | Null | Key | Default | Extra          |
 +------------+-------------+------+-----+---------+----------------+
 | uid        | int(11)     | NO   | PRI | NULL    | auto_increment |
-| rid        | int(11)     | NO   | UNI | NULL    |                |
+| userNo     | varchar(20) | NO   | UNI | NULL    |                |
 | uname      | varchar(50) | NO   |     | NULL    |                |
 | address    | varchar(50) | NO   |     | NULL    |                |
 | tel        | varchar(30) | NO   |     | NULL    |                |
@@ -55,11 +45,21 @@
 | Field      | Type        | Null | Key | Default | Extra          |
 +------------+-------------+------+-----+---------+----------------+
 | bid        | int(11)     | NO   | PRI | NULL    | auto_increment |
-| isbn       | int(11)     | YES  |     | NULL    |                |
+| isbn       | varchar(20) | YES  |     | NULL    |                |
 | bname      | varchar(30) | NO   |     | NULL    |                |
 | author     | varchar(30) | NO   |     | NULL    |                |
 | publisher  | varchar(30) | NO   |     | NULL    |                |
 | page       | int(11)     | YES  |     | NULL    |                |
+| deleteFlag | tinyint(1)  | NO   |     | 0       |                |
++------------+-------------+------+-----+---------+----------------+
+
+%mysql> desc libraryBooks;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| lbid       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| bid        | int(11)     | NO   |     | NULL    |                |
+| bookNo     | varchar(20) | NO   | UNI | NULL    |                |
 | deleteFlag | tinyint(1)  | NO   |     | 0       |                |
 +------------+-------------+------+-----+---------+----------------+
 
@@ -71,10 +71,32 @@
 | issueDay   | datetime   | NO   |     | NULL    |                |
 | returnDay  | datetime   | YES  |     | NULL    |                |
 | uid        | int(11)    | NO   |     | NULL    |                |
-| bid        | int(11)    | NO   |     | NULL    |                |
+| lbid       | int(11)    | NO   |     | NULL    |                |
 | term       | int(11)    | YES  |     | 7       |                |
 | deleteFlag | tinyint(1) | NO   |     | 0       |                |
 +------------+------------+------+-----+---------+----------------+
+
+3. 挿入したテストデータの確認
+
+mysql> select * from books;
++-----+------+------------------------------------------------+------------+------------+------+------------+
+| bid | isbn | bname                                          | author     | publisher  | page | deleteFlag |
++-----+------+------------------------------------------------+------------+------------+------+------------+
+|   9 | NULL | フェイスブックをつくったザッカーバーグの仕事術 　　　　　　　　　　 | 桑原晃弥   | 幻冬舎     | NULL |          0 |
+|  10 | NULL | あなたへの伝言                                    | 高田郁     | 幻冬舎     | NULL |          0 |
+|  11 | NULL | 三毛猫ホームズは階段を上る                         | 赤川次郎   | 光文社文庫 | NULL |          0 |
+|  12 | NULL | 羅生門                                         | 芥川竜之介 | 帝国文学   | NULL |          0 |
++-----+------+------------------------------------------------+------------+------------+------+------------+
+
+mysql> select * from libraryBooks;
++------+-----+--------+------------+
+| lbid | bid | bookNo | deleteFlag |
++------+-----+--------+------------+
+|    9 |   9 | 200000 |          0 |
+|   10 |  10 | 200001 |          0 |
+|   11 |  11 | 200002 |          0 |
+|   12 |  12 | 200003 |          0 |
++------+-----+--------+------------+
 
 
 END

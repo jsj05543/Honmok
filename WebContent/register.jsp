@@ -17,6 +17,16 @@
 <!-- コンテンツ -->
 ここにコンテンツを書く
 
+<form action="register_result" method="post">
+	<div class="form_text">氏名：</div>
+	<input type="text" name="uname" class="form_textbox">
+	<div class="form_text">住所：</div>
+	<input type="text" name="address" class="form_textbox">
+	<div class="form_text">TEL：</div>
+	<input type="text" name="tel" class="form_textbox">
+	<input type="submit" value="登録" class="form_submit_button">
+</form>
+
 
 </body>
 </html>

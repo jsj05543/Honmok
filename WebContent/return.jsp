@@ -14,7 +14,11 @@
 <h1>返却画面</h1>
 
 <!-- コンテンツ -->
-ここにコンテンツを書く
+<form action="return_result" method="post">
+	<div class="form_text">書籍番号：</div>
+	<input type="text" name="bid" class="form_textbox">
+	<input type="submit" value="返却" class="form_submit_button">
+</form>
 
 
 </body>

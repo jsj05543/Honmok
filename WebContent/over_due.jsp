@@ -16,6 +16,13 @@
 <!-- コンテンツ -->
 ここにコンテンツを書く
 
+<table border=1 class="overduetable">
+<tr>
+<td>延滞リストテーブルのデバッグ</td>
+<td><a href="user_info?uid=0">名前：利用者情報表示へのリンク</a></td>
+</tr>
+</table>
+
 
 </body>
 </html>

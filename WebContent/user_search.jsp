@@ -14,7 +14,17 @@
 <h1>利用者情報トップ画面</h1>
 
 <!-- コンテンツ -->
-ここにコンテンツを書く
+<form action="user_list" method="post">
+	<div class="form_text">利用者番号で検索：</div>
+	<input type="text" name="search_id" class="form_textbox">
+	<input type="submit" value="検索" class="form_submit_button_yoko">
+</form>
+
+<form action="user_list" method="post">
+	<div class="form_text">利用者名で検索：</div>
+	<input type="text" name="search_name" class="form_textbox">
+	<input type="submit" value="検索" class="form_submit_button_yoko">
+</form>
 
 
 </body>

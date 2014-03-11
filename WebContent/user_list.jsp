@@ -16,6 +16,13 @@
 <!-- コンテンツ -->
 ここにコンテンツを書く
 
+<table border=1 class="userlisttable">
+<tr>
+<td>利用者情報一覧のテーブル</td>
+<td><a href="user_info?uid=0">名前：利用者情報表示画面へのリンク</a></td>
+<td><a href="user_edit?uid=0">編集ボタン：編集画面へのリンク</a></td>
+</tr>
+</table>
 
 </body>
 </html>

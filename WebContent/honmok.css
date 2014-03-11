@@ -3,6 +3,9 @@
 body {
 	font-family: 'メイリオ';
 }
+input {
+	font-family: 'メイリオ';
+}
 
 /* ロゴ class=logo */
 #logo {
@@ -42,6 +45,14 @@ ul#navi a:VISITED {
 	font-weight: bold;
 }
 
+/* テーブル全般 */
+table {
+	border-width: 2px;
+	border-collapse: collapse;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
 /* 利用者情報一覧用 class=usertable */
 table.usertable {
 	color: red; /* デバッグ用 */
@@ -50,6 +61,7 @@ table.usertable {
 /* 書籍情報一覧用 class=booktable */
 table.booktable {
 	color: red; /* デバッグ用 */
+	border-color: red; /* デバッグ用 */
 }
 
 /* 延滞リスト表示用 class=overduetable */
@@ -67,12 +79,25 @@ table.userbooktable {
 	color: red; /* デバッグ用 */
 }
 
+form.yoko {
+	display: inline;
+}
+
 .form_text {
+	clear: both;
 	/* あとでやる なんか回り込みがおかしい */
 	display: inline;
 	float: left;
 }
 
 .form_textbox {
+	clear: both;
+}
+
+.form_submit_button {
 	display: block;
+}
+
+.form_submit_button_yoko {
+	display: inline;
 }

@@ -14,7 +14,17 @@
 <h1>本の情報表示画面</h1>
 
 <!-- コンテンツ -->
-ここにコンテンツを書く
+<form action="show_book" method="post">
+	<div class="form_text">書籍番号で検索：</div>
+	<input type="text" name="search_id" class="form_textbox">
+	<input type="submit" value="検索" class="form_submit_button_yoko">
+</form>
+
+<form action="show_book" method="post">
+	<div class="form_text">書籍名で検索：</div>
+	<input type="text" name="search_name" class="form_textbox">
+	<input type="submit" value="検索" class="form_submit_button_yoko">
+</form>
 
 
 </body>

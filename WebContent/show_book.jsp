@@ -16,6 +16,9 @@
 <!-- コンテンツ -->
 ここにコンテンツを書く
 
+<table border=1 class="booktable">
+<tr><td>テーブルのデバッグ</td></tr>
+</table>
 
 </body>
 </html>

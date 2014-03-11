@@ -195,6 +195,31 @@ public class LibraryBookDB extends DBAccess{
 		}
 	}
 
+
+	/**
+	 * 指定した書籍番号が存在するかどうかの判定
+	 * @param bookNo 書籍番号
+	 * @return true:既存データあり、false:既存データなし
+	 */
+	public Boolean exist(String bookNo)
+	{
+		try
+		{
+			//	プリペアードステートメント
+			String sql = "SELECT * FROM librarybooks WHERE bookNo=?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1,bookNo);
+			ResultSet rs = stmt.executeQuery();
+			return rs.next();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return true;
+		}
+	}
+
+
 	/**
 	 * データ更新
 	 * @param mid
@@ -282,8 +307,6 @@ public class LibraryBookDB extends DBAccess{
 		}
 	}
 	*/
-
-
 
 
 }

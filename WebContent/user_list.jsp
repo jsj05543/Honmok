@@ -1,5 +1,6 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="serv.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,14 +15,31 @@
 <h1>利用者情報一覧表示画面</h1>
 
 <!-- コンテンツ -->
-ここにコンテンツを書く
+<%
+// エラー判定
+ArrayList<String> error_message = (ArrayList<String>)request.getAttribute("error_message");
+if ( ! error_message.isEmpty() ) {
+	for (String string : error_message) {
+		out.println( "<div class=\"error_message\">" + string + "</div>");
+	}
+	return;
+}
+ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
+%>
 
 <table border=1 class="userlisttable">
-<tr>
-<td>利用者情報一覧のテーブル</td>
-<td><a href="user_info?uid=0">名前：利用者情報表示画面へのリンク</a></td>
-<td><a href="user_edit?uid=0">編集ボタン：編集画面へのリンク</a></td>
-</tr>
+<thead><tr><th>利用者番号</th><th>氏名</th><th>住所</th><th>TEL</th><th>編集</th><tr></thead>
+<%
+	for (User user : list) {
+%>
+	<tr>
+		<td><%= user.getUserNo() %></td>
+		<td><a href="user_info?uid=<%= user.getUid() %>"><%= user.getUname() %></a></td>
+		<td><%= user.getAddress() %></td>
+		<td><%= user.getTel() %></td>
+		<td><a href="user_edit?uid=<%= user.getUid() %>">編集</a></td>
+	</tr>
+<%	} %>
 </table>
 
 </body>

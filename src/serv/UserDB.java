@@ -25,7 +25,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE delete_flag = false");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE deleteFlag = false");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -49,7 +49,7 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-//			e.printStackTrace();
+			e.printStackTrace();
 			return null;
 		}
 		return list;

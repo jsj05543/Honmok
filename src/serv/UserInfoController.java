@@ -26,10 +26,23 @@ public class UserInfoController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//
-		// ここに実装する
-		//
+		UserDB userdb = new UserDB();
+//		User user = new User();
 
+		request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html;charset=UTF-8");
+
+	    try {
+	    	int uid = Integer.parseInt( request.getParameter("uid") );
+	    	User user = userdb.getUserDetail(uid);
+			if( user == null ){
+				request.setAttribute("error_message", "該当するIDの利用者はいません");
+			} else {
+				request.setAttribute("users", user );
+			}
+	    } catch (NumberFormatException ex) {
+			request.setAttribute("error_message", "該当するIDの利用者はいません");
+	    }
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_info.jsp");
 		dispatch.forward(request, response);
 	}

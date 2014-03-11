@@ -59,45 +59,46 @@ public class LibraryBookDB extends DBAccess{
 	}
 
 	/**
-	 * @return ArrayList LibraryBookテーブルの配列データ
+	 * BookNoから、書籍情報の詳細を返すメソッド
+	 * @param bookNo BookNo
+	 * @return LibraryBook LibraryBookテーブル
 	 */
-	public ArrayList<LibraryBook> getLibraryBooks()
+	public LibraryBook getLibraryBookDetail(String bookNo)
 	{
-		ArrayList<LibraryBook> list = new ArrayList<LibraryBook>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.deleteFlag = false");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.bookNo = ?");
+			stmt.setString(1,bookNo);
 			ResultSet rs = stmt.executeQuery();
 
-			while (rs.next()) {
-				LibraryBook lb = new LibraryBook();
-				// LibraryBook ID
-				lb.setLbid(rs.getInt("lbid"));
-				// Book ID
-				lb.setBid(rs.getInt("bid"));
-				// 図書書籍管理番号
-				lb.setBookNo(rs.getString("bookNo"));
-				// ISBN
-				lb.setIsbn(rs.getString("isbn"));
-				// 書籍名
-				lb.setBname(rs.getString("bname"));
-				// 筆者
-				lb.setAuthor(rs.getString("author"));
-				// 出版社
-				lb.setPublisher(rs.getString("publisher"));
-				// ページ数
-				list.add(lb);
-			}
+			LibraryBook lb = new LibraryBook();
+			// LibraryBook ID
+			lb.setLbid(rs.getInt("lbid"));
+			// Book ID
+			lb.setBid(rs.getInt("bid"));
+			// 図書書籍管理番号
+			lb.setBookNo(bookNo);
+			// ISBN
+			lb.setIsbn(rs.getString("isbn"));
+			// 書籍名
+			lb.setBname(rs.getString("bname"));
+			// 筆者
+			lb.setAuthor(rs.getString("author"));
+			// 出版社
+			lb.setPublisher(rs.getString("publisher"));
 
 			rs.close();
 			stmt.close();
+
+			return lb;
+
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
 		}
-		return list;
+		return null;
 	}
 
 

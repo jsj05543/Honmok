@@ -55,11 +55,11 @@ public class UserDB extends DBAccess{
 	}
 
 	/**
-	 * ユーザNoから、ユーザ情報を取得
+	 * ユーザNoから、ユーザ情報を取得。。該当なしの場合は、nullを返す。
 	 * @param userNo ユーザNo
 	 * @return ArrayList uersテーブル
 	 */
-	public User getUser(String userNo)
+	public User getUserDetail(String userNo)
 	{
 		try
 		{

@@ -89,7 +89,7 @@ table.userbooktable {
 }
 
 .form_submit_button {
-	float: left;
+/* 	float: left; */
 	display: block;
 	clear: both;
 }

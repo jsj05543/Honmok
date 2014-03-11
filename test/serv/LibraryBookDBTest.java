@@ -11,6 +11,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import serv.LibraryBookDB;
+
 /**
  * @author USER
  *
@@ -18,7 +20,6 @@ import org.junit.Test;
 public class LibraryBookDBTest {
 
 	public LibraryBookDBTest() {
-		LibraryBookDB db =
 	}
 
 	/**
@@ -78,7 +79,12 @@ public class LibraryBookDBTest {
 	 */
 	@Test
 	public void testExist() {
-		fail("まだ実装されていません"); // TODO
+		LibraryBookDB db = new LibraryBookDB();
+		// 正常系
+		assertEquals(db.exist("200000"),true);
+		// 異常系
+		assertEquals(db.exist("300000"),false);
+		assertEquals(db.exist("あああ"),false);
 	}
 
 }

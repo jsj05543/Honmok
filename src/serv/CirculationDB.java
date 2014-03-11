@@ -48,7 +48,8 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}
@@ -87,7 +88,8 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}
@@ -119,7 +121,8 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			return null;
 		}
 		return rent_flag;
 	}
@@ -144,7 +147,7 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -171,7 +174,7 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -193,7 +196,7 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -221,7 +224,7 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -273,8 +276,8 @@ public class CirculationDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
-			return true;
+//			e.printStackTrace();
+			return false;
 		}
 	}
 

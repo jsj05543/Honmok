@@ -17,7 +17,7 @@ public class LibraryBookDB extends DBAccess{
 
 	/**
 	 * "LibraryBook"テーブルへのアクセス
-	 * @return ArrayList LibraryBookテーブルの配列データ
+	 * @return ArrayList LibraryBookテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public ArrayList<LibraryBook> getLibraryBooks()
 	{
@@ -55,7 +55,8 @@ public class LibraryBookDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}
@@ -63,7 +64,7 @@ public class LibraryBookDB extends DBAccess{
 	/**
 	 * BookNoから、書籍情報の詳細を返すメソッド。該当なしの場合は、nullを返す。
 	 * @param bookNo BookNo
-	 * @return LibraryBook LibraryBookテーブル
+	 * @return LibraryBook LibraryBookテーブル、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public LibraryBook getLibraryBookDetail(String bookNo)
 	{
@@ -98,7 +99,7 @@ public class LibraryBookDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			lb = null;
 		}
 		return lb;
@@ -214,8 +215,8 @@ public class LibraryBookDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
-			return true;
+//			e.printStackTrace();
+			return false;
 		}
 	}
 

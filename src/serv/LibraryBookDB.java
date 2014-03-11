@@ -17,7 +17,7 @@ public class LibraryBookDB extends DBAccess{
 
 	/**
 	 * "LibraryBook"テーブルへのアクセス
-	 * @return ArrayList LibraryBookテーブルの配列データ
+	 * @return ArrayList LibraryBookテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public ArrayList<LibraryBook> getLibraryBooks()
 	{
@@ -45,6 +45,8 @@ public class LibraryBookDB extends DBAccess{
 				// 出版社
 				lb.setPublisher(rs.getString("publisher"));
 				// ページ数
+				lb.setPage(rs.getInt("page"));
+
 				list.add(lb);
 			}
 
@@ -53,18 +55,20 @@ public class LibraryBookDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}
 
 	/**
-	 * BookNoから、書籍情報の詳細を返すメソッド
+	 * BookNoから、書籍情報の詳細を返すメソッド。該当なしの場合は、nullを返す。
 	 * @param bookNo BookNo
-	 * @return LibraryBook LibraryBookテーブル
+	 * @return LibraryBook LibraryBookテーブル、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public LibraryBook getLibraryBookDetail(String bookNo)
 	{
+		LibraryBook lb = new LibraryBook();
 		try
 		{
 			// SQL操作
@@ -72,33 +76,33 @@ public class LibraryBookDB extends DBAccess{
 			stmt.setString(1,bookNo);
 			ResultSet rs = stmt.executeQuery();
 
-			LibraryBook lb = new LibraryBook();
-			// LibraryBook ID
-			lb.setLbid(rs.getInt("lbid"));
-			// Book ID
-			lb.setBid(rs.getInt("bid"));
-			// 図書書籍管理番号
-			lb.setBookNo(bookNo);
-			// ISBN
-			lb.setIsbn(rs.getString("isbn"));
-			// 書籍名
-			lb.setBname(rs.getString("bname"));
-			// 筆者
-			lb.setAuthor(rs.getString("author"));
-			// 出版社
-			lb.setPublisher(rs.getString("publisher"));
-
+			if ( rs.next() ){
+				// LibraryBook ID
+				lb.setLbid(rs.getInt("lbid"));
+				// Book ID
+				lb.setBid(rs.getInt("bid"));
+				// 図書書籍管理番号
+				lb.setBookNo(bookNo);
+				// ISBN
+				lb.setIsbn(rs.getString("isbn"));
+				// 書籍名
+				lb.setBname(rs.getString("bname"));
+				// 筆者
+				lb.setAuthor(rs.getString("author"));
+				// 出版社
+				lb.setPublisher(rs.getString("publisher"));
+			}else{
+				lb = null;
+			}
 			rs.close();
 			stmt.close();
-
-			return lb;
-
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			lb = null;
 		}
-		return null;
+		return lb;
 	}
 
 
@@ -192,6 +196,31 @@ public class LibraryBookDB extends DBAccess{
 		}
 	}
 
+
+	/**
+	 * 指定した書籍番号が存在するかどうかの判定
+	 * @param bookNo 書籍番号
+	 * @return true:既存データあり、false:既存データなし
+	 */
+	public Boolean exist(String bookNo)
+	{
+		try
+		{
+			//	プリペアードステートメント
+			String sql = "SELECT * FROM librarybooks WHERE bookNo=?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1,bookNo);
+			ResultSet rs = stmt.executeQuery();
+			return rs.next();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return false;
+		}
+	}
+
+
 	/**
 	 * データ更新
 	 * @param mid
@@ -279,8 +308,6 @@ public class LibraryBookDB extends DBAccess{
 		}
 	}
 	*/
-
-
 
 
 }

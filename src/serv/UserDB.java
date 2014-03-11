@@ -55,23 +55,23 @@ public class UserDB extends DBAccess{
 	}
 
 	/**
-	 * UIDから、ユーザ情報を取得
-	 * @param uid ユーザID
+	 * ユーザNoから、ユーザ情報を取得
+	 * @param userNo ユーザNo
 	 * @return ArrayList uersテーブル
 	 */
-	public User getUser(int uid)
+	public User getUser(String userNo)
 	{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE delete_flag = false AND uid = ?");
-			stmt.setInt(1,uid);
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE userNo = ?");
+			stmt.setString(1,userNo);
 			ResultSet rs = stmt.executeQuery();
 
 			User u = new User();
-			u.setUid(uid);
+			u.setUid(rs.getInt("uid"));
 			// 利用者番号をDBから取得
-			u.setUserNo(rs.getString("userNo"));
+			u.setUserNo(userNo);
 			// ユーザ名
 			u.setUname(rs.getString("uname"));
 			// 住所

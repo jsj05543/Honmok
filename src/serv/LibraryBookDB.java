@@ -58,6 +58,48 @@ public class LibraryBookDB extends DBAccess{
 		return list;
 	}
 
+	/**
+	 * @return ArrayList LibraryBookテーブルの配列データ
+	 */
+	public ArrayList<LibraryBook> getLibraryBooks()
+	{
+		ArrayList<LibraryBook> list = new ArrayList<LibraryBook>();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.deleteFlag = false");
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				LibraryBook lb = new LibraryBook();
+				// LibraryBook ID
+				lb.setLbid(rs.getInt("lbid"));
+				// Book ID
+				lb.setBid(rs.getInt("bid"));
+				// 図書書籍管理番号
+				lb.setBookNo(rs.getString("bookNo"));
+				// ISBN
+				lb.setIsbn(rs.getString("isbn"));
+				// 書籍名
+				lb.setBname(rs.getString("bname"));
+				// 筆者
+				lb.setAuthor(rs.getString("author"));
+				// 出版社
+				lb.setPublisher(rs.getString("publisher"));
+				// ページ数
+				list.add(lb);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+
 
 	/**
 	 * 書籍情報追加

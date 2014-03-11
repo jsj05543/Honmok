@@ -4,12 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Honmok</title>
+<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="./honmok.css" />
 </head>
 <body>
-<jsp:include page="header.jsp" flush="true" />
-
-<h1>テスト用JSPファイル</h1>
-
+<div id="logo">Honmok</div>
+<ul id="navi">
+<li><a href="over_due">延滞リスト表示</a></li>
+<li><a href="user_info">利用者情報表示</a></li>
+<li><a href="register">利用者登録</a></li>
+</ul>
 </body>
 </html>

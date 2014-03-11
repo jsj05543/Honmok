@@ -1,0 +1,78 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: 'メイリオ';
+}
+
+/* ロゴ class=logo */
+#logo {
+	color: blue; /* デバッグ用 */
+	font-size: 42px;
+	font-weight: bold;
+}
+
+h1 {
+	color: red; /* デバッグ用 */
+}
+
+/* ナビゲーションバー class=navi */
+ul#navi {
+	text-align: right;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-right: 20px;
+	background-color: blue;
+	color: white;
+}
+ul#navi li {
+	display: inline;
+	margin: 10px;
+}
+ul#navi a:LINK {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+ul#navi a:VISITED {
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+
+/* 利用者情報一覧用 class=usertable */
+table.usertable {
+	color: red; /* デバッグ用 */
+}
+
+/* 書籍情報一覧用 class=booktable */
+table.booktable {
+	color: red; /* デバッグ用 */
+}
+
+/* 延滞リスト表示用 class=overduetable */
+table.overduetable {
+	color: red; /* デバッグ用 */
+}
+
+/* 利用者情報表示用 class=userinfotable */
+table.userinfotable {
+	color: red; /* デバッグ用 */
+}
+
+/* 借りている本のリスト表示用 class=userbooktable */
+table.userbooktable {
+	color: red; /* デバッグ用 */
+}
+
+.form_text {
+	/* あとでやる なんか回り込みがおかしい */
+	display: inline;
+	float: left;
+}
+
+.form_textbox {
+	display: block;
+}

@@ -145,7 +145,7 @@ public class UserDB extends DBAccess{
 	{
 		try
 		{
-			if( !this.isSameData(uname,address,tel)){
+			if( ! this.isSameData(uname,address,tel) ){
 				//	プリペアードステートメント
 				String 	sql = "INSERT INTO users (userNo, uname, address, tel) values (?, ?, ?, ?)";
 				PreparedStatement stmt = con.prepareStatement(sql);
@@ -261,7 +261,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "SELECT * FROM users WHERE uname=? address=? tel=?";
+			String sql = "SELECT * FROM users WHERE uname=? AND address=? AND tel=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1,uname);
 			stmt.setString(2,address);
@@ -271,9 +271,10 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-//			e.printStackTrace();
-			return null;
+			e.printStackTrace();
+			return false;
 		}
+
 	}
 
 	/**
@@ -299,5 +300,30 @@ public class UserDB extends DBAccess{
 		}
 	}
 
+
+	/**
+	 * 利用者番号が使われているか？
+	 * @param String 利用者番号
+	 * @return true 使われている
+	 * @return false 使われていない
+	 * @return null 内部エラー
+	 */
+	public Boolean usedUserNo(String userNo)
+	{
+		try
+		{
+			//	プリペアードステートメント
+			String sql = "SELECT * FROM users WHERE userNo=?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setString(1,userNo);
+			ResultSet rs = stmt.executeQuery();
+			return rs.next();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 }

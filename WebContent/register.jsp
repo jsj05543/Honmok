@@ -20,7 +20,6 @@
 <h1>利用者登録画面</h1>
 
 <!-- コンテンツ -->
-ここにコンテンツを書く
 
 <form action="register_result" method="post">
 <%	if (isAdmin) { %>

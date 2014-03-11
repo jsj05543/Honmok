@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 
@@ -21,8 +22,19 @@
 <h1>利用者番号表示画面</h1>
 
 <!-- コンテンツ -->
-ここにコンテンツを書く
+<%
+// エラー判定
+ArrayList<String> error_message = (ArrayList<String>)request.getAttribute("error_message");
+if ( ! error_message.isEmpty() ) {
+	for (String string : error_message) {
+		out.println( "<div class=\"error_message\">" + string + "</div>");
+	}
+	return;
+}
+String userNo = (String)request.getAttribute("userNo");
+%>
 
+あなたの利用者番号は<div class="getUserNo"><%= userNo %></div>です。
 
 </body>
 </html>

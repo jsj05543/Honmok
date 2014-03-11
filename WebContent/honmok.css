@@ -13,6 +13,12 @@ input {
 	font-size: 42px;
 	font-weight: bold;
 }
+#logo a:LINK, #logo a:VISITED {
+	text-decoration: none;
+	color: blue; /* デバッグ用 */
+	font-size: 42px;
+	font-weight: bold;
+}
 
 h1 {
 	color: red; /* デバッグ用 */
@@ -33,13 +39,8 @@ ul#navi li {
 	display: inline;
 	margin: 10px;
 }
-ul#navi a:LINK {
-	text-decoration: none;
-	color: white;
-	font-weight: bold;
-}
 
-ul#navi a:VISITED {
+ul#navi a:LINK, ul#navi a:VISITED {
 	text-decoration: none;
 	color: white;
 	font-weight: bold;

@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="./honmok.css" />
 </head>
 <body>
-<div id="logo">Honmok</div>
+<div id="logo"><a href="/Honmok">Honmok</a></div>
 <ul id="navi">
 <li><a href="rent">貸し出し</a></li>
 <li><a href="search_book">本の情報表示</a></li>

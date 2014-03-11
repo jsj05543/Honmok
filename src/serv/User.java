@@ -11,6 +11,10 @@ package serv;
  */
 public class User {
 	/**
+	 * UID
+	 */
+	private int uid;
+	/**
 	 * 利用者番号
 	 */
 	private String userNo;
@@ -37,6 +41,18 @@ public class User {
 
 
 
+	/**
+	 * @return uid
+	 */
+	public int getUid() {
+		return uid;
+	}
+	/**
+	 * @param uid セットするUID
+	 */
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 	/**
 	 * @return userNo
 	 */

@@ -11,6 +11,10 @@ package serv;
  */
 public class Book {
 	/**
+	 * BID
+	 */
+	private int bid;
+	/**
 	 * ISBN番号（現時点では使用しない。予約フィールド）
 	 */
 	private String isbn;
@@ -36,6 +40,18 @@ public class Book {
 	private Boolean deleteFlag;
 
 
+	/**
+	 * @return bid BID
+	 */
+	public int getBid() {
+		return bid;
+	}
+	/**
+	 * @param bid セットするBID
+	 */
+	public void setBid(int bid) {
+		this.bid = bid;
+	}
 	/**
 	 * @return isbn ISBN番号
 	 */

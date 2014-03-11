@@ -11,6 +11,10 @@ package serv;
  */
 public class LibraryBook extends Book{
 	/**
+	 * LibraryBookテーブルを指すID
+	 */
+	private int lbid;
+	/**
 	 * Bookテーブルを指すID
 	 */
 	private int bid;
@@ -23,6 +27,18 @@ public class LibraryBook extends Book{
 	 */
 	private Boolean deleteFlag;
 
+	/**
+	 * @return lbid
+	 */
+	public int getLbid() {
+		return lbid;
+	}
+	/**
+	 * @param lbid セットするLibraryBookテーブルID
+	 */
+	public void setLbid(int lbid) {
+		this.lbid = lbid;
+	}
 	/**
 	 * @return bid
 	 */

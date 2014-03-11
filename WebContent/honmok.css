@@ -102,3 +102,8 @@ table.userbooktable {
 div.clearFloat {
 	clear: both;
 }
+
+div.getUserNo {
+	display: inline;
+	font-size: 300%;
+}

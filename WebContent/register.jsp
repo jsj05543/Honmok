@@ -7,9 +7,14 @@
 <title>Honmok</title>
 </head>
 <body>
+<%	boolean isAdmin = (request.getAttribute("admin") != null); %>
+
 <!-- 利用者ヘッダ -->
-<jsp:include page="header.jsp" flush="true" />
-↑管理者もアクセスするけど？
+<%	if (isAdmin) { %>
+		<jsp:include page="header_admin.jsp" flush="true" />
+<%	} else { %>
+		<jsp:include page="header.jsp" flush="true" />
+<%	} %>
 
 <!-- タイトル -->
 <h1>利用者登録画面</h1>
@@ -18,6 +23,9 @@
 ここにコンテンツを書く
 
 <form action="register_result" method="post">
+<%	if (isAdmin) { %>
+	<input type="hidden" name="admin">
+<%	} %>
 	<div class="form_text">氏名：</div>
 	<input type="text" name="uname" class="form_textbox">
 	<div class="form_text">住所：</div>

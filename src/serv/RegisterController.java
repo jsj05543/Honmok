@@ -25,6 +25,12 @@ public class RegisterController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		String admin = request.getParameter("admin");
+		if (admin != null && ( admin != "false" && admin != "null" )) {
+			request.setAttribute("admin", admin );
+		}
+
 		RequestDispatcher dispatch = request.getRequestDispatcher("register.jsp");
 		dispatch.forward(request, response);
 	}

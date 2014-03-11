@@ -12,7 +12,7 @@
 <ul id="navi">
 <li><a href="over_due">延滞リスト表示</a></li>
 <li><a href="user_search">利用者情報表示</a></li>
-<li><a href="register">利用者登録</a></li>
+<li><a href="register?admin">利用者登録</a></li>
 </ul>
 </body>
 </html>

@@ -25,7 +25,11 @@ public class RegisterResultController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		request.setCharacterEncoding("UTF-8");
+		String admin = request.getParameter("admin");
+		if (admin != null) {
+			request.setAttribute("admin", admin );
+		}
 		//
 		// ここに実装する
 		//

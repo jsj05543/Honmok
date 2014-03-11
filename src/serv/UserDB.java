@@ -57,10 +57,11 @@ public class UserDB extends DBAccess{
 	/**
 	 * ユーザNoから、ユーザ情報を取得。。該当なしの場合は、nullを返す。
 	 * @param userNo ユーザNo
-	 * @return ArrayList uersテーブル
+	 * @return User uersテーブル
 	 */
 	public User getUserDetail(String userNo)
 	{
+		User u = new User();
 		try
 		{
 			// SQL操作
@@ -68,25 +69,28 @@ public class UserDB extends DBAccess{
 			stmt.setString(1,userNo);
 			ResultSet rs = stmt.executeQuery();
 
-			User u = new User();
-			u.setUid(rs.getInt("uid"));
-			// 利用者番号をDBから取得
-			u.setUserNo(userNo);
-			// ユーザ名
-			u.setUname(rs.getString("uname"));
-			// 住所
-			u.setAddress(rs.getString("address"));
-			// 電話番号
-			u.setTel(rs.getString("tel"));
+			if ( rs.next() ){
+				u.setUid(rs.getInt("uid"));
+				// 利用者番号をDBから取得
+				u.setUserNo(userNo);
+				// ユーザ名
+				u.setUname(rs.getString("uname"));
+				// 住所
+				u.setAddress(rs.getString("address"));
+				// 電話番号
+				u.setTel(rs.getString("tel"));
+			}else{
+				u = null;
+			}
 			rs.close();
 			stmt.close();
-			return u;
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
+			u = null;
 		}
-		return null;
+		return u;
 	}
 
 
@@ -253,8 +257,6 @@ public class UserDB extends DBAccess{
 			return true;
 		}
 	}
-
-
 
 
 }

@@ -6,6 +6,7 @@ package serv;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -16,8 +17,8 @@ import java.util.ArrayList;
 public class CirculationDB extends DBAccess{
 
 	/**
-	 * "user"テーブルへのアクセス
-	 * @return ArrayList uersテーブルの配列データ
+	 * "circulation"テーブルへのアクセス
+	 * @return ArrayList circulationテーブルの配列データ
 	 */
 	public ArrayList<Circulation> getCirculations()
 	{
@@ -53,6 +54,76 @@ public class CirculationDB extends DBAccess{
 		return list;
 	}
 
+	/**
+	 * "circulations"テーブルから貸し出しを延滞しているリストを返す。
+	 * 条件：返却日(returnDay)がNULL、かつ貸出日(issueDay)が、7日前。（deleteFlag == false)
+	 * @return Circulation circulationテーブル
+	 */
+	public ArrayList<Circulation> getOverDueList()
+	{
+		ArrayList<Circulation> list = new ArrayList<Circulation>();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Circulation c = new Circulation();
+				// CIDをDBから取得
+				c.setCid(rs.getInt("cid"));
+				// 貸出日
+				c.setIssueDay(rs.getTimestamp("issueDay"));
+				// 返却日
+				c.setReturnDay(rs.getTimestamp("returnDay"));
+				// UID
+				c.setUid(rs.getInt("uid"));
+				// LBID
+				c.setLbid(rs.getInt("lbid"));
+				list.add(c);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return list;
+	}
+
+	/**
+	 * 貸し出し可能かどうかをチェックする（本の貸し出し状況が3冊に到達していなければOK）
+	 * 条件：返却日(returnDay)がNULLである貸し出しリストが3件になっているもの。
+	 * @param userNo 利用者番号
+	 * @return true: 3冊貸し出し中。false: 3冊未満
+	 */
+	public Boolean canRent(String userNo)
+	{
+		Boolean rent_flag = false;
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT count(*) as num FROM circulations, users WHERE circulations.uid = users.uid AND returnDAY IS NULL AND users.userNo = ?");
+
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				if( rs.getInt("num") < 3 ){
+					// 3冊以下であれば貸し出し可能
+					rent_flag = true;
+				}
+			}
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+			e.printStackTrace();
+		}
+		return rent_flag;
+	}
 
 	/**
 	 * 貸し出し情報追加(本の貸し出し処理の際に実行。貸出日は処理実行時のデータを使用）
@@ -209,6 +280,13 @@ public class CirculationDB extends DBAccess{
 	}
 
 
+	/**
+	 * 延滞判定を行うメソッド
+	 */
+	private Boolean isOverDue(Timestamp issueDay)
+	{
+		return false;
+	}
 
 
 }

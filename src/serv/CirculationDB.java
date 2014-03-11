@@ -6,7 +6,6 @@ package serv;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -14,35 +13,34 @@ import java.util.ArrayList;
  *
  * @author Koji Hijikuro
  */
-public class UserDB extends DBAccess{
+public class CirculationDB extends DBAccess{
 
 	/**
 	 * "user"テーブルへのアクセス
 	 * @return ArrayList uersテーブルの配列データ
 	 */
-	public ArrayList<User> getUsers()
+	public ArrayList<Circulation> getCirculations()
 	{
-		ArrayList<User> list = new ArrayList<User>();
+		ArrayList<Circulation> list = new ArrayList<Circulation>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE delete_flag = false");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulation WHERE delete_flag = false");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				User u = new User();
-				// UIDをDBから取得
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
-				// 配列に保存
-				list.add(u);
+				Circulation c = new Circulation();
+				// CIDをDBから取得
+				c.setCid(rs.getInt("cid"));
+				// 貸出日
+				c.setIssueDay(rs.getTimestamp("issueDay"));
+				// 返却日
+				c.setReturnDay(rs.getTimestamp("returnDay"));
+				// UID
+				c.setUid(rs.getInt("uid"));
+				// LBID
+				c.setLbid(rs.getInt("lbid"));
+				list.add(c);
 			}
 
 			rs.close();
@@ -57,28 +55,22 @@ public class UserDB extends DBAccess{
 
 
 	/**
-	 * ユーザ情報追加
-	 * @param uname 氏名
-	 * @param address 住所
-	 * @param tel 電話番号
-	 * @return データ適用数(-1の場合：同一データが存在、0の場合：挿入処理エラー)
+	 * 貸し出し情報追加(本の貸し出し処理の際に実行。貸出日は処理実行時のデータを使用）
+	 * @param uid ユーザID
+	 * @param lbid 書籍ID
+	 * @return
 	 */
-	public int insert(String uname, String address, String tel)
+	public int insert(int uid, int lbid)
 	{
 		try
 		{
-			if( !this.isSameData(uname,address,tel)){
-				//	プリペアードステートメント
-				String 	sql = "INSERT INTO user (userNo, uname, address, tel) values (?, ?, ?, ?)";
-				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setString(2,uname);
-				stmt.setString(3,address);
-				stmt.setString(4,tel);
-				//	SQLの実行
-				return stmt.executeUpdate();
-			}else{
-				return -1;
-			}
+			//	プリペアードステートメント
+			String 	sql = "INSERT INTO circulations (issueDay, uid, bid) values (now(), ?, ?)";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1,uid);
+			stmt.setInt(2,lbid);
+			//	SQLの実行
+			return stmt.executeUpdate();
 		}
 		catch(SQLException e)
 		{
@@ -89,21 +81,21 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * 特定データ削除
-	 * @param mid
+	 * @param lbid
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
-	public int delete(int uid)
+	public int delete(int lbid)
 	{
 		try
 		{
-			if( this.searchId(uid) ){
-				String sql = "UPDATE user SET delete_flag = true WHERE uid = ?";
+			if( this.searchId(lbid) ){
+				String sql = "UPDATE circulations SET delete_flag = true WHERE lbid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setInt(1,uid);
+				stmt.setInt(1,lbid);
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のメモは存在しません。");
+				System.out.println("指定された番号のLBIDは存在しません。");
 				return 0;
 			}
 		}
@@ -124,7 +116,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "DELETE FROM user";
+			String sql = "DELETE FROM circulations";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			//	SQLの実行
 			return stmt.executeUpdate();
@@ -137,29 +129,25 @@ public class UserDB extends DBAccess{
 	}
 
 	/**
-	 * データ更新
-	 * @param mid
+	 * データ更新(本の返却があった場合に実行。返却時間を設定)
+	 * @param lbid
 	 * @return データベースへの適用数(0であった場合は更新エラー)
 	 */
-	public int update(int mid, String body)
+	public int update(int lbid)
 	{
 		try
 		{
-			int num=0;
-			if( this.searchId(mid)){
+			if( this.searchId(lbid)){
 				//	プリペアードステートメント
-				String sql = "UPDATE memo SET body = ?, mtime = ? WHERE mid = ?";
+				String sql = "UPDATE circulations SET returnDay = now() WHERE lbid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setString(1,body);
-				Timestamp ts = new Timestamp(System.currentTimeMillis());
-				stmt.setTimestamp(2,ts);
-				stmt.setInt(3,mid);
+				stmt.setInt(1,lbid);
 				//	SQLの実行
-				num = stmt.executeUpdate();
+				return stmt.executeUpdate();
 			}else{
 				System.out.println("指定された番号のメモは存在しません。");
+				return 0;
 			}
-			return num;
 		}
 		catch(SQLException e)
 		{
@@ -175,6 +163,7 @@ public class UserDB extends DBAccess{
 	 * @param tel 電話番号
 	 * @return true:既存データあり、false:既存データなし
 	 */
+	/*
 	private Boolean isSameData(String uname, String address, String tel)
 	{
 		try
@@ -194,20 +183,21 @@ public class UserDB extends DBAccess{
 			return true;
 		}
 	}
+	*/
 
 	/**
 	 * 既存データがあるかどうかのサーチ
-	 * @param id ID
+	 * @param lbid LBID
 	 * @return true:既存データあり、false:既存データなし
 	 */
-	private Boolean searchId(int id)
+	private Boolean searchId(int lbid)
 	{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "SELECT * FROM user WHERE uid=?";
+			String sql = "SELECT * FROM circulations WHERE lbid=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1,id);
+			stmt.setInt(1,lbid);
 			ResultSet rs = stmt.executeQuery();
 			return rs.next();
 		}

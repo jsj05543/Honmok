@@ -6,7 +6,6 @@ package serv;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -14,31 +13,39 @@ import java.util.ArrayList;
  *
  * @author Koji Hijikuro
  */
-public class BookDB extends DBAccess{
+public class LibraryBookDB extends DBAccess{
 
 	/**
-	 * "books"テーブルへのアクセス
-	 * @return ArrayList booksテーブルの配列データ
+	 * "LibraryBook"テーブルへのアクセス
+	 * @return ArrayList LibraryBookテーブルの配列データ
 	 */
-	public ArrayList<Book> getBooks()
+	public ArrayList<LibraryBook> getLibraryBooks()
 	{
-		ArrayList<Book> list = new ArrayList<Book>();
+		ArrayList<LibraryBook> list = new ArrayList<LibraryBook>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM books WHERE delete_flag = false");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.deleteFlag = false");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				Book b = new Book();
-				// BID
-				b.setBid(rs.getInt("bid"));
+				LibraryBook lb = new LibraryBook();
+				// LibraryBook ID
+				lb.setLbid(rs.getInt("lbid"));
+				// Book ID
+				lb.setBid(rs.getInt("bid"));
+				// 図書書籍管理番号
+				lb.setBookNo(rs.getString("bookNo"));
 				// ISBN
-				b.setIsbn(rs.getString("isbn"));
+				lb.setIsbn(rs.getString("isbn"));
 				// 書籍名
-				b.setBname(rs.getString("bname"));
-				// 配列に保存
-				list.add(b);
+				lb.setBname(rs.getString("bname"));
+				// 筆者
+				lb.setAuthor(rs.getString("author"));
+				// 出版社
+				lb.setPublisher(rs.getString("publisher"));
+				// ページ数
+				list.add(lb);
 			}
 
 			rs.close();
@@ -53,12 +60,13 @@ public class BookDB extends DBAccess{
 
 
 	/**
-	 * ユーザ情報追加
+	 * 書籍情報追加
 	 * @param uname 氏名
 	 * @param address 住所
 	 * @param tel 電話番号
 	 * @return データ適用数(-1の場合：同一データが存在、0の場合：挿入処理エラー)
 	 */
+	/*
 	public int insert(String uname, String address, String tel)
 	{
 		try
@@ -82,12 +90,14 @@ public class BookDB extends DBAccess{
 			return 0;
 		}
 	}
+	*/
 
 	/**
 	 * 特定データ削除
 	 * @param mid
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
+	/*
 	public int delete(int uid)
 	{
 		try
@@ -110,26 +120,32 @@ public class BookDB extends DBAccess{
 			return 0;
 		}
 	}
+	*/
 
 
 	/**
 	 * 全データ削除
 	 * @return データベースへの適用数
 	 */
-	public int deleteAll()
+	public void deleteAll()
 	{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "DELETE FROM user";
+			String sql = "DELETE FROM librarybooks";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			//	SQLの実行
-			return stmt.executeUpdate();
+			stmt.executeUpdate();
+
+			//	プリペアードステートメント
+			sql = "DELETE FROM books";
+			stmt = con.prepareStatement(sql);
+			//	SQLの実行
+			stmt.executeUpdate();
 		}
 		catch(SQLException e)
 		{
 			e.printStackTrace();
-			return 0;
 		}
 	}
 
@@ -138,6 +154,7 @@ public class BookDB extends DBAccess{
 	 * @param mid
 	 * @return データベースへの適用数(0であった場合は更新エラー)
 	 */
+	/*
 	public int update(int mid, String body)
 	{
 		try
@@ -164,6 +181,7 @@ public class BookDB extends DBAccess{
 			return 0;
 		}
 	}
+	*/
 
 	/**
 	 * 同一データ（氏名、住所、電話番号が全て同じ）があるかどうかのサーチ
@@ -172,6 +190,7 @@ public class BookDB extends DBAccess{
 	 * @param tel 電話番号
 	 * @return true:既存データあり、false:既存データなし
 	 */
+	/*
 	private Boolean isSameData(String uname, String address, String tel)
 	{
 		try
@@ -191,12 +210,14 @@ public class BookDB extends DBAccess{
 			return true;
 		}
 	}
+	*/
 
 	/**
 	 * 既存データがあるかどうかのサーチ
 	 * @param id ID
 	 * @return true:既存データあり、false:既存データなし
 	 */
+	/*
 	private Boolean searchId(int id)
 	{
 		try
@@ -214,6 +235,7 @@ public class BookDB extends DBAccess{
 			return true;
 		}
 	}
+	*/
 
 
 

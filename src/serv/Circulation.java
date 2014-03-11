@@ -13,6 +13,10 @@ import java.sql.Timestamp;
  */
 public class Circulation {
 	/**
+	 * Circulation ID
+	 */
+	private int cid;
+	/**
 	 * 貸出日
 	 */
 	private Timestamp issueDay;
@@ -32,6 +36,20 @@ public class Circulation {
 	 * 削除フラグ
 	 */
 	private Boolean deleteFlag;
+
+
+	/**
+	 * @return cid
+	 */
+	public int getCid() {
+		return cid;
+	}
+	/**
+	 * @param cid セットする cid
+	 */
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
 	/**
 	 * @return issueDay
 	 */

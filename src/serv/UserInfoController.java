@@ -1,6 +1,7 @@
 package serv;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,9 +26,9 @@ public class UserInfoController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<String> error_message = new ArrayList<String>();
 
 		UserDB userdb = new UserDB();
-//		User user = new User();
 
 		request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html;charset=UTF-8");
@@ -35,14 +36,16 @@ public class UserInfoController extends HttpServlet {
 	    try {
 	    	int uid = Integer.parseInt( request.getParameter("uid") );
 	    	User user = userdb.getUserDetail(uid);
-			if( user == null ){
-				request.setAttribute("error_message", "該当するIDの利用者はいません");
-			} else {
+			if( user != null ){
 				request.setAttribute("users", user );
+			} else {
+				error_message.add("該当するIDの利用者はいません。");
 			}
 	    } catch (NumberFormatException ex) {
-			request.setAttribute("error_message", "該当するIDの利用者はいません");
+			error_message.add("数字以外が入力されました。");
+			error_message.add("該当するIDの利用者はいません。");
 	    }
+		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_info.jsp");
 		dispatch.forward(request, response);
 	}

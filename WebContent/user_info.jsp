@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="serv.User" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -16,9 +17,11 @@
 <!-- コンテンツ -->
 <%
 // エラー判定
-String error_message = (String)request.getAttribute("error_message");
-if (error_message != null) {
-	out.println( error_message );
+ArrayList<String> error_message = (ArrayList<String>)request.getAttribute("error_message");
+if ( ! error_message.isEmpty() ) {
+	for (String string : error_message) {
+		out.println( "<div class=\"error_message\">" + string + "</div>");
+	}
 	return;
 }
 User user = (User)request.getAttribute("users");

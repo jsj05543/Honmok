@@ -107,7 +107,7 @@ public class CirculationDB extends DBAccess{
 		{
 			// SQL操作
 			PreparedStatement stmt = this.con.prepareStatement("SELECT count(*) as num FROM circulations, users WHERE circulations.uid = users.uid AND returnDAY IS NULL AND users.userNo = ?");
-
+			stmt.setString(1,userNo);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {

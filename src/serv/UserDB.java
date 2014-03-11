@@ -17,7 +17,7 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * "user"テーブルへのアクセス
-	 * @return ArrayList uersテーブルの配列データ
+	 * @return ArrayList uersテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public ArrayList<User> getUsers()
 	{
@@ -49,18 +49,59 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			return null;
 		}
 		return list;
 	}
 
 	/**
-	 * ユーザNoから、ユーザ情報を取得。。該当なしの場合は、nullを返す。
+	 * UIDから、ユーザ情報を取得。該当なしの場合は、nullを返す。
+	 * @param uid UID
+	 * @return User 該当するデータ。該当なしの場合は、nullを返す
+	 */
+	public User getUserDetail(int uid)
+	{
+		User u = new User();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE uid = ?");
+			stmt.setInt(1,uid);
+			ResultSet rs = stmt.executeQuery();
+
+			if ( rs.next() ){
+				u.setUid(rs.getInt("uid"));
+				// 利用者番号をDBから取得
+				u.setUserNo(rs.getString("userNo"));
+				// ユーザ名
+				u.setUname(rs.getString("uname"));
+				// 住所
+				u.setAddress(rs.getString("address"));
+				// 電話番号
+				u.setTel(rs.getString("tel"));
+			}else{
+				u = null;
+			}
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			u = null;
+		}
+		return u;
+	}
+
+	/**
+	 * ユーザNoから、ユーザ情報を取得。該当なしの場合は、nullを返す。
 	 * @param userNo ユーザNo
-	 * @return ArrayList uersテーブル
+	 * @return User  該当するデータ。該当なしの場合は、nullを返す
 	 */
 	public User getUserDetail(String userNo)
 	{
+		User u = new User();
 		try
 		{
 			// SQL操作
@@ -68,25 +109,28 @@ public class UserDB extends DBAccess{
 			stmt.setString(1,userNo);
 			ResultSet rs = stmt.executeQuery();
 
-			User u = new User();
-			u.setUid(rs.getInt("uid"));
-			// 利用者番号をDBから取得
-			u.setUserNo(userNo);
-			// ユーザ名
-			u.setUname(rs.getString("uname"));
-			// 住所
-			u.setAddress(rs.getString("address"));
-			// 電話番号
-			u.setTel(rs.getString("tel"));
+			if ( rs.next() ){
+				u.setUid(rs.getInt("uid"));
+				// 利用者番号をDBから取得
+				u.setUserNo(rs.getString("userNo"));
+				// ユーザ名
+				u.setUname(rs.getString("uname"));
+				// 住所
+				u.setAddress(rs.getString("address"));
+				// 電話番号
+				u.setTel(rs.getString("tel"));
+			}else{
+				u = null;
+			}
 			rs.close();
 			stmt.close();
-			return u;
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
+			u = null;
 		}
-		return null;
+		return u;
 	}
 
 
@@ -116,7 +160,7 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -143,7 +187,7 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -165,7 +209,7 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -199,7 +243,7 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
+//			e.printStackTrace();
 			return 0;
 		}
 	}
@@ -226,8 +270,8 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
-			return true;
+//			e.printStackTrace();
+			return null;
 		}
 	}
 
@@ -249,12 +293,10 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
-			return true;
+//			e.printStackTrace();
+			return null;
 		}
 	}
-
-
 
 
 }

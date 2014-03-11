@@ -80,25 +80,25 @@ table.userbooktable {
 	color: red; /* デバッグ用 */
 }
 
-form.yoko {
-	display: inline;
-}
-
 .form_text {
-	clear: both;
-	/* あとでやる なんか回り込みがおかしい */
-	display: inline;
 	float: left;
 }
 
 .form_textbox {
-	clear: both;
+	float: left;
 }
 
 .form_submit_button {
+	float: left;
 	display: block;
+	clear: both;
 }
 
 .form_submit_button_yoko {
+	float: left;
 	display: inline;
+}
+
+div.clearFloat {
+	clear: both;
 }

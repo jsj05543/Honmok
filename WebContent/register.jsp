@@ -28,10 +28,13 @@
 <%	} %>
 	<div class="form_text">氏名：</div>
 	<input type="text" name="uname" class="form_textbox">
+	<div class="clearFloat"></div>
 	<div class="form_text">住所：</div>
 	<input type="text" name="address" class="form_textbox">
+	<div class="clearFloat"></div>
 	<div class="form_text">TEL：</div>
 	<input type="text" name="tel" class="form_textbox">
+	<div class="clearFloat"></div>
 	<input type="submit" value="登録" class="form_submit_button">
 </form>
 

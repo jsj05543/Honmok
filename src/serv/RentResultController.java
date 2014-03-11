@@ -59,13 +59,12 @@ public class RentResultController extends HttpServlet {
 	    response.setContentType("text/html;charset=UTF-8");
 	    PrintWriter out = response.getWriter();
 
-	    out.println( user.getLimitFlag() );
-
-		if( user.getLimitFlag() != null  ){
-			error_message.add("すでに３冊貸し出し中です。返却処理を行ってください。");
-			flag = false;
-		}
-
+//		貸出の冊数限度チェック（未実装）
+//	    out.println( user.getLimitFlag() );
+//		if( user.getLimitFlag() != null  ){
+//			error_message.add("すでに３冊貸し出し中です。返却処理を行ってください。");
+//			flag = false;
+//		}
 
 
 		CirculationDB circulationdb = new CirculationDB();

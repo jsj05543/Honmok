@@ -141,7 +141,7 @@ public class UserDB extends DBAccess{
 	 * @param tel 電話番号
 	 * @return データ適用数(-1の場合：同一データが存在、0の場合：挿入処理エラー)
 	 */
-	public int insert(String uname, String address, String tel)
+	public int insert(String userNo, String uname, String address, String tel)
 	{
 		try
 		{
@@ -149,6 +149,7 @@ public class UserDB extends DBAccess{
 				//	プリペアードステートメント
 				String 	sql = "INSERT INTO users (userNo, uname, address, tel) values (?, ?, ?, ?)";
 				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setString(1,userNo);
 				stmt.setString(2,uname);
 				stmt.setString(3,address);
 				stmt.setString(4,tel);

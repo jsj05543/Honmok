@@ -1,6 +1,7 @@
 package serv;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,6 +26,20 @@ public class RentResultController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+
+		UserDB userdb;
+		User user;
+
+		request.setCharacterEncoding("UTF-8");
+		String uid = request.getParameter("uid");
+		String bid = request.getParameter("bid");
+
+	    response.setContentType("text/html;charset=UTF-8");
+	    PrintWriter out = response.getWriter();
+
+
+		user = userdb.getUserDetail(uid);
 
 		//
 		// ここに実装する

@@ -8,11 +8,11 @@
 <link rel="stylesheet" type="text/css" href="./honmok.css" />
 </head>
 <body>
-<div id="logo">Honmok</div>
+<div id="logo"><a href="/Honmok/admin">Honmok</a></div>
 <ul id="navi">
 <li><a href="over_due">延滞リスト表示</a></li>
-<li><a href="user_info">利用者情報表示</a></li>
-<li><a href="register">利用者登録</a></li>
+<li><a href="user_search">利用者情報表示</a></li>
+<li><a href="register?admin">利用者登録</a></li>
 </ul>
 </body>
 </html>

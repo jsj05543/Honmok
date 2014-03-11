@@ -11,17 +11,15 @@
 <jsp:include page="header.jsp" flush="true" />
 
 <!-- タイトル -->
-<h1>貸し出し画面</h1>
+<h1>返却画面</h1>
 
 <!-- コンテンツ -->
-<form action="rent_result" method="post">
-	<div class="form_text">利用者番号：</div>
-	<input type="text" name="uid" class="form_textbox">
-	<div class="clearFloat"></div>
+<form action="return_result" method="post">
 	<div class="form_text">書籍番号：</div>
 	<input type="text" name="bid" class="form_textbox">
-	<input type="submit" value="貸し出し" class="form_submit_button">
+	<input type="submit" value="返却" class="form_submit_button">
 </form>
+
 
 </body>
 </html>

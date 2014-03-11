@@ -3,6 +3,7 @@ package serv;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RentResult
  */
-@WebServlet(description = "userNo, bookNoを受け取り、貸し出し処理を行う。", urlPatterns = { "/rent_result" })
+@WebServlet(description = "userNo, bookNoを受け取り、貸し�し�琂�行う�, urlPatterns = { "/rent_result" })
 public class ReturnResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -45,14 +46,19 @@ public class ReturnResultController extends HttpServlet {
 		user = userdb.getUserDetail(uid);
 
 		if( user == null ){
-			out.println("該当しゃなし");
+			out.println("該当しめ��);
 		}else{
 			out.println(user.getUname());
 		}
 
 
 
+		//
+		// ここに実裁��
+		//
 
+		RequestDispatcher dispatch = request.getRequestDispatcher("return_result.jsp");
+		dispatch.forward(request, response);
 	}
 
 }

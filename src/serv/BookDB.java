@@ -14,35 +14,31 @@ import java.util.ArrayList;
  *
  * @author Koji Hijikuro
  */
-public class UserDB extends DBAccess{
+public class BookDB extends DBAccess{
 
 	/**
-	 * "user"テーブルへのアクセス
-	 * @return ArrayList uersテーブルの配列データ
+	 * "books"テーブルへのアクセス
+	 * @return ArrayList booksテーブルの配列データ
 	 */
-	public ArrayList<User> getUsers()
+	public ArrayList<Book> getBooks()
 	{
-		ArrayList<User> list = new ArrayList<User>();
+		ArrayList<Book> list = new ArrayList<Book>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE delete_flag = false");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM books WHERE delete_flag = false");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				User u = new User();
-				// UIDをDBから取得
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
+				Book b = new Book();
+				// BID
+				b.setBid(rs.getInt("bid"));
+				// ISBN
+				b.setIsbn(rs.getString("isbn"));
+				// 書籍名
+				b.setBname(rs.getString("bname"));
 				// 配列に保存
-				list.add(u);
+				list.add(b);
 			}
 
 			rs.close();

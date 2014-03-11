@@ -6,7 +6,6 @@ package serv;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 /**
@@ -69,7 +68,7 @@ public class UserDB extends DBAccess{
 		{
 			if( !this.isSameData(uname,address,tel)){
 				//	プリペアードステートメント
-				String 	sql = "INSERT INTO user (userNo, uname, address, tel) values (?, ?, ?, ?)";
+				String 	sql = "INSERT INTO users (userNo, uname, address, tel) values (?, ?, ?, ?)";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setString(2,uname);
 				stmt.setString(3,address);
@@ -97,7 +96,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			if( this.searchId(uid) ){
-				String sql = "UPDATE user SET delete_flag = true WHERE uid = ?";
+				String sql = "UPDATE users SET delete_flag = true WHERE uid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,uid);
 				//	SQLの実行
@@ -124,7 +123,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "DELETE FROM user";
+			String sql = "DELETE FROM users";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			//	SQLの実行
 			return stmt.executeUpdate();
@@ -137,29 +136,31 @@ public class UserDB extends DBAccess{
 	}
 
 	/**
-	 * データ更新
-	 * @param mid
+	 * データ更新(名前、住所、電話番号の更新。利用者番号の更新はしない)
+	 * @param uid
+	 * @param uname
+	 * @param address
+	 * @param tel
 	 * @return データベースへの適用数(0であった場合は更新エラー)
 	 */
-	public int update(int mid, String body)
+	public int update(int uid, String uname, String address, String tel)
 	{
 		try
 		{
-			int num=0;
-			if( this.searchId(mid)){
+			if( this.searchId(uid)){
 				//	プリペアードステートメント
-				String sql = "UPDATE memo SET body = ?, mtime = ? WHERE mid = ?";
+				String sql = "UPDATE users SET uname = ?, address = ?, tel = ? WHERE uid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setString(1,body);
-				Timestamp ts = new Timestamp(System.currentTimeMillis());
-				stmt.setTimestamp(2,ts);
-				stmt.setInt(3,mid);
-				//	SQLの実行
-				num = stmt.executeUpdate();
+				stmt.setString(1,uname);
+				stmt.setString(2,address);
+				stmt.setString(3,tel);
+				stmt.setInt(4,uid);
+								//	SQLの実行
+				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のメモは存在しません。");
+				System.out.println("指定されたUIDは存在しません");
+				return -1;
 			}
-			return num;
 		}
 		catch(SQLException e)
 		{
@@ -180,7 +181,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "SELECT * FROM user WHERE uname=? address=? tel=?";
+			String sql = "SELECT * FROM users WHERE uname=? address=? tel=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1,uname);
 			stmt.setString(2,address);
@@ -205,7 +206,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "SELECT * FROM user WHERE uid=?";
+			String sql = "SELECT * FROM users WHERE uid=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1,id);
 			ResultSet rs = stmt.executeQuery();

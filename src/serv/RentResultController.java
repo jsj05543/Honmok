@@ -2,6 +2,7 @@ package serv;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -27,24 +28,51 @@ public class RentResultController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-		UserDB userdb;
-		User user;
+		boolean flag = true;
+		ArrayList<String> error_message = new ArrayList<String>();
 
 		request.setCharacterEncoding("UTF-8");
-		String uid = request.getParameter("uid");
-		String bid = request.getParameter("bid");
+		String userNo = request.getParameter("userNo");
+		String bookNo = request.getParameter("bookNo");
+
+		UserDB userdb = new UserDB();
+		User user = userdb.getUserDetail(userNo);
+		userdb.close();
+
+		LibraryBookDB libbookdb = new LibraryBookDB();
+		LibraryBook libbook = libbookdb.getLibraryBookDetail(bookNo);
+		libbookdb.close();
+
+		if( user == null ){
+			error_message.add("内部エラーが発生しました。 不明な利用者ID");
+			flag = false;
+		}
+		request.setAttribute("user", user);
+
+		if( libbook == null ){
+			error_message.add("内部エラーが発生しました。 不明な書籍ID");
+			flag = false;
+		}
+		request.setAttribute("libbook", libbook);
+
 
 	    response.setContentType("text/html;charset=UTF-8");
 	    PrintWriter out = response.getWriter();
 
+	    out.println( user.getLimitFlag() );
 
-		user = userdb.getUserDetail(uid);
+		if( user.getLimitFlag() != null  ){
+			error_message.add("すでに３冊貸し出し中です。返却処理を行ってください。");
+			flag = false;
+		}
 
-		//
-		// ここに実装する
-		//
 
+
+		CirculationDB circulationdb = new CirculationDB();
+		circulationdb.close();
+
+
+		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("rent_result.jsp");
 		dispatch.forward(request, response);
 	}

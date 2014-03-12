@@ -119,6 +119,7 @@ public class UserDB extends DBAccess{
 				u.setAddress(rs.getString("address"));
 				// 電話番号
 				u.setTel(rs.getString("tel"));
+				u.setLimitFlag(rs.getBoolean("limitFlag") );
 			}else{
 				u = null;
 			}

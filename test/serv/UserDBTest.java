@@ -19,9 +19,66 @@ public class UserDBTest {
 
 	/**
 	 * {@link serv.UserDB#getUsers()} のためのテスト・メソッド。
+	 * 正常系：テストデータとして既に入れている情報が取得できることを確認する。
+	 * 異常系：なし
 	 */
 	@Test
 	public void testGetUsers() {
+		UserDB db = new UserDB();
+		// 数
+        assertEquals(5, db.getUsers().size());
+
+        // 一人目
+        assertEquals(1, db.getUsers().get(0).getUid());
+        assertEquals("肥後　太郎", db.getUsers().get(0).getUname());
+        assertEquals("肥後123-456", db.getUsers().get(0).getAddress());
+        assertEquals("0120-1515-3776", db.getUsers().get(0).getTel());
+        assertEquals(false, db.getUsers().get(0).getLimitFlag());
+        // 二人目
+        assertEquals(2, db.getUsers().get(1).getUid());
+        assertEquals("大阿蘇 次郎", db.getUsers().get(1).getUname());
+        assertEquals("阿蘇888-456", db.getUsers().get(1).getAddress());
+        assertEquals("0120-1515-4231", db.getUsers().get(1).getTel());
+        assertEquals(false, db.getUsers().get(1).getLimitFlag());
+        // 三人目
+        assertEquals(3, db.getUsers().get(2).getUid());
+        assertEquals("水前寺　花子", db.getUsers().get(2).getUname());
+        assertEquals("水前寺888-456", db.getUsers().get(2).getAddress());
+        assertEquals("0120-3121-9999", db.getUsers().get(2).getTel());
+        assertEquals(false, db.getUsers().get(2).getLimitFlag());
+        // 四人目
+        assertEquals(4, db.getUsers().get(3).getUid());
+        assertEquals("延滞　する蔵", db.getUsers().get(3).getUname());
+        assertEquals("延滞町888-456", db.getUsers().get(3).getAddress());
+        assertEquals("0120-3121-9999", db.getUsers().get(3).getTel());
+        assertEquals(false, db.getUsers().get(3).getLimitFlag());
+        // 五人目
+        assertEquals(5, db.getUsers().get(4).getUid());
+        assertEquals("3冊　借りる蔵", db.getUsers().get(4).getUname());
+        assertEquals("MAX888-456", db.getUsers().get(4).getAddress());
+        assertEquals("0120-3121-9999", db.getUsers().get(4).getTel());
+        assertEquals(false, db.getUsers().get(4).getLimitFlag());
+
+	}
+
+	/**
+	 * {@link serv.UserDB#getUsers()} のためのテスト・メソッド。
+	 * 正常系：テストデータとして既に入れている情報が取得できることを確認する。
+	 * 異常系：なし
+	 */
+	@Test
+	public void testGetUsersAll() {
+		UserDB db = new UserDB();
+		// 数
+        assertEquals(6, db.getUsers(true).size());
+
+        // 六人目
+        assertEquals(6, db.getUsers(true).get(5).getUid());
+        assertEquals("削除　された蔵", db.getUsers(true).get(5).getUname());
+        assertEquals("DEL888-456", db.getUsers(true).get(5).getAddress());
+        assertEquals("0120-3121-8888", db.getUsers(true).get(5).getTel());
+        assertEquals(false, db.getUsers(true).get(5).getLimitFlag());
+        assertEquals(true, db.getUsers(true).get(5).getDeleteFlag());
 	}
 
 	/**
@@ -29,6 +86,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testGetUserDetailInt() {
+		UserDB db = new UserDB();
 	}
 
 	/**
@@ -73,6 +131,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testGetUserDetailString() {
+		UserDB db = new UserDB();
 	}
 
 	/**
@@ -96,6 +155,8 @@ public class UserDBTest {
 		assertEquals("100000",result.get(0).getUserNo());
 		assertEquals("肥後123-456",result.get(0).getAddress());
 		assertEquals("0120-1515-3776",result.get(0).getTel());
+		assertEquals(false,result.get(0).getLimitFlag());
+		assertEquals(false,result.get(0).getDeleteFlag());
 		/*
 		 * 該当したデータが配列で返る。複数該当
 		 */
@@ -106,12 +167,16 @@ public class UserDBTest {
 		assertEquals("100009",result.get(0).getUserNo());
 		assertEquals("延滞町888-456",result.get(0).getAddress());
 		assertEquals("0120-3121-9999",result.get(0).getTel());
+		assertEquals(false,result.get(0).getLimitFlag());
+		assertEquals(false,result.get(0).getDeleteFlag());
 		// 2番目の該当
 		assertEquals(5,result.get(1).getUid());
 		assertEquals("3冊　借りる蔵",result.get(1).getUname());
 		assertEquals("100010",result.get(1).getUserNo());
 		assertEquals("MAX888-456",result.get(1).getAddress());
 		assertEquals("0120-3121-9999",result.get(1).getTel());
+		assertEquals(false,result.get(1).getLimitFlag());
+		assertEquals(false,result.get(1).getDeleteFlag());
 
 	}
 
@@ -121,6 +186,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testInsert() {
+		UserDB db = new UserDB();
 	}
 
 	/**
@@ -128,6 +194,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testDelete() {
+		UserDB db = new UserDB();
 	}
 
 	/**
@@ -135,6 +202,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testDeleteAll() {
+		UserDB db = new UserDB();
 	}
 
 	/**
@@ -142,6 +210,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testUpdate() {
+		UserDB db = new UserDB();
 	}
 
 	/**
@@ -149,6 +218,7 @@ public class UserDBTest {
 	 */
 	@Test
 	public void testUsedUserNo() {
+		UserDB db = new UserDB();
 	}
 
 }

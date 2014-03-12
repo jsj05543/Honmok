@@ -13,6 +13,7 @@ INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100001, '大阿蘇 �
 INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100008, '水前寺　花子', '水前寺888-456', '0120-3121-9999' );
 INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100009, '延滞　する蔵', '延滞町888-456', '0120-3121-9999' );
 INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100010, '3冊　借りる蔵', 'MAX888-456', '0120-3121-9999' );
+INSERT INTO users ( userNo, uname, address, tel , deleteFlag) VALUES ( 100100, '削除　された蔵', 'DEL888-456', '0120-3121-8888', TRUE );
 
 -- book/libraryBooksデータを作成
 SET @d = 0;

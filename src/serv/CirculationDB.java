@@ -98,7 +98,7 @@ public class CirculationDB extends DBAccess{
 	 * 貸し出し可能かどうかをチェックする（本の貸し出し状況が3冊に到達していなければOK）
 	 * 条件：返却日(returnDay)がNULLである貸し出しリストが3件になっているもの。
 	 * @param userNo 利用者番号
-	 * @return true: 3冊貸し出し中。false: 3冊未満
+	 * @return true: 3冊未満。false: 3冊以下
 	 */
 	public Boolean canRent(String userNo)
 	{

@@ -133,6 +133,48 @@ public class UserDB extends DBAccess{
 		return u;
 	}
 
+	/**
+	 * 入力された氏名から該当するユーザ情報を返す。検索は部分一致。
+	 * @param uname 氏名
+	 * @return ArrayList<User>  該当するUserデータの配列。一致するデータがない場合はNULLを返す
+	 */
+	public ArrayList<User> getUserDetailByUname(String uname)
+	{
+		ArrayList<User> list = new ArrayList<User>();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE uname LIKE ?");
+			stmt.setString(1,  "%" + uname + "%");
+			ResultSet rs = stmt.executeQuery();
+
+			while ( rs.next() ){
+				User u = new User();
+				u.setUid(rs.getInt("uid"));
+				// 利用者番号をDBから取得
+				u.setUserNo(rs.getString("userNo"));
+				// ユーザ名
+				u.setUname(rs.getString("uname"));
+				// 住所
+				u.setAddress(rs.getString("address"));
+				// 電話番号
+				u.setTel(rs.getString("tel"));
+				list.add(u);
+			}
+			rs.close();
+			stmt.close();
+			if ( list.isEmpty() ){
+				list = null;
+			}
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			list = null;
+		}
+		return list;
+	}
+
 
 	/**
 	 * ユーザ情報追加

@@ -5,13 +5,13 @@ package serv;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import serv.LibraryBookDB;
 
 /**
  * @author USER
@@ -55,15 +55,33 @@ public class LibraryBookDBTest {
 	 */
 	@Test
 	public void testGetLibraryBooks() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 	/**
-	 * {@link serv.LibraryBookDB#getLibraryBookDetail(java.lang.String)} のためのテスト・メソッド。
+	 * {@link serv.LibraryBookDB#getLibraryBookDetailByBookNo(java.lang.String)} のためのテスト・メソッド。
 	 */
 	@Test
-	public void testGetLibraryBookDetail() {
-		fail("まだ実装されていません"); // TODO
+	public void testGetLibraryBookDetailByBookNo() {
+		LibraryBookDB db = new LibraryBookDB();
+		ArrayList<LibraryBook> result = db.getLibraryBookDetailByBookNo("200000");
+		for( int i = 0; i < result.size(); i++ )
+		{
+			assertEquals("フェイスブックをつくったザッカーバーグの仕事術",result.get(i).getBname());
+		}
+
+	}
+
+	/**
+	 * {@link serv.LibraryBookDB#getLibraryBookDetailByBname(java.lang.String)} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetLibraryBookDetailByBname() {
+		LibraryBookDB db = new LibraryBookDB();
+		ArrayList<LibraryBook> result = db.getLibraryBookDetailByBname("フェイスブック");
+		for( int i = 0; i < result.size(); i++ )
+		{
+			assertEquals(result.get(i).getBname(),"フェイスブックをつくったザッカーバーグの仕事術");
+		}
 	}
 
 	/**
@@ -71,7 +89,6 @@ public class LibraryBookDBTest {
 	 */
 	@Test
 	public void testDeleteAll() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 	/**

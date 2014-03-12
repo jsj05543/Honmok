@@ -62,22 +62,20 @@ public class LibraryBookDB extends DBAccess{
 	}
 
 	/**
-	 * BookNoから、書籍情報の詳細を返すメソッド。該当なしの場合は、nullを返す。
+	 * BookNoから、書籍情報の詳細を返すメソッド。bookNo完全一致判定。該当なしの場合は、nullを返す。
 	 * @param bookNo BookNo
-	 * @return  ArrayList<LibraryBook> LibraryBookの配列、DBアクセスエラーの場合は、nullを返す。
+	 * @return  LibraryBook LibraryBookデータ、DBアクセスエラーの場合は、nullを返す。
 	 */
-	public ArrayList<LibraryBook> getLibraryBookDetailByBookNo(String bookNo)
+	public LibraryBook getLibraryBookDetailByBookNo(String bookNo)
 	{
-		ArrayList<LibraryBook> list = new ArrayList<LibraryBook>();
+		LibraryBook lb = new LibraryBook();
 		try
 		{
 			// SQL操作
 			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.bookNo = ?");
 			stmt.setString(1,bookNo);
 			ResultSet rs = stmt.executeQuery();
-			while ( rs.next() ) {
-				LibraryBook lb = new LibraryBook();
-
+			if ( rs.next() ) {
 				// LibraryBook ID
 				lb.setLbid(rs.getInt("lbid"));
 				// Book ID
@@ -92,8 +90,8 @@ public class LibraryBookDB extends DBAccess{
 				lb.setAuthor(rs.getString("author"));
 				// 出版社
 				lb.setPublisher(rs.getString("publisher"));
-
-				list.add(lb);
+			}else{
+				lb = null;
 			}
 			rs.close();
 			stmt.close();
@@ -101,9 +99,9 @@ public class LibraryBookDB extends DBAccess{
 		catch(SQLException e)
 		{
 //			e.printStackTrace();
-			list = null;
+			lb = null;
 		}
-		return list;
+		return lb;
 	}
 
 	/**

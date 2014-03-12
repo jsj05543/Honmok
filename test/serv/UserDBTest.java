@@ -91,22 +91,28 @@ public class UserDBTest {
 		 * 該当したデータが配列で返る。1件該当
 		 */
 		ArrayList<User> result = db.getUserDetailByUname("肥後　太郎");
-		for( int i = 0; i < result.size(); i++ )
-		{
-			assertEquals("肥後　太郎",result.get(i).getUname());
-			assertEquals("100000",result.get(i).getUserNo());
-		}
+		assertEquals(1,result.get(0).getUid());
+		assertEquals("肥後　太郎",result.get(0).getUname());
+		assertEquals("100000",result.get(0).getUserNo());
+		assertEquals("肥後123-456",result.get(0).getAddress());
+		assertEquals("0120-1515-3776",result.get(0).getTel());
 		/*
 		 * 該当したデータが配列で返る。複数該当
 		 */
-		/*
-		ArrayList<User> result = db.getUserDetailByUname("肥後　太郎");
-		for( int i = 0; i < result.size(); i++ )
-		{
-			assertEquals("肥後　太郎",result.get(i).getUname());
-			assertEquals("100000",result.get(i).getUserNo());
-		}
-		*/
+		result = db.getUserDetailByUname("蔵");
+		// 1番目の該当
+		assertEquals(4,result.get(0).getUid());
+		assertEquals("延滞　する蔵",result.get(0).getUname());
+		assertEquals("100009",result.get(0).getUserNo());
+		assertEquals("延滞町888-456",result.get(0).getAddress());
+		assertEquals("0120-3121-9999",result.get(0).getTel());
+		// 2番目の該当
+		assertEquals(5,result.get(1).getUid());
+		assertEquals("3冊　借りる蔵",result.get(1).getUname());
+		assertEquals("100010",result.get(1).getUserNo());
+		assertEquals("MAX888-456",result.get(1).getAddress());
+		assertEquals("0120-3121-9999",result.get(1).getTel());
+
 	}
 
 

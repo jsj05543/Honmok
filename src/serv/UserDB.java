@@ -173,6 +173,46 @@ public class UserDB extends DBAccess{
 	}
 
 	/**
+	 * "users"テーブルから、最新のデータを取得
+	 * @return Userオブジェクト
+	 */
+	public User getLatestUser()
+	{
+		User u = new User();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE uid = (SELECT LAST_INSERT_ID())");
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				u.setUid(rs.getInt("uid"));
+				// 利用者番号をDBから取得
+				u.setUserNo(rs.getString("userNo"));
+				// ユーザ名
+				u.setUname(rs.getString("uname"));
+				// 住所
+				u.setAddress(rs.getString("address"));
+				// 電話番号
+				u.setTel(rs.getString("tel"));
+				// Limitフラグ
+				u.setLimitFlag(rs.getBoolean("limitFlag"));
+				// Limitフラグ
+				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return u;
+	}
+
+	/**
 	 * 入力された氏名から該当するユーザ情報を返す。検索は部分一致。
 	 * @param uname 氏名
 	 * @return ArrayList<User>  該当するUserデータの配列。一致するデータがない場合はNULLを返す
@@ -262,13 +302,40 @@ public class UserDB extends DBAccess{
 		try
 		{
 			if( this.searchId(uid) ){
-				String sql = "UPDATE users SET delete_flag = true WHERE uid = ?";
+				String sql = "UPDATE users SET deleteFlag = true WHERE uid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,uid);
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のメモは存在しません。");
+				System.out.println("指定された番号のユーザーは存在しません。");
+				return 0;
+			}
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	/**
+	 * 特定データ削除(DELETE)
+	 * @param uid 削除対象となるUID
+	 * @return データベースへの適用数(0であった場合は、更新エラー）
+	 */
+	protected int deleteForce(int uid)
+	{
+		try
+		{
+			if( this.searchId(uid) ){
+				String sql = "DELETE FROM users WHERE uid = ?";
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setInt(1,uid);
+				//	SQLの実行
+				return stmt.executeUpdate();
+			}else{
+				System.out.println("指定された番号のユーザーは存在しません。");
 				return 0;
 			}
 		}

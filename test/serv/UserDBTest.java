@@ -86,10 +86,15 @@ public class UserDBTest {
 
 	/**
 	 * {@link serv.UserDB#getUserDetail(int)} のためのテスト・メソッド。
+	 * UIDを指定して、戻ってきたデータの内容をチェック
 	 */
 	@Test
 	public void testGetUserDetailInt() {
 		UserDB db = new UserDB();
+		User user = db.getUserDetail(4);
+		assertEquals("延滞　する蔵",user.getUname());
+		assertEquals("延滞町888-456",user.getAddress());
+		assertEquals("100009",user.getUserNo());
 	}
 
 	/**
@@ -135,6 +140,10 @@ public class UserDBTest {
 	@Test
 	public void testGetUserDetailString() {
 		UserDB db = new UserDB();
+		User user = db.getUserDetail("100009");
+		assertEquals("延滞　する蔵",user.getUname());
+		assertEquals("延滞町888-456",user.getAddress());
+		assertEquals("100009",user.getUserNo());
 	}
 
 	/**
@@ -190,6 +199,10 @@ public class UserDBTest {
 	@Test
 	public void testInsert() {
 		UserDB db = new UserDB();
+		assertEquals(1,db.insert("t200000", "テスト　太郎", "テスト町3丁目", "9696"));
+		// 挿入したデータの削除
+		int uid = db.getLatestUser().getUid();
+		db.deleteForce(uid);
 	}
 
 	/**
@@ -198,6 +211,11 @@ public class UserDBTest {
 	@Test
 	public void testDelete() {
 		UserDB db = new UserDB();
+		db.insert("t200000", "テスト　太郎", "テスト町3丁目", "9696");
+		int uid = db.getLatestUser().getUid();
+		assertEquals(1,db.delete(uid));
+		// 挿入したデータの削除
+		db.deleteForce(uid);
 	}
 
 	/**
@@ -214,6 +232,12 @@ public class UserDBTest {
 	@Test
 	public void testUpdate() {
 		UserDB db = new UserDB();
+		db.insert("t200000", "テスト　太郎", "テスト町3丁目", "9696");
+		int uid = db.getLatestUser().getUid();
+		assertEquals(1,db.update(uid, "更新　太郎", "更新　住所", "テスト番号"));
+		assertEquals("更新　太郎",db.getUserDetail(uid).getUname());
+		// 挿入したデータの削除
+		db.deleteForce(uid);
 	}
 
 	/**

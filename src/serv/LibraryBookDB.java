@@ -1,4 +1,4 @@
-/**
+	/**
  *
  */
 package serv;
@@ -72,7 +72,7 @@ public class LibraryBookDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.bookNo = ?");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks LEFT JOIN books ON librarybooks.bid = books.bid WHERE librarybooks.bookNo = ?");
 			stmt.setString(1,bookNo);
 			ResultSet rs = stmt.executeQuery();
 			if ( rs.next() ) {
@@ -115,7 +115,7 @@ public class LibraryBookDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND books.bname LIKE ?");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks LEFT JOIN books ON librarybooks.bid = books.bid WHERE books.bname LIKE ?");
 			stmt.setString(1,  "%" + bname + "%");
 			ResultSet rs = stmt.executeQuery();
 

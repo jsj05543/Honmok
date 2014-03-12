@@ -27,11 +27,11 @@ public class Circulation {
 	/**
 	 * 貸借人
 	 */
-	private int uid;
+	private User user;
 	/**
 	 * 貸借本
 	 */
-	private int lbid;
+	private LibraryBook librarybook;
 	/**
 	 * 削除フラグ
 	 */
@@ -77,26 +77,26 @@ public class Circulation {
 	/**
 	 * @return uid
 	 */
-	public int getUid() {
-		return uid;
+	public User getUser() {
+		return user;
 	}
 	/**
 	 * @param uid セットする uid
 	 */
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	/**
 	 * @return lbid
 	 */
-	public int getLbid() {
-		return lbid;
+	public LibraryBook getLibraryBook() {
+		return librarybook;
 	}
 	/**
 	 * @param lbid セットする lbid
 	 */
-	public void setLbid(int lbid) {
-		this.lbid = lbid;
+	public void setLibraryBook(LibraryBook librarybook) {
+		this.librarybook = librarybook;
 	}
 	/**
 	 * @return deleteFlag

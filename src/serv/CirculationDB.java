@@ -20,7 +20,7 @@ public class CirculationDB extends DBAccess{
 	 * @return ArrayList circulationテーブルの配列データ
 	 */
 	public ArrayList<Circulation> getCirculations(){
-		String sql = "SELECT * FROM circulations WHERE deleteFlag = false";
+		String sql = "SELECT * FROM CirculationsDetail";
 		return _getCirculations(sql);
 	}
 
@@ -32,9 +32,9 @@ public class CirculationDB extends DBAccess{
 		String sql = null;
 
 		if ( deleteFlag ){
-			sql = "SELECT * FROM circulations";
+			sql = "SELECT * FROM CirculationsDetailAll";
 		}else{
-			sql = "SELECT * FROM circulations WHERE deleteFlag = false";
+			sql = "SELECT * FROM CirculationsDetail";
 		}
 		return _getCirculations(sql);
 	}
@@ -51,19 +51,7 @@ public class CirculationDB extends DBAccess{
 
 			while (rs.next()) {
 				Circulation c = new Circulation();
-				// CIDをDBから取得
-				c.setCid(rs.getInt("cid"));
-				// 貸出日
-				c.setIssueDay(rs.getTimestamp("issueDay"));
-				// 返却日
-				c.setReturnDay(rs.getTimestamp("returnDay"));
-				// UID
-				c.setUid(rs.getInt("uid"));
-				// LBID
-				c.setLbid(rs.getInt("lbid"));
-				// deleteFlag
-				c.setDeleteFlag(rs.getBoolean("deleteFlag"));
-
+				makeCirculation(rs,c);
 				list.add(c);
 			}
 
@@ -88,22 +76,13 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDay IS NULL AND uid = ?");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT  * FROM CirculationsDetail WHERE returnDay IS NULL AND uid = ?");
 			stmt.setInt(1,uid);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Circulation c = new Circulation();
-				// CIDをDBから取得
-				c.setCid(rs.getInt("cid"));
-				// 貸出日
-				c.setIssueDay(rs.getTimestamp("issueDay"));
-				// 返却日
-				c.setReturnDay(rs.getTimestamp("returnDay"));
-				// UID
-				c.setUid(rs.getInt("uid"));
-				// LBID
-				c.setLbid(rs.getInt("lbid"));
+				makeCirculation(rs,c);
 				list.add(c);
 			}
 
@@ -132,21 +111,12 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT  * FROM CirculationsDetail WHERE returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Circulation c = new Circulation();
-				// CIDをDBから取得
-				c.setCid(rs.getInt("cid"));
-				// 貸出日
-				c.setIssueDay(rs.getTimestamp("issueDay"));
-				// 返却日
-				c.setReturnDay(rs.getTimestamp("returnDay"));
-				// UID
-				c.setUid(rs.getInt("uid"));
-				// LBID
-				c.setLbid(rs.getInt("lbid"));
+				makeCirculation(rs,c);
 				list.add(c);
 			}
 
@@ -347,6 +317,44 @@ public class CirculationDB extends DBAccess{
 			return false;
 		}
 	}
+
+	private Circulation makeCirculation(ResultSet rs, Circulation c) throws SQLException{
+		// CIDをDBから取得
+		c.setCid(rs.getInt("cid"));
+		// 貸出日
+		c.setIssueDay(rs.getTimestamp("issueDay"));
+		// 返却日
+		c.setReturnDay(rs.getTimestamp("returnDay"));
+		// deleteFlag
+		c.setDeleteFlag(rs.getBoolean("deleteFlag"));
+
+		// User
+		User user = new User();
+		user.setUid(rs.getInt("uid"));
+		user.setUserNo(rs.getString("userNo"));
+		user.setUname(rs.getString("uname"));
+		user.setAddress(rs.getString("address"));
+		user.setTel(rs.getString("tel"));
+		// Userオブジェクトをセット
+		c.setUser(user);
+
+		// Book
+		LibraryBook book = new LibraryBook();
+		book.setLbid(rs.getInt("lbid"));
+		book.setBid(rs.getInt("bid"));
+		book.setBookNo(rs.getString("bookNo"));
+		book.setIsbn(rs.getString("isbn"));
+		book.setAuthor(rs.getString("author"));
+		book.setBname(rs.getString("bname"));
+		book.setPublisher(rs.getString("publisher"));
+		book.setPage(rs.getInt("page"));
+		// LibraryBookオブジェクトをセット
+		c.setLibraryBook(book);
+
+		return c;
+	}
+
+
 
 
 }

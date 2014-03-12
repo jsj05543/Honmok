@@ -1,3 +1,4 @@
+<%@page import="serv.LibraryBook"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="serv.User"%>
 <%@page import="serv.Circulation"%>
@@ -47,13 +48,16 @@ ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list
 
 <h2>今借りている本のリスト</h2>
 <table border=1 class="userbooktable">
-<thead><tr><th>貸し出し日</th><th>書籍名</th></tr></thead>
+<thead><tr><th>貸し出し日</th><th>書籍名</th><th>著者名</th><th>出版社</th></tr></thead>
 <%
 	for (Circulation cir : list) {
+		LibraryBook lbook = cir.getLibraryBook();
 %>
 	<tr>
 		<td><%= cir.getIssueDay() %></td>
-		<td><%= cir.getLbid() %></td>
+		<td><%= lbook.getBname() %></td>
+		<td><%= lbook.getAuthor() %></td>
+		<td><%= lbook.getPublisher() %></td>
 	</tr>
 <%	} %>
 </table>

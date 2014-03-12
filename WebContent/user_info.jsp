@@ -1,6 +1,8 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="serv.User"%>
+<%@page import="serv.Circulation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="serv.User" %>
+    pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,6 +27,7 @@ if ( ! error_message.isEmpty() ) {
 	return;
 }
 User user = (User)request.getAttribute("users");
+ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list");
 %>
 
 <table border=1 class="userinfotable">
@@ -44,7 +47,15 @@ User user = (User)request.getAttribute("users");
 
 <h2>今借りている本のリスト</h2>
 <table border=1 class="userbooktable">
-<tr><td>今借りている本のリストテーブル</td></tr>
+<thead><tr><th>貸し出し日</th><th>書籍名</th></tr></thead>
+<%
+	for (Circulation cir : list) {
+%>
+	<tr>
+		<td><%= cir.getIssueDay() %></td>
+		<td><%= cir.getLbid() %></td>
+	</tr>
+<%	} %>
 </table>
 
 </body>

@@ -63,12 +63,8 @@ public class LibraryBookDBTest {
 	@Test
 	public void testGetLibraryBookDetailByBookNo() {
 		LibraryBookDB db = new LibraryBookDB();
-		ArrayList<LibraryBook> result = db.getLibraryBookDetailByBookNo("200000");
-		for( int i = 0; i < result.size(); i++ )
-		{
-			assertEquals("フェイスブックをつくったザッカーバーグの仕事術",result.get(i).getBname());
-		}
-
+		LibraryBook result = db.getLibraryBookDetailByBookNo("200000");
+		assertEquals("フェイスブックをつくったザッカーバーグの仕事術",result.getBname());
 	}
 
 	/**

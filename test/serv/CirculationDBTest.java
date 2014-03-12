@@ -57,9 +57,9 @@ public class CirculationDBTest {
 	public void testGetCirculations() {
 		CirculationDB db = new CirculationDB();
 		ArrayList<Circulation> result = db.getCirculations();
-		// 数
+		// データの数をチェック
         assertEquals(7, result.size());
-        // 一番目のデータ
+        // 一番目のデータの詳細をチェック
         int i = 0;
         assertEquals(1,result.get(i).getCid());
         assertEquals("肥後　太郎",result.get(i).getUser().getUname());
@@ -70,6 +70,7 @@ public class CirculationDBTest {
         assertEquals("桑原晃弥",result.get(i).getLibraryBook().getAuthor());
         assertEquals("幻冬舎",result.get(i).getLibraryBook().getPublisher());
         assertEquals("フェイスブックをつくったザッカーバーグの仕事術",result.get(i).getLibraryBook().getBname());
+        // 五番目データの詳細をチェック
         i = 5;
         assertEquals(6,result.get(i).getCid());
         assertEquals("3冊　借りる蔵",result.get(i).getUser().getUname());
@@ -88,9 +89,9 @@ public class CirculationDBTest {
 	@Test
 	public void testGetCirculationsBool() {
 		CirculationDB db = new CirculationDB();
-		// 数
+		// データの数をチェック
         assertEquals(8, db.getCirculations(true).size());
-		// 数
+		// データの数をチェック
         assertEquals(7, db.getCirculations(false).size());
 	}
 
@@ -99,7 +100,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetOverDueList() {
-		// CAUTION!!! テスト前にはデータベースSQLを再実行する必要あり！！
 		CirculationDB db = new CirculationDB();
 		ArrayList<Circulation> golden = new ArrayList<Circulation>();
 		Circulation c = new Circulation();
@@ -120,9 +120,8 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetCirculationsOnIssueByUid() {
-		// CAUTION!!! テスト前にはデータベースSQLを再実行する必要あり！！
 		CirculationDB db = new CirculationDB();
-		// 数
+		// それぞれのUIDに対して該当するデータの数をチェック
         assertEquals(0, db.getCirculationsOnIssueByUid(1).size());
         assertEquals(1, db.getCirculationsOnIssueByUid(2).size());
         assertEquals(1, db.getCirculationsOnIssueByUid(3).size());
@@ -130,30 +129,72 @@ public class CirculationDBTest {
         assertEquals(3, db.getCirculationsOnIssueByUid(5).size());
 	}
 
+	/**
+	 * {@link serv.CirculationDB#getLatestCirculation()} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetLatestCirculation() {
+		CirculationDB db = new CirculationDB();
+		// テスト用のデータを挿入
+		db.insert(2, 2);
+		Circulation  result = new Circulation();
+		result = db.getLatestCirculation();
+        assertEquals("大阿蘇 次郎", result.getUser().getUname());
+        assertEquals("あなたへの伝言", result.getLibraryBook().getBname());
+        // 後処理。挿入したデータを削除（DELETE)
+        db.deleteForce(result.getCid());
+	}
+
+	/**
+	 * {@link serv.CirculationDB#getCirculationOnIssueByBookNo()} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetCirculationOnIssueByBookNo() {
+		CirculationDB db = new CirculationDB();
+		Circulation  result = new Circulation();
+		result = db.getCirculationOnIssueByBookNo("200007");
+        assertEquals("3冊　借りる蔵", result.getUser().getUname());
+        assertEquals("ビジネスモデル・イノベーション", result.getLibraryBook().getBname());
+        // 後処理。挿入したデータを削除（DELETE)
+        db.deleteForce(result.getCid());
+	}
 
 
 	/**
 	 * {@link serv.CirculationDB#canRent(java.lang.String)} のためのテスト・メソッド。
+	 * 利用者番号を指定して、メソッドの戻り値を判定。trueが返る場合と、falseが返る場合をチェック
 	 */
 	@Test
 	public void testCanRent() {
 		CirculationDB db = new CirculationDB();
-		assertEquals(db.canRent("100000"),true);
-		assertEquals(db.canRent("100010"),false);
+		assertEquals(true,db.canRent("100000"));
+		assertEquals(false,db.canRent("100010"));
 	}
 
 	/**
 	 * {@link serv.CirculationDB#insert(int, int)} のためのテスト・メソッド。
+	 * データを挿入して、戻り値をチェック
 	 */
 	@Test
 	public void testInsert() {
+		CirculationDB db = new CirculationDB();
+		assertEquals(1,db.insert(2, 2));
+        // 後処理。挿入したデータを削除（DELETE)
+        db.deleteForce(db.getLatestCirculation().getCid());
 	}
 
 	/**
 	 * {@link serv.CirculationDB#delete(int)} のためのテスト・メソッド。
+	 * データを削除して、戻り値をチェック
 	 */
 	@Test
 	public void testDelete() {
+		CirculationDB db = new CirculationDB();
+		db.insert(2, 2);
+		int cid = db.getLatestCirculation().getCid();
+		assertEquals(1,db.delete(cid));
+        // 後処理。挿入したデータを削除（DELETE)
+        db.deleteForce(cid);
 	}
 
 	/**

@@ -66,6 +66,8 @@ public class CirculationDB extends DBAccess{
 		return list;
 	}
 
+
+
 	/**
 	 * "circulation"テーブルから、指定したUIDに該当する未返却データを取得
 	 * @return ArrayList circulationテーブルの配列データ
@@ -98,6 +100,64 @@ public class CirculationDB extends DBAccess{
 	}
 
 
+	/**
+	 * "circulation"テーブルから、最新のデータを取得
+	 * @return Circulationオブジェクト
+	 */
+	public Circulation getLatestCirculation()
+	{
+		Circulation c = new Circulation();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE cid = (SELECT LAST_INSERT_ID())");
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				c = makeCirculation(rs,c);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return c;
+	}
+
+	/**
+	 * 貸し出し中のリストの中から、指定したBookNoに該当するデータを取得
+	 * @param bookNo
+	 * @return Circulation 指定されたBookNoの貸し出し情報
+	 */
+	public Circulation getCirculationOnIssueByBookNo(String bookNo){
+		Circulation c = new Circulation();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE returnDay IS NULL AND bookNo = ?");
+			stmt.setString(1,bookNo);
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				c = makeCirculation(rs,c);
+			}else{
+				c = null;
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return c;
+	}
 
 
 	/**
@@ -175,7 +235,7 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			//	プリペアードステートメント
-			String 	sql = "INSERT INTO circulations (issueDay, uid, bid) values (now(), ?, ?)";
+			String 	sql = "INSERT INTO circulations (issueDay, uid, lbid) values (now(), ?, ?)";
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setInt(1,uid);
 			stmt.setInt(2,lbid);
@@ -194,18 +254,45 @@ public class CirculationDB extends DBAccess{
 	 * @param lbid
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
-	public int delete(int lbid)
+	public int delete(int cid)
 	{
 		try
 		{
-			if( this.searchId(lbid) ){
-				String sql = "UPDATE circulations SET delete_flag = true WHERE lbid = ?";
+			if( this.searchId(cid) ){
+				String sql = "UPDATE circulations SET deleteFlag = true WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setInt(1,lbid);
+				stmt.setInt(1,cid);
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
 				System.out.println("指定された番号のLBIDは存在しません。");
+				return 0;
+			}
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return 0;
+		}
+	}
+
+	/**
+	 * 特定データ削除
+	 * @param lbid
+	 * @return データベースへの適用数(0であった場合は、更新エラー）
+	 */
+	protected int deleteForce(int cid)
+	{
+		try
+		{
+			if( this.searchId(cid) ){
+				String sql = "DELETE FROM circulations WHERE cid = ?";
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setInt(1,cid);
+				//	SQLの実行
+				return stmt.executeUpdate();
+			}else{
+				System.out.println("指定された番号のCID(" + cid + ")は存在しません。");
 				return 0;
 			}
 		}
@@ -300,14 +387,14 @@ public class CirculationDB extends DBAccess{
 	 * @param lbid LBID
 	 * @return true:既存データあり、false:既存データなし
 	 */
-	private Boolean searchId(int lbid)
+	public Boolean searchId(int cid)
 	{
 		try
 		{
 			//	プリペアードステートメント
-			String sql = "SELECT * FROM circulations WHERE lbid=?";
+			String sql = "SELECT * FROM circulations WHERE cid=?";
 			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setInt(1,lbid);
+			stmt.setInt(1,cid);
 			ResultSet rs = stmt.executeQuery();
 			return rs.next();
 		}
@@ -317,6 +404,8 @@ public class CirculationDB extends DBAccess{
 			return false;
 		}
 	}
+
+
 
 	private Circulation makeCirculation(ResultSet rs, Circulation c) throws SQLException{
 		// CIDをDBから取得

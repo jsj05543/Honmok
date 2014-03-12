@@ -43,7 +43,7 @@ public class ReturnResultController extends HttpServlet {
 
 		if( libbook != null ){
 			CirculationDB circulationdb = new CirculationDB();
-			Circulation circulation = circulationdb.貸出しリスト(bookNo);
+			Circulation circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
 			circulationdb.close();
 
 			if( circulation != null ){
@@ -55,17 +55,18 @@ public class ReturnResultController extends HttpServlet {
 			error_message.add("内部エラー。 不明な書籍Noが入力されました。");
 		}
 
-//		if( allowReturn ){
-//			// 貸出しデータベースに接続
-//			CirculationDB circulationdb = new CirculationDB();
-//			if( circulationdb.insert( user.getUid(), libbook.getLbid() ) != 1 ){
-//				// 貸出し処理のエラー（insertエラー）
-//				error_message.add("内部エラー。 貸出し処理に失敗しました。");
-//			}else{
-//				Circulation circulation = Insertした貸出し情報を取得
-//				request.setAttribute("circulation", circulation );
-//			}
+		if( allowReturn ){
+			// 貸出しデータベースに接続
+			CirculationDB circulationdb = new CirculationDB();
+			Circulation circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
 
+			if( circulationdb.update( circulation.getLibraryBook().getLbid()  ) != 1 ){
+				// 貸出し処理のエラー（insertエラー）
+				error_message.add("内部エラー。 返却処理に失敗しました。");
+			}else{
+				// Circulation circulation = Insertした貸出し情報を取得
+				request.setAttribute("circulation", circulation );
+			}
 		}
 
 		request.setAttribute("error_message", error_message);

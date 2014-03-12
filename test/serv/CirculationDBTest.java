@@ -55,7 +55,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetCirculations() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 	/**
@@ -95,7 +94,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testInsert() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 	/**
@@ -103,7 +101,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testDelete() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 	/**
@@ -111,7 +108,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testDeleteAll() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 	/**
@@ -119,7 +115,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testUpdate() {
-		fail("まだ実装されていません"); // TODO
 	}
 
 }

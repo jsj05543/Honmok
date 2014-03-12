@@ -37,7 +37,7 @@ ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 		<td><a href="user_info?uid=<%= user.getUid() %>"><%= user.getUname() %></a></td>
 		<td><%= user.getAddress() %></td>
 		<td><%= user.getTel() %></td>
-		<td><%= user.getDeleteFlag() %></td>
+		<td><%= (user.getDeleteFlag()) ? "削除済" : "" %></td>
 		<td><a href="user_edit?uid=<%= user.getUid() %>">編集</a></td>
 	</tr>
 <%	} %>

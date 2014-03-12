@@ -66,7 +66,7 @@ public class LibraryBookDBTest {
 		ArrayList<LibraryBook> result = db.getLibraryBookDetailByBookNo("200000");
 		for( int i = 0; i < result.size(); i++ )
 		{
-			assertEquals(result.get(i).getBname(),"フェイスブックをつくったザッカーバーグの仕事術");
+			assertEquals("フェイスブックをつくったザッカーバーグの仕事術",result.get(i).getBname());
 		}
 
 	}

@@ -7,11 +7,12 @@ import static org.junit.Assert.*;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 import org.junit.Test;
 
 /**
- * @author USER
+ * @author Koji HIJIKURO
  *
  */
 public class UserDBTest {
@@ -73,6 +74,41 @@ public class UserDBTest {
 	@Test
 	public void testGetUserDetailString() {
 	}
+
+	/**
+	 * {@link serv.UserDB#getUserDetailByUname(java.lang.String)} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetUserDetailByUname() {
+		UserDB db = new UserDB();
+		/**
+		 * 該当しない氏名を入力した場合はNullが返る。
+		 */
+		assertEquals(null, db.getUserDetailByUname("aa"));
+		assertEquals(null, db.getUserDetailByUname("大阿蘇村"));
+		assertEquals(null, db.getUserDetailByUname("肥後123-45"));
+		/*
+		 * 該当したデータが配列で返る。1件該当
+		 */
+		ArrayList<User> result = db.getUserDetailByUname("肥後　太郎");
+		for( int i = 0; i < result.size(); i++ )
+		{
+			assertEquals("肥後　太郎",result.get(i).getUname());
+			assertEquals("100000",result.get(i).getUserNo());
+		}
+		/*
+		 * 該当したデータが配列で返る。複数該当
+		 */
+		/*
+		ArrayList<User> result = db.getUserDetailByUname("肥後　太郎");
+		for( int i = 0; i < result.size(); i++ )
+		{
+			assertEquals("肥後　太郎",result.get(i).getUname());
+			assertEquals("100000",result.get(i).getUserNo());
+		}
+		*/
+	}
+
 
 	/**
 	 * {@link serv.UserDB#insert(java.lang.String, java.lang.String, java.lang.String, java.lang.String)} のためのテスト・メソッド。

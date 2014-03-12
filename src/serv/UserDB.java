@@ -218,7 +218,7 @@ public class UserDB extends DBAccess{
 		try
 		{
 			if( this.searchId(uid) ){
-				String sql = "UPDATE users SET delete_flag = true WHERE uid = ?";
+				String sql = "UPDATE users SET deleteFlag = true WHERE uid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,uid);
 				//	SQLの実行

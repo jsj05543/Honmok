@@ -51,7 +51,6 @@ public class RentResultController extends HttpServlet {
 				int uid = user.getUid();
 
 				// 延滞リスト格納用のArrayLIstを作成
-				// Circulation.user.getUid() を利用して書き換えることが可能
 				ArrayList<Circulation> overDueList = new ArrayList<Circulation>();
 				// 貸出しデータベースに接続
 				CirculationDB circulationdb = new CirculationDB();
@@ -61,7 +60,7 @@ public class RentResultController extends HttpServlet {
 
 				try{
 					for( int i=0; i<overDueList.size(); i++ ){
-						if( overDueList.get(i).getUid() != uid ){
+						if( overDueList.get(i).getUser().getUid() != uid ){
 							overDueList.remove(i);
 						}
 					}

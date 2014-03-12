@@ -1,7 +1,7 @@
 package serv;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,31 +32,43 @@ public class ReturnResultController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		UserDB userdb = new UserDB();
-		User user = new User();
+		Boolean allowReturn = false;
+		ArrayList<String> error_message = new ArrayList<String>();
 
 		request.setCharacterEncoding("UTF-8");
-		String uid = request.getParameter("uid");
-		String bid = request.getParameter("bid");
+		String bookNo = request.getParameter("bookNo");
 
-	    response.setContentType("text/html;charset=UTF-8");
-	    PrintWriter out = response.getWriter();
+		LibraryBookDB librarybookdb = new LibraryBookDB();
+		LibraryBook libbook = librarybookdb.getLibraryBookDetailByBookNo(bookNo);
 
+		if( libbook != null ){
+			CirculationDB circulationdb = new CirculationDB();
+			Circulation circulation = circulationdb.貸出しリスト(bookNo);
+			circulationdb.close();
 
-		user = userdb.getUserDetail(uid);
-
-		if( user == null ){
-			out.println("");
+			if( circulation != null ){
+				allowReturn = true;
+			}else{
+				error_message.add("この書籍は貸し出されていないため返却できません。");
+			}
 		}else{
-			out.println(user.getUname());
+			error_message.add("内部エラー。 不明な書籍Noが入力されました。");
 		}
 
+//		if( allowReturn ){
+//			// 貸出しデータベースに接続
+//			CirculationDB circulationdb = new CirculationDB();
+//			if( circulationdb.insert( user.getUid(), libbook.getLbid() ) != 1 ){
+//				// 貸出し処理のエラー（insertエラー）
+//				error_message.add("内部エラー。 貸出し処理に失敗しました。");
+//			}else{
+//				Circulation circulation = Insertした貸出し情報を取得
+//				request.setAttribute("circulation", circulation );
+//			}
 
+		}
 
-		//
-		// ここに実裁��
-		//
-
+		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("return_result.jsp");
 		dispatch.forward(request, response);
 	}

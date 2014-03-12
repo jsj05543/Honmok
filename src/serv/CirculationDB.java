@@ -128,7 +128,36 @@ public class CirculationDB extends DBAccess{
 		return c;
 	}
 
+	/**
+	 * 貸し出し中のリストの中から、指定したBookNoに該当するデータを取得
+	 * @param bookNo
+	 * @return Circulation 指定されたBookNoの貸し出し情報
+	 */
+	public Circulation getCirculationOnIssueByBookNo(String bookNo){
+		Circulation c = new Circulation();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE returnDay IS NULL AND bookNo = ?");
+			stmt.setString(1,bookNo);
+			ResultSet rs = stmt.executeQuery();
 
+			if (rs.next()) {
+				c = makeCirculation(rs,c);
+			}else{
+				c = null;
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return c;
+	}
 
 
 	/**
@@ -375,6 +404,8 @@ public class CirculationDB extends DBAccess{
 			return false;
 		}
 	}
+
+
 
 	private Circulation makeCirculation(ResultSet rs, Circulation c) throws SQLException{
 		// CIDをDBから取得

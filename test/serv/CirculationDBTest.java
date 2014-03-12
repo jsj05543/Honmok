@@ -145,6 +145,20 @@ public class CirculationDBTest {
         db.deleteForce(result.getCid());
 	}
 
+	/**
+	 * {@link serv.CirculationDB#getCirculationOnIssueByBookNo()} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetCirculationOnIssueByBookNo() {
+		CirculationDB db = new CirculationDB();
+		Circulation  result = new Circulation();
+		result = db.getCirculationOnIssueByBookNo("200007");
+        assertEquals("3冊　借りる蔵", result.getUser().getUname());
+        assertEquals("ビジネスモデル・イノベーション", result.getLibraryBook().getBname());
+        // 後処理。挿入したデータを削除（DELETE)
+        db.deleteForce(result.getCid());
+	}
+
 
 	/**
 	 * {@link serv.CirculationDB#canRent(java.lang.String)} のためのテスト・メソッド。

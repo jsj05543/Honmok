@@ -99,7 +99,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetOverDueList() {
-		// CAUTION!!! テスト前にはデータベースSQLを再実行する必要あり！！
 		CirculationDB db = new CirculationDB();
 		ArrayList<Circulation> golden = new ArrayList<Circulation>();
 		Circulation c = new Circulation();
@@ -120,7 +119,6 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetCirculationsOnIssueByUid() {
-		// CAUTION!!! テスト前にはデータベースSQLを再実行する必要あり！！
 		CirculationDB db = new CirculationDB();
 		// 数
         assertEquals(0, db.getCirculationsOnIssueByUid(1).size());
@@ -130,6 +128,19 @@ public class CirculationDBTest {
         assertEquals(3, db.getCirculationsOnIssueByUid(5).size());
 	}
 
+	/**
+	 * {@link serv.CirculationDB#getLatestCirculation()} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetLatestCirculation() {
+		CirculationDB db = new CirculationDB();
+		db.insert(2, 2);
+		Circulation  result = new Circulation();
+		result = db.getLatestCirculation();
+        assertEquals("大阿蘇 次郎", result.getUser().getUname());
+        assertEquals("あなたへの伝言", result.getLibraryBook().getBname());
+        db.deleteForce(result.getCid());
+	}
 
 
 	/**

@@ -230,7 +230,7 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			if( this.searchId(cid) ){
-				String sql = "UPDATE circulations SET delete_flag = true WHERE cid = ?";
+				String sql = "UPDATE circulations SET deleteFlag = true WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,cid);
 				//	SQLの実行

@@ -21,7 +21,11 @@ input {
 }
 
 h1 {
-	color: red; /* デバッグ用 */
+/* 	color: red; デバッグ用 */
+	color: #6666ff;
+	border-collapse: collapse;
+	border-bottom-width: 1px;
+	border-bottom-style: dotted;
 }
 
 /* ナビゲーションバー class=navi */

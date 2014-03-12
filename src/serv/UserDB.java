@@ -210,7 +210,7 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * 特定データ削除
-	 * @param mid
+	 * @param uid 削除対象となるUID
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
 	public int delete(int uid)
@@ -345,7 +345,7 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * 利用者番号が使われているか？
-	 * @param String 利用者番号
+	 * @param userNo 利用者番号
 	 * @return true 使われている
 	 * @return false 使われていない
 	 * @return null 内部エラー

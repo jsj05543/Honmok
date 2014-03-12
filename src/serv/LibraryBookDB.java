@@ -106,7 +106,7 @@ public class LibraryBookDB extends DBAccess{
 
 	/**
 	 * 書籍名(bname)から、書籍情報の詳細を返すメソッド。該当なしの場合は、nullを返す。
-	 * @param bookNo BookNo
+	 * @param bname 書籍名
 	 * @return ArrayList<LibraryBook>  LibraryBookの配列、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public  ArrayList<LibraryBook> getLibraryBookDetailByBname(String bname)
@@ -216,7 +216,6 @@ public class LibraryBookDB extends DBAccess{
 
 	/**
 	 * 全データ削除
-	 * @return データベースへの適用数
 	 */
 	public void deleteAll()
 	{

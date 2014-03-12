@@ -131,7 +131,7 @@ public class CirculationDB extends DBAccess{
 	 * 貸し出し情報追加(本の貸し出し処理の際に実行。貸出日は処理実行時のデータを使用）
 	 * @param uid ユーザID
 	 * @param lbid 書籍ID
-	 * @return
+	 * @return INSERT処理適用数(1:正常実行、0:以上実行）
 	 */
 	public int insert(int uid, int lbid)
 	{

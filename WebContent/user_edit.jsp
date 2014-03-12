@@ -40,11 +40,13 @@ User user = (User)request.getAttribute("users");
 	<input type="text" name="tel" class="form_textbox" value="<%= user.getTel() %>">
 	<div class="clearFloat"></div>
 	<!-- 変更 -->
+	<input type="hidden" name="update" value="1">
 	<input type="submit" value="変更" class="form_submit_button_yoko">
 </form>
 <form action="user_edit_result" method="post">
 	<input type="hidden" name="uid" value="<%= user.getUid() %>">
 	<!-- 削除 -->
+	<input type="hidden" name="delete" value="1">
 	<input type="submit" value="削除" class="form_submit_button_yoko">
 </form>
 

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 @WebServlet("/register_result")
 public class RegisterResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -43,7 +45,7 @@ public class RegisterResultController extends HttpServlet {
 	    	String uname   = request.getParameter("uname");
 	    	String address = request.getParameter("address");
 	    	String tel     = request.getParameter("tel");
-	    	String userNo  = "110001";
+	    	String userNo;
 
 	    	if ( userdb.insert(null, uname, address, tel) == -1 ) {
 				error_message.add("同じ氏名・住所・TELが登録されています。");
@@ -54,15 +56,21 @@ public class RegisterResultController extends HttpServlet {
 					if ( userdb.usedUserNo(userNo) ) {
 						// error_message.add("その利用者番号はすでに使われてます");
 					} else {
-			    		int ret = userdb.insert(userNo, uname, address, tel);
-			    		if ( ret == -1 ) {
-			    			error_message.add("同じ氏名・住所・TELが登録されています。");
-			    		} else if ( ret == 0 ) {
-					    	error_message.add("内部エラーです");
-			    		} else {
-			    			request.setAttribute("userNo", userNo);
-			    		}
-		    			break;
+				    	if ( StringUtils.isBlank(uname) ||
+				    			StringUtils.isBlank(address) ||
+				    			StringUtils.isBlank(tel) ) {
+				    		error_message.add("空文字は入れないでください");
+				    	} else {
+				    		int ret = userdb.insert(userNo, uname, address, tel);
+				    		if ( ret == -1 ) {
+				    			error_message.add("同じ氏名・住所・TELが登録されています。");
+				    		} else if ( ret == 0 ) {
+						    	error_message.add("内部エラーです");
+				    		} else {
+				    			request.setAttribute("userNo", userNo);
+				    		}
+				    	}
+				    	break;
 		    		}
 				}
 			}

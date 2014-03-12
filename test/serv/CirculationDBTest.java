@@ -55,6 +55,43 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetCirculations() {
+		CirculationDB db = new CirculationDB();
+		ArrayList<Circulation> result = db.getCirculations();
+		// 数
+        assertEquals(7, result.size());
+        // 一番目のデータ
+        int i = 0;
+        assertEquals(1,result.get(i).getCid());
+        assertEquals("肥後　太郎",result.get(i).getUser().getUname());
+        assertEquals("肥後123-456",result.get(i).getUser().getAddress());
+        assertEquals("0120-1515-3776",result.get(i).getUser().getTel());
+        assertEquals("100000",result.get(i).getUser().getUserNo());
+        assertEquals(1,result.get(i).getLibraryBook().getLbid());
+        assertEquals("桑原晃弥",result.get(i).getLibraryBook().getAuthor());
+        assertEquals("幻冬舎",result.get(i).getLibraryBook().getPublisher());
+        assertEquals("フェイスブックをつくったザッカーバーグの仕事術",result.get(i).getLibraryBook().getBname());
+        i = 5;
+        assertEquals(6,result.get(i).getCid());
+        assertEquals("3冊　借りる蔵",result.get(i).getUser().getUname());
+        assertEquals("MAX888-456",result.get(i).getUser().getAddress());
+        assertEquals("0120-3121-9999",result.get(i).getUser().getTel());
+        assertEquals("100010",result.get(i).getUser().getUserNo());
+        assertEquals(7,result.get(i).getLibraryBook().getLbid());
+        assertEquals("井口耕二",result.get(i).getLibraryBook().getAuthor());
+        assertEquals("帝国文学",result.get(i).getLibraryBook().getPublisher());
+        assertEquals("ジェフ・ベゾス 果てなき野望",result.get(i).getLibraryBook().getBname());
+	}
+
+	/**
+	 * {@link serv.CirculationDB#getCirculations(boolean)} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetCirculationsBool() {
+		CirculationDB db = new CirculationDB();
+		// 数
+        assertEquals(8, db.getCirculations(true).size());
+		// 数
+        assertEquals(7, db.getCirculations(false).size());
 	}
 
 	/**
@@ -76,8 +113,24 @@ public class CirculationDBTest {
 		{
 			assertEquals(result.get(i).getCid(),golden.get(i).getCid());
 		}
-
 	}
+
+	/**
+	 * {@link serv.CirculationDB#getCirculationsOnIssueByUid()} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetCirculationsOnIssueByUid() {
+		// CAUTION!!! テスト前にはデータベースSQLを再実行する必要あり！！
+		CirculationDB db = new CirculationDB();
+		// 数
+        assertEquals(0, db.getCirculationsOnIssueByUid(1).size());
+        assertEquals(1, db.getCirculationsOnIssueByUid(2).size());
+        assertEquals(1, db.getCirculationsOnIssueByUid(3).size());
+        assertEquals(1, db.getCirculationsOnIssueByUid(4).size());
+        assertEquals(3, db.getCirculationsOnIssueByUid(5).size());
+	}
+
+
 
 	/**
 	 * {@link serv.CirculationDB#canRent(java.lang.String)} のためのテスト・メソッド。

@@ -16,30 +16,42 @@ import java.util.ArrayList;
 public class CirculationDB extends DBAccess{
 
 	/**
-	 * "circulation"テーブルへのアクセス
+	 * "circulation"テーブルの削除済みデータを除く、全情報を取得
 	 * @return ArrayList circulationテーブルの配列データ
 	 */
-	public ArrayList<Circulation> getCirculations()
+	public ArrayList<Circulation> getCirculations(){
+		String sql = "SELECT * FROM CirculationsDetail";
+		return _getCirculations(sql);
+	}
+
+	/**
+	 * "circulation"テーブルの削除済み全データを含む、全データを取得
+	 * @return ArrayList circulationテーブルの配列データ
+	 */
+	public ArrayList<Circulation> getCirculations(Boolean deleteFlag){
+		String sql = null;
+
+		if ( deleteFlag ){
+			sql = "SELECT * FROM CirculationsDetailAll";
+		}else{
+			sql = "SELECT * FROM CirculationsDetail";
+		}
+		return _getCirculations(sql);
+	}
+
+
+	private ArrayList<Circulation> _getCirculations(String sql)
 	{
 		ArrayList<Circulation> list = new ArrayList<Circulation>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulation WHERE delete_flag = false");
+			PreparedStatement stmt = this.con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Circulation c = new Circulation();
-				// CIDをDBから取得
-				c.setCid(rs.getInt("cid"));
-				// 貸出日
-				c.setIssueDay(rs.getTimestamp("issueDay"));
-				// 返却日
-				c.setReturnDay(rs.getTimestamp("returnDay"));
-				// UID
-				c.setUid(rs.getInt("uid"));
-				// LBID
-				c.setLbid(rs.getInt("lbid"));
+				makeCirculation(rs,c);
 				list.add(c);
 			}
 
@@ -55,6 +67,40 @@ public class CirculationDB extends DBAccess{
 	}
 
 	/**
+	 * "circulation"テーブルから、指定したUIDに該当する未返却データを取得
+	 * @return ArrayList circulationテーブルの配列データ
+	 */
+	public ArrayList<Circulation> getCirculationsOnIssueByUid(int uid)
+	{
+		ArrayList<Circulation> list = new ArrayList<Circulation>();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT  * FROM CirculationsDetail WHERE returnDay IS NULL AND uid = ?");
+			stmt.setInt(1,uid);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Circulation c = new Circulation();
+				makeCirculation(rs,c);
+				list.add(c);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+
+
+
+
+	/**
 	 * "circulations"テーブルから貸し出しを延滞しているリストを返す。
 	 * 条件：返却日(returnDay)がNULL、かつ貸出日(issueDay)が、7日前。（deleteFlag == false)
 	 * @return Circulation circulationテーブル
@@ -65,21 +111,12 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT  * FROM CirculationsDetail WHERE returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
 				Circulation c = new Circulation();
-				// CIDをDBから取得
-				c.setCid(rs.getInt("cid"));
-				// 貸出日
-				c.setIssueDay(rs.getTimestamp("issueDay"));
-				// 返却日
-				c.setReturnDay(rs.getTimestamp("returnDay"));
-				// UID
-				c.setUid(rs.getInt("uid"));
-				// LBID
-				c.setLbid(rs.getInt("lbid"));
+				makeCirculation(rs,c);
 				list.add(c);
 			}
 
@@ -98,7 +135,7 @@ public class CirculationDB extends DBAccess{
 	 * 貸し出し可能かどうかをチェックする（本の貸し出し状況が3冊に到達していなければOK）
 	 * 条件：返却日(returnDay)がNULLである貸し出しリストが3件になっているもの。
 	 * @param userNo 利用者番号
-	 * @return true: 3冊貸し出し中。false: 3冊未満
+	 * @return true: 3冊未満。false: 3冊以下
 	 */
 	public Boolean canRent(String userNo)
 	{
@@ -131,7 +168,7 @@ public class CirculationDB extends DBAccess{
 	 * 貸し出し情報追加(本の貸し出し処理の際に実行。貸出日は処理実行時のデータを使用）
 	 * @param uid ユーザID
 	 * @param lbid 書籍ID
-	 * @return
+	 * @return INSERT処理適用数(1:正常実行、0:以上実行）
 	 */
 	public int insert(int uid, int lbid)
 	{
@@ -280,6 +317,44 @@ public class CirculationDB extends DBAccess{
 			return false;
 		}
 	}
+
+	private Circulation makeCirculation(ResultSet rs, Circulation c) throws SQLException{
+		// CIDをDBから取得
+		c.setCid(rs.getInt("cid"));
+		// 貸出日
+		c.setIssueDay(rs.getTimestamp("issueDay"));
+		// 返却日
+		c.setReturnDay(rs.getTimestamp("returnDay"));
+		// deleteFlag
+		c.setDeleteFlag(rs.getBoolean("deleteFlag"));
+
+		// User
+		User user = new User();
+		user.setUid(rs.getInt("uid"));
+		user.setUserNo(rs.getString("userNo"));
+		user.setUname(rs.getString("uname"));
+		user.setAddress(rs.getString("address"));
+		user.setTel(rs.getString("tel"));
+		// Userオブジェクトをセット
+		c.setUser(user);
+
+		// Book
+		LibraryBook book = new LibraryBook();
+		book.setLbid(rs.getInt("lbid"));
+		book.setBid(rs.getInt("bid"));
+		book.setBookNo(rs.getString("bookNo"));
+		book.setIsbn(rs.getString("isbn"));
+		book.setAuthor(rs.getString("author"));
+		book.setBname(rs.getString("bname"));
+		book.setPublisher(rs.getString("publisher"));
+		book.setPage(rs.getInt("page"));
+		// LibraryBookオブジェクトをセット
+		c.setLibraryBook(book);
+
+		return c;
+	}
+
+
 
 
 }

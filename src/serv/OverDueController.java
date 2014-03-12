@@ -1,6 +1,7 @@
 package serv;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,11 +26,20 @@ public class OverDueController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<String> error_message = new ArrayList<String>();
 
-		//
-		// ここに実装する
-		//
+		CirculationDB cirdb = new CirculationDB();
 
+		request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html;charset=UTF-8");
+
+    	ArrayList<Circulation> entaiList = cirdb.getOverDueList();
+       	if ( entaiList != null ) {
+    		request.setAttribute("list", entaiList);
+    	} else {
+    		error_message.add("一致する利用者はいませんでした");
+    	}
+		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("over_due.jsp");
 		dispatch.forward(request, response);
 	}

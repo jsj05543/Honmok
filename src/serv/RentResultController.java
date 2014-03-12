@@ -40,20 +40,22 @@ public class RentResultController extends HttpServlet {
 		userdb.close();
 
 		LibraryBookDB libbookdb = new LibraryBookDB();
-		LibraryBook libbook = libbookdb.getLibraryBookDetail(bookNo);
+		LibraryBook libbook = libbookdb.getLibraryBookDetailByBookNo(bookNo);
 		libbookdb.close();
 
-		if( user == null ){
+		if( user != null ){
+			request.setAttribute("user", user);
+		}else{
 			error_message.add("内部エラーが発生しました。 不明な利用者ID");
 			flag = false;
 		}
-		request.setAttribute("user", user);
 
-		if( libbook == null ){
+		if( libbook != null ){
+			request.setAttribute("libbook", libbook);
+		}else{
 			error_message.add("内部エラーが発生しました。 不明な書籍ID");
 			flag = false;
 		}
-		request.setAttribute("libbook", libbook);
 
 
 	    response.setContentType("text/html;charset=UTF-8");

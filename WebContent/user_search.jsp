@@ -18,14 +18,16 @@
 	<div class="form_text">利用者番号で検索：</div>
 	<input type="text" name="search_id" class="form_textbox">
 	<input type="submit" value="検索" class="form_submit_button_yoko">
+	<div class="clearFloat"></div>
 </form>
 
 <form action="user_list" method="post">
 	<div class="form_text">利用者名で検索：</div>
 	<input type="text" name="search_name" class="form_textbox">
 	<input type="submit" value="検索" class="form_submit_button_yoko">
+	<div class="clearFloat"></div>
 </form>
-
+※AND検索など2語以上の検索には未対応です
 
 </body>
 </html>

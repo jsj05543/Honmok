@@ -64,25 +64,26 @@ public class LibraryBookDB extends DBAccess{
 	/**
 	 * BookNoから、書籍情報の詳細を返すメソッド。該当なしの場合は、nullを返す。
 	 * @param bookNo BookNo
-	 * @return LibraryBook LibraryBookテーブル、DBアクセスエラーの場合は、nullを返す。
+	 * @return  ArrayList<LibraryBook> LibraryBookの配列、DBアクセスエラーの場合は、nullを返す。
 	 */
-	public LibraryBook getLibraryBookDetail(String bookNo)
+	public ArrayList<LibraryBook> getLibraryBookDetailByBookNo(String bookNo)
 	{
-		LibraryBook lb = new LibraryBook();
+		ArrayList<LibraryBook> list = new ArrayList<LibraryBook>();
 		try
 		{
 			// SQL操作
 			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND librarybooks.bookNo = ?");
 			stmt.setString(1,bookNo);
 			ResultSet rs = stmt.executeQuery();
+			while ( rs.next() ) {
+				LibraryBook lb = new LibraryBook();
 
-			if ( rs.next() ){
 				// LibraryBook ID
 				lb.setLbid(rs.getInt("lbid"));
 				// Book ID
 				lb.setBid(rs.getInt("bid"));
 				// 図書書籍管理番号
-				lb.setBookNo(bookNo);
+				lb.setBookNo(rs.getString("bookNo"));
 				// ISBN
 				lb.setIsbn(rs.getString("isbn"));
 				// 書籍名
@@ -91,8 +92,8 @@ public class LibraryBookDB extends DBAccess{
 				lb.setAuthor(rs.getString("author"));
 				// 出版社
 				lb.setPublisher(rs.getString("publisher"));
-			}else{
-				lb = null;
+
+				list.add(lb);
 			}
 			rs.close();
 			stmt.close();
@@ -100,9 +101,54 @@ public class LibraryBookDB extends DBAccess{
 		catch(SQLException e)
 		{
 //			e.printStackTrace();
-			lb = null;
+			list = null;
 		}
-		return lb;
+		return list;
+	}
+
+	/**
+	 * 書籍名(bname)から、書籍情報の詳細を返すメソッド。該当なしの場合は、nullを返す。
+	 * @param bookNo BookNo
+	 * @return ArrayList<LibraryBook>  LibraryBookの配列、DBアクセスエラーの場合は、nullを返す。
+	 */
+	public  ArrayList<LibraryBook> getLibraryBookDetailByBname(String bname)
+	{
+		ArrayList<LibraryBook> list = new ArrayList<LibraryBook>();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM librarybooks, books WHERE librarybooks.bid = books.bid AND books.bname LIKE ?");
+			stmt.setString(1,  "%" + bname + "%");
+			ResultSet rs = stmt.executeQuery();
+
+			while ( rs.next() ) {
+				LibraryBook lb = new LibraryBook();
+				// LibraryBook ID
+				lb.setLbid(rs.getInt("lbid"));
+				// Book ID
+				lb.setBid(rs.getInt("bid"));
+				// 図書書籍管理番号
+				lb.setBookNo(rs.getString("bookNo"));
+				// ISBN
+				lb.setIsbn(rs.getString("isbn"));
+				// 書籍名
+				lb.setBname(rs.getString("bname"));
+				// 筆者
+				lb.setAuthor(rs.getString("author"));
+				// 出版社
+				lb.setPublisher(rs.getString("publisher"));
+
+				list.add(lb);
+			}
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			System.out.println(e);
+		}
+		return list;
 	}
 
 

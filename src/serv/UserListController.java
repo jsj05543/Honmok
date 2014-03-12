@@ -1,6 +1,7 @@
 package serv;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,11 +26,23 @@ public class UserListController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<String> error_message = new ArrayList<String>();
 
-		//
-		// ここに実装する
-		//
+		UserDB userdb = new UserDB();
 
+		request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html;charset=UTF-8");
+
+    	String search_id   = request.getParameter("search_id");
+    	String search_name = request.getParameter("search_name");
+    	// とりあえずあとで作るから、まずは全部取得する
+    	ArrayList<User> allUsers = userdb.getUsers();
+    	if ( allUsers != null ) {
+    		request.setAttribute("list", allUsers);
+    	} else {
+    		error_message.add("DBアクセスエラーが発生しました");
+    	}
+		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_list.jsp");
 		dispatch.forward(request, response);
 	}

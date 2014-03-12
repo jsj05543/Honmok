@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class RentResult
  */
-@WebServlet(description = "userNo, bookNoを受け取り、貸し�し�琂�行う�, urlPatterns = { "/rent_result" })
+@WebServlet("/return_result")
 public class ReturnResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -46,7 +46,7 @@ public class ReturnResultController extends HttpServlet {
 		user = userdb.getUserDetail(uid);
 
 		if( user == null ){
-			out.println("該当しめ��);
+			out.println("");
 		}else{
 			out.println(user.getUname());
 		}
@@ -54,7 +54,7 @@ public class ReturnResultController extends HttpServlet {
 
 
 		//
-		// ここに実裁��
+		// ここに実裁��
 		//
 
 		RequestDispatcher dispatch = request.getRequestDispatcher("return_result.jsp");

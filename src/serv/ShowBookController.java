@@ -39,8 +39,9 @@ public class ShowBookController extends HttpServlet {
 	    // DB検索処理
 	    ArrayList<LibraryBook> list = null;
 	    if ( search_id != null ){
-		    // 書籍番号で検索
-	    	list = db.getLibraryBookDetailByBookNo(search_id);
+		    // 書籍番号で検索(完全一致のみ) データ型をあわせるために配列に格納。
+	    	list = new ArrayList<LibraryBook>();
+	    	list.add(db.getLibraryBookDetailByBookNo(search_id));
 	    }
 	    else if( search_name != null ){
 	    	// 書籍名で検索

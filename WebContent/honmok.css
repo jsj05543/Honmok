@@ -53,10 +53,25 @@ table {
 	margin-top: 5px;
 	margin-bottom: 10px;
 }
+/* 交互に色をつける */
+tr:nth-child(even) {
+	background:#eeeeff;
+}
+tr:nth-child(odd) {
+    background:#fafafa;
+}
+thead tr:nth-child(1) {
+	color: white;
+	background: #6666ff;
+}
+/* セルの中の設定 */
+td,th {
+	padding: 3px 5px;
+}
 
 /* 利用者情報一覧用 class=usertable */
 table.usertable {
-	color: red; /* デバッグ用 */
+/* 	color: red; デバッグ用 */
 }
 
 /* 書籍情報一覧用 class=booktable */
@@ -67,17 +82,17 @@ table.booktable {
 
 /* 延滞リスト表示用 class=overduetable */
 table.overduetable {
-	color: red; /* デバッグ用 */
+/* 	color: red; デバッグ用 */
 }
 
 /* 利用者情報表示用 class=userinfotable */
 table.userinfotable {
-	color: red; /* デバッグ用 */
+/* 	color: red; デバッグ用 */
 }
 
 /* 借りている本のリスト表示用 class=userbooktable */
 table.userbooktable {
-	color: red; /* デバッグ用 */
+/* 	color: red; デバッグ用 */
 }
 
 .form_text {

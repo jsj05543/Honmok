@@ -35,12 +35,26 @@ public class UserListController extends HttpServlet {
 
     	String search_id   = request.getParameter("search_id");
     	String search_name = request.getParameter("search_name");
-    	// とりあえずあとで作るから、まずは全部取得する
-    	ArrayList<User> allUsers = userdb.getUsers();
-    	if ( allUsers != null ) {
-    		request.setAttribute("list", allUsers);
+    	if ( search_id != null ) {
+    		// 利用者番号検索モード
+        	ArrayList<User> userList = new ArrayList<User>();
+        	User user = userdb.getUserDetail(search_id);
+        	if ( user != null ) {
+            	userList.add( user );
+        		request.setAttribute("list", userList);
+        	} else {
+        		error_message.add("一致する利用者はいませんでした");
+        	}
+    	} else if ( search_name != null ) {
+        	// 利用者名検索モード
+        	ArrayList<User> userList = userdb.getUserDetailByUname(search_name);
+        	if ( userList != null ) {
+        		request.setAttribute("list", userList);
+        	} else {
+        		error_message.add("一致する利用者はいませんでした");
+        	}
     	} else {
-    		error_message.add("DBアクセスエラーが発生しました");
+	    	error_message.add("不正な呼び出しです(POSTパラメータエラー)");
     	}
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_list.jsp");

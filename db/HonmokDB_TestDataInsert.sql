@@ -67,3 +67,31 @@ INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 7 );
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 8 );
 -- 削除済み
 INSERT INTO circulations ( issueDay, returnDay, uid, lbid, deleteFlag ) VALUES ( '2014-02-10 13:49:22', '2014-02-10 15:49:22', 1, 1, true);
+
+--
+-- VIEW 用の設定
+--
+
+-- 削除フラグによらず全データ取得
+CREATE VIEW CirculationsDetailAll AS SELECT circulations.cid, circulations.issueDay, circulations.returnDay, circulations.deleteFlag,
+users.uid, users.userNo, users.uname, users.address, users.tel, users.limitFlag,
+librarybooks.lbid, librarybooks.bid, librarybooks.bookNo
+FROM circulations LEFT JOIN users ON circulations.uid = users.uid 
+LEFT JOIN librarybooks ON circulations.lbid = librarybooks.lbid;
+
+-- 削除フラグ除く全データ取得
+CREATE VIEW CirculationsDetail AS SELECT circulations.cid, circulations.issueDay, circulations.returnDay, circulations.deleteFlag,
+users.uid, users.userNo, users.uname, users.address, users.tel, users.limitFlag,
+librarybooks.lbid, librarybooks.bid, librarybooks.bookNo
+FROM circulations LEFT JOIN users ON circulations.uid = users.uid 
+LEFT JOIN librarybooks ON circulations.lbid = librarybooks.lbid 
+WHERE circulations.deleteFlag = false;
+
+
+-- 削除フラグ除く、返却前の該当UIDのデータ取得
+CREATE VIEW CirculationsDetailOnIssueByUid AS SELECT circulations.cid, circulations.issueDay, circulations.returnDay, circulations.deleteFlag,
+users.uid, users.userNo, users.uname, users.address, users.tel, users.limitFlag,
+librarybooks.lbid, librarybooks.bid, librarybooks.bookNo
+FROM circulations LEFT JOIN users ON circulations.uid = users.uid 
+LEFT JOIN librarybooks ON circulations.lbid = librarybooks.lbid 
+WHERE circulations.deleteFlag = false AND users.uid = ?;

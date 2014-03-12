@@ -76,7 +76,7 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDay IS NULL AND uid = ?");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT  * FROM CirculationsDetail WHERE returnDay IS NULL AND uid = ?");
 			stmt.setInt(1,uid);
 			ResultSet rs = stmt.executeQuery();
 
@@ -111,7 +111,7 @@ public class CirculationDB extends DBAccess{
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
+			PreparedStatement stmt = this.con.prepareStatement("SELECT  * FROM CirculationsDetail WHERE returnDAY IS NULL AND issueDay < DATE_SUB(CURDATE(), INTERVAL 6 DAY)");
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -333,7 +333,7 @@ public class CirculationDB extends DBAccess{
 		user.setUid(rs.getInt("uid"));
 		user.setUserNo(rs.getString("userNo"));
 		user.setUname(rs.getString("uname"));
-		user.setUname(rs.getString("address"));
+		user.setAddress(rs.getString("address"));
 		user.setTel(rs.getString("tel"));
 		// Userオブジェクトをセット
 		c.setUser(user);
@@ -343,6 +343,11 @@ public class CirculationDB extends DBAccess{
 		book.setLbid(rs.getInt("lbid"));
 		book.setBid(rs.getInt("bid"));
 		book.setBookNo(rs.getString("bookNo"));
+		book.setIsbn(rs.getString("isbn"));
+		book.setAuthor(rs.getString("author"));
+		book.setBname(rs.getString("bname"));
+		book.setPublisher(rs.getString("publisher"));
+		book.setPage(rs.getInt("page"));
 		// LibraryBookオブジェクトをセット
 		c.setLibraryBook(book);
 

@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 @WebServlet("/user_edit_result")
 public class UserEditResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -49,7 +51,11 @@ public class UserEditResultController extends HttpServlet {
 				String uname   = request.getParameter("uname");
 		    	String address = request.getParameter("address");
 		    	String tel     = request.getParameter("tel");
-		    	if ( userdb.update(uid, uname, address, tel) > 0 ) {
+		    	if ( StringUtils.isBlank(uname) ||
+		    			StringUtils.isBlank(address) ||
+		    			StringUtils.isBlank(tel) ) {
+		    		error_message.add("空文字は入れないでください");
+		    	} else if ( userdb.update(uid, uname, address, tel) > 0 ) {
 	    			request.setAttribute("message", "変更しました");
 	    		} else {
 			    	error_message.add("変更できませんでした(内部エラー)");

@@ -13,6 +13,7 @@ INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100001, '大阿蘇 �
 INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100008, '水前寺　花子', '水前寺888-456', '0120-3121-9999' );
 INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100009, '延滞　する蔵', '延滞町888-456', '0120-3121-9999' );
 INSERT INTO users ( userNo, uname, address, tel ) VALUES ( 100010, '3冊　借りる蔵', 'MAX888-456', '0120-3121-9999' );
+INSERT INTO users ( userNo, uname, address, tel , deleteFlag) VALUES ( 100100, '削除　された蔵', 'DEL888-456', '0120-3121-8888', TRUE );
 
 -- book/libraryBooksデータを作成
 SET @d = 0;
@@ -64,3 +65,5 @@ SET @d = now() - INTERVAL 2 DAY;
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 6 );
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 7 );
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 8 );
+-- 削除済み
+INSERT INTO circulations ( issueDay, returnDay, uid, lbid, deleteFlag ) VALUES ( '2014-02-10 13:49:22', '2014-02-10 15:49:22', 1, 1, true);

@@ -16,16 +16,43 @@ import java.util.ArrayList;
 public class UserDB extends DBAccess{
 
 	/**
-	 * "user"テーブルへのアクセス
+	 * "user"テーブルへのアクセス。削除されたユーザ情報は取得しない。
 	 * @return ArrayList uersテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
 	 */
 	public ArrayList<User> getUsers()
+	{
+		String sql = null;
+		sql = "SELECT * FROM users WHERE deleteFlag = false";
+		return _getUsers(sql);
+	}
+
+	/**
+	 * "user"テーブルへのアクセス。true指定で削除ユーザを含む全データを出力。flase指定の場合は、引数なしと同等。
+	 * @param delete_flag
+	 * @return ArrayList uersテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
+	 */
+	public ArrayList<User> getUsers(Boolean deletFlag)
+	{
+		String sql = null;
+		if ( deletFlag ){
+			sql = "SELECT * FROM users";
+		}else{
+			sql = "SELECT * FROM users WHERE deleteFlag = false";
+		}
+		return _getUsers(sql);
+	}
+
+	/**
+	 * "user"テーブルへのアクセス本体
+	 * @return ArrayList uersテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
+	 */
+	private ArrayList<User> _getUsers(String sql)
 	{
 		ArrayList<User> list = new ArrayList<User>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM users WHERE deleteFlag = false");
+			PreparedStatement stmt = this.con.prepareStatement(sql);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -40,6 +67,10 @@ public class UserDB extends DBAccess{
 				u.setAddress(rs.getString("address"));
 				// 電話番号
 				u.setTel(rs.getString("tel"));
+				// Limitフラグ
+				u.setLimitFlag(rs.getBoolean("limitFlag"));
+				// Limitフラグ
+				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
 				// 配列に保存
 				list.add(u);
 			}
@@ -80,6 +111,10 @@ public class UserDB extends DBAccess{
 				u.setAddress(rs.getString("address"));
 				// 電話番号
 				u.setTel(rs.getString("tel"));
+				// Limitフラグ
+				u.setLimitFlag(rs.getBoolean("limitFlag"));
+				// Limitフラグ
+				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
 			}else{
 				u = null;
 			}
@@ -119,6 +154,10 @@ public class UserDB extends DBAccess{
 				u.setAddress(rs.getString("address"));
 				// 電話番号
 				u.setTel(rs.getString("tel"));
+				// Limitフラグ
+				u.setLimitFlag(rs.getBoolean("limitFlag"));
+				// Limitフラグ
+				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
 			}else{
 				u = null;
 			}
@@ -159,6 +198,11 @@ public class UserDB extends DBAccess{
 				u.setAddress(rs.getString("address"));
 				// 電話番号
 				u.setTel(rs.getString("tel"));
+				// Limitフラグ
+				u.setLimitFlag(rs.getBoolean("limitFlag"));
+				// Limitフラグ
+				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
+
 				list.add(u);
 			}
 			rs.close();
@@ -210,7 +254,7 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * 特定データ削除
-	 * @param mid
+	 * @param uid 削除対象となるUID
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
 	public int delete(int uid)
@@ -345,7 +389,7 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * 利用者番号が使われているか？
-	 * @param String 利用者番号
+	 * @param userNo 利用者番号
 	 * @return true 使われている
 	 * @return false 使われていない
 	 * @return null 内部エラー

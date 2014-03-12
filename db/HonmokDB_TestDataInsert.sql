@@ -65,3 +65,5 @@ SET @d = now() - INTERVAL 2 DAY;
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 6 );
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 7 );
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 8 );
+-- 削除済み
+INSERT INTO circulations ( issueDay, returnDay, uid, lbid, deleteFlag ) VALUES ( '2014-02-10 13:49:22', '2014-02-10 15:49:22', 1, 1, true);

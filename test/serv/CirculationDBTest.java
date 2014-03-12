@@ -55,6 +55,21 @@ public class CirculationDBTest {
 	 */
 	@Test
 	public void testGetCirculations() {
+		CirculationDB db = new CirculationDB();
+		// 数
+        assertEquals(7, db.getCirculations().size());
+	}
+
+	/**
+	 * {@link serv.CirculationDB#getCirculations(boolean)} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetCirculationsBool() {
+		CirculationDB db = new CirculationDB();
+		// 数
+        assertEquals(8, db.getCirculations(true).size());
+		// 数
+        assertEquals(7, db.getCirculations(false).size());
 	}
 
 	/**
@@ -76,8 +91,24 @@ public class CirculationDBTest {
 		{
 			assertEquals(result.get(i).getCid(),golden.get(i).getCid());
 		}
-
 	}
+
+	/**
+	 * {@link serv.CirculationDB#getCirculationsOnIssueByUid()} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testGetCirculationsOnIssueByUid() {
+		// CAUTION!!! テスト前にはデータベースSQLを再実行する必要あり！！
+		CirculationDB db = new CirculationDB();
+		// 数
+        assertEquals(0, db.getCirculationsOnIssueByUid(1).size());
+        assertEquals(1, db.getCirculationsOnIssueByUid(2).size());
+        assertEquals(1, db.getCirculationsOnIssueByUid(3).size());
+        assertEquals(1, db.getCirculationsOnIssueByUid(4).size());
+        assertEquals(3, db.getCirculationsOnIssueByUid(5).size());
+	}
+
+
 
 	/**
 	 * {@link serv.CirculationDB#canRent(java.lang.String)} のためのテスト・メソッド。

@@ -62,7 +62,7 @@ public class UserDBTest {
 	}
 
 	/**
-	 * {@link serv.UserDB#getUsers()} のためのテスト・メソッド。
+	 * {@link serv.UserDB#getUsers(boolean)} のためのテスト・メソッド。
 	 * 正常系：テストデータとして既に入れている情報が取得できることを確認する。
 	 * 異常系：なし
 	 */
@@ -70,6 +70,9 @@ public class UserDBTest {
 	public void testGetUsersAll() {
 		UserDB db = new UserDB();
 		// 数
+        assertEquals(5, db.getUsers(false).size());
+
+        // 数
         assertEquals(6, db.getUsers(true).size());
 
         // 六人目

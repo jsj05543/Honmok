@@ -16,16 +16,80 @@ import java.util.ArrayList;
 public class CirculationDB extends DBAccess{
 
 	/**
-	 * "circulation"テーブルへのアクセス
+	 * "circulation"テーブルの削除済みデータを除く、全情報を取得
 	 * @return ArrayList circulationテーブルの配列データ
 	 */
-	public ArrayList<Circulation> getCirculations()
+	public ArrayList<Circulation> getCirculations(){
+		String sql = "SELECT * FROM circulations WHERE deleteFlag = false";
+		return _getCirculations(sql);
+	}
+
+	/**
+	 * "circulation"テーブルの削除済み全データを含む、全データを取得
+	 * @return ArrayList circulationテーブルの配列データ
+	 */
+	public ArrayList<Circulation> getCirculations(Boolean deleteFlag){
+		String sql = null;
+
+		if ( deleteFlag ){
+			sql = "SELECT * FROM circulations";
+		}else{
+			sql = "SELECT * FROM circulations WHERE deleteFlag = false";
+		}
+		return _getCirculations(sql);
+	}
+
+
+	private ArrayList<Circulation> _getCirculations(String sql)
 	{
 		ArrayList<Circulation> list = new ArrayList<Circulation>();
 		try
 		{
 			// SQL操作
-			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulation WHERE delete_flag = false");
+			PreparedStatement stmt = this.con.prepareStatement(sql);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				Circulation c = new Circulation();
+				// CIDをDBから取得
+				c.setCid(rs.getInt("cid"));
+				// 貸出日
+				c.setIssueDay(rs.getTimestamp("issueDay"));
+				// 返却日
+				c.setReturnDay(rs.getTimestamp("returnDay"));
+				// UID
+				c.setUid(rs.getInt("uid"));
+				// LBID
+				c.setLbid(rs.getInt("lbid"));
+				// deleteFlag
+				c.setDeleteFlag(rs.getBoolean("deleteFlag"));
+
+				list.add(c);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return list;
+	}
+
+	/**
+	 * "circulation"テーブルから、指定したUIDに該当する未返却データを取得
+	 * @return ArrayList circulationテーブルの配列データ
+	 */
+	public ArrayList<Circulation> getCirculationsOnIssueByUid(int uid)
+	{
+		ArrayList<Circulation> list = new ArrayList<Circulation>();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM circulations WHERE deleteFlag = false AND returnDay IS NULL AND uid = ?");
+			stmt.setInt(1,uid);
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -53,6 +117,9 @@ public class CirculationDB extends DBAccess{
 		}
 		return list;
 	}
+
+
+
 
 	/**
 	 * "circulations"テーブルから貸し出しを延滞しているリストを返す。

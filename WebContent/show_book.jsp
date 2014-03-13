@@ -30,12 +30,21 @@ ArrayList<LibraryBook> libbook = (ArrayList<LibraryBook>)request.getAttribute("l
 %>
 
 <table border=1 class="booktable">
-<tr><td>テーブルのデバッグ</td></tr>
-<tr><td>テーブルのデバッグ</td></tr>
-<tr><td>テーブルのデバッグ</td></tr>
-<tr><td>テーブルのデバッグ</td></tr>
-<tr><td>テーブルのデバッグ</td></tr>
+<thead><tr><th>書籍番号</th><th>タイトル</th><th>著者</th><th>出版社</th><th>貸出し状況</th></thead>
+<%
+	for ( LibraryBook lb : libbook ) {
+%>
+	<tr>
+		<td><%= lb.getBookNo() %></td>
+		<td><%= lb.getBname() %></td>
+		<td><%= lb.getAuthor() %></td>
+		<td><%= lb.getPublisher() %></td>
+		<td><%= lb.getPublisher() %></td>
+	</tr>
+<%	} %>
 </table>
+
+
 
 </body>
 </html>

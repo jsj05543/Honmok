@@ -1,7 +1,9 @@
 package serv;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,9 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SearchBookResultController
+ * Servlet implementation class SearchResultController
  */
-@WebServlet("/SearchBookResultController")
+@WebServlet("/search_book_result")
 public class SearchBookResultController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,6 +30,31 @@ public class SearchBookResultController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		ArrayList<String> error_message = new ArrayList<String>();
+		ArrayList<LibraryBook> libbooks = new ArrayList<LibraryBook>();
+
+		request.setCharacterEncoding("UTF-8");
+
+		String bookNo = request.getParameter("search_bookNo");
+		String bookName = request.getParameter("search_bookName");
+
+		if(  bookNo != null && bookNo.length() != 0  ){
+			LibraryBookDB librarybookdb = new LibraryBookDB();
+			LibraryBook libbook = librarybookdb.getLibraryBookDetailByBookNo(bookNo);
+			libbooks.add( libbook );
+			librarybookdb.close();
+		}else if(  bookName!= null && bookName.length() != 0 ){
+			LibraryBookDB librarybookdb = new LibraryBookDB();
+			libbooks = librarybookdb.getLibraryBookDetailByBname(bookName);
+			librarybookdb.close();
+		}else{
+			error_message.add("検索条件を入力してください。");
+		}
+
+		request.setAttribute("libbooks", libbooks);
+		request.setAttribute("error_message", error_message);
+		RequestDispatcher dispatch = request.getRequestDispatcher("show_book.jsp");
+		dispatch.forward(request, response);
 	}
 
 }

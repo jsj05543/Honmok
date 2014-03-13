@@ -17,6 +17,11 @@
 3. テストデータを挿入（任意）
     % mysql -u root -p honmokdb < ${HONMOK}/db/HonmokDB_TestDataInsert.sql
 
+[耐久テスト用]
+    # ユーザを9998人追加
+    % mysql -u root -p honmokdb < ${HONMOK}/db/AddUser9998.sql
+    # ユーザを9998冊追加
+    % mysql -u root -p honmokdb < ${HONMOK}/db/AddBook9998.sql
 
 ■ 実行確認
  

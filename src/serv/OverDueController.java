@@ -28,13 +28,14 @@ public class OverDueController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<String> error_message = new ArrayList<String>();
 
-		CirculationDB cirdb = new CirculationDB();
-
 		request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html;charset=UTF-8");
 
+		CirculationDB cirdb = new CirculationDB();
     	ArrayList<Circulation> entaiList = cirdb.getOverDueList();
-       	if ( entaiList != null ) {
+    	cirdb.close();
+
+    	if ( entaiList != null ) {
     		request.setAttribute("list", entaiList);
     	} else {
     		error_message.add("一致する利用者はいませんでした");

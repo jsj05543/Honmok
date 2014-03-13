@@ -77,6 +77,7 @@ public class RegisterResultController extends HttpServlet {
 	    } catch (Exception ex) {
 			error_message.add("内部エラーが発生しました");
 	    }
+		userdb.close();
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("register_result.jsp");
 		dispatch.forward(request, response);

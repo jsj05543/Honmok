@@ -66,6 +66,7 @@ public class UserEditResultController extends HttpServlet {
 	    } catch (Exception ex) {
 	    	error_message.add("変更/削除できませんでした(例外発生)");
 	    }
+		userdb.close();
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_edit_result.jsp");
 		dispatch.forward(request, response);

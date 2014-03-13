@@ -37,7 +37,7 @@ public class UserInfoController extends HttpServlet {
 	    try {
 	    	int uid = Integer.parseInt( request.getParameter("uid") );
 	    	User user = userdb.getUserDetail(uid);
-			if( user != null ){
+	    	if( user != null ){
 				request.setAttribute("users", user );
 				ArrayList<Circulation> list = cirdb.getCirculationsOnIssueByUid(uid);
 				request.setAttribute("list", list );
@@ -48,6 +48,8 @@ public class UserInfoController extends HttpServlet {
 			error_message.add("数字以外が入力されました。");
 			error_message.add("該当するIDの利用者はいません。");
 	    }
+		userdb.close();
+		cirdb.close();
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_info.jsp");
 		dispatch.forward(request, response);

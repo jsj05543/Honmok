@@ -99,6 +99,28 @@ table.userbooktable {
 /* 	color: red; デバッグ用 */
 }
 
+/* トップページのリンク表示用 class=toppage_list */
+table.toppage_list,
+table.toppage_list tr,
+table.toppage_list td,
+table.toppage_list tr:nth-child(even),
+table.toppage_list tr:nth-child(odd) {
+/* 	color: red; デバッグ用 */
+	background: none;
+	border-width: 0;
+	border-collapse: collapse;
+	padding: 10px;
+}
+
+table.toppage_list td.setsumei {
+	font-style: italic;
+}
+
+table.toppage_list a:LINK, ul#navi a:VISITED {
+	text-decoration: none;
+}
+
+
 .form_text {
 	float: left;
 }

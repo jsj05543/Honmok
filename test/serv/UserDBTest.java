@@ -94,7 +94,7 @@ public class UserDBTest {
 		User user = db.getUserDetail(4);
 		assertEquals("延滞　する蔵",user.getUname());
 		assertEquals("延滞町888-456",user.getAddress());
-		assertEquals("100009",user.getUserNo());
+		assertEquals("U001-1401010004",user.getUserNo());
 	}
 
 	/**
@@ -140,10 +140,10 @@ public class UserDBTest {
 	@Test
 	public void testGetUserDetailString() {
 		UserDB db = new UserDB();
-		User user = db.getUserDetail("100009");
+		User user = db.getUserDetail("U001-1401010004");
 		assertEquals("延滞　する蔵",user.getUname());
 		assertEquals("延滞町888-456",user.getAddress());
-		assertEquals("100009",user.getUserNo());
+		assertEquals("U001-1401010004",user.getUserNo());
 	}
 
 	/**
@@ -164,7 +164,7 @@ public class UserDBTest {
 		ArrayList<User> result = db.getUserDetailByUname("肥後　太郎");
 		assertEquals(1,result.get(0).getUid());
 		assertEquals("肥後　太郎",result.get(0).getUname());
-		assertEquals("100000",result.get(0).getUserNo());
+		assertEquals("U001-1401010001",result.get(0).getUserNo());
 		assertEquals("肥後123-456",result.get(0).getAddress());
 		assertEquals("0120-1515-3776",result.get(0).getTel());
 		assertEquals(false,result.get(0).getLimitFlag());
@@ -176,7 +176,7 @@ public class UserDBTest {
 		// 1番目の該当
 		assertEquals(4,result.get(0).getUid());
 		assertEquals("延滞　する蔵",result.get(0).getUname());
-		assertEquals("100009",result.get(0).getUserNo());
+		assertEquals("U001-1401010004",result.get(0).getUserNo());
 		assertEquals("延滞町888-456",result.get(0).getAddress());
 		assertEquals("0120-3121-9999",result.get(0).getTel());
 		assertEquals(false,result.get(0).getLimitFlag());
@@ -184,7 +184,7 @@ public class UserDBTest {
 		// 2番目の該当
 		assertEquals(5,result.get(1).getUid());
 		assertEquals("3冊　借りる蔵",result.get(1).getUname());
-		assertEquals("100010",result.get(1).getUserNo());
+		assertEquals("U001-1401010005",result.get(1).getUserNo());
 		assertEquals("MAX888-456",result.get(1).getAddress());
 		assertEquals("0120-3121-9999",result.get(1).getTel());
 		assertEquals(false,result.get(1).getLimitFlag());
@@ -211,6 +211,13 @@ public class UserDBTest {
 	@Test
 	public void testDelete() {
 		UserDB db = new UserDB();
+		/**
+		 * 異常系：存在しないデータを削除しようとする
+		 */
+		assertEquals(-1,db.delete(-1));
+		/**
+		 * 正常系：一度データ挿入して削除確認（必ずデータが存在する）
+		 */
 		db.insert("t200000", "テスト　太郎", "テスト町3丁目", "9696");
 		int uid = db.getLatestUser().getUid();
 		assertEquals(1,db.delete(uid));
@@ -220,10 +227,10 @@ public class UserDBTest {
 
 	/**
 	 * {@link serv.UserDB#deleteAll()} のためのテスト・メソッド。
+	 * - 今回は使用しないためテスト対象外
 	 */
 	@Test
 	public void testDeleteAll() {
-		UserDB db = new UserDB();
 	}
 
 	/**

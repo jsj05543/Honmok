@@ -65,7 +65,7 @@ public class CirculationDBTest {
         assertEquals("肥後　太郎",result.get(i).getUser().getUname());
         assertEquals("肥後123-456",result.get(i).getUser().getAddress());
         assertEquals("0120-1515-3776",result.get(i).getUser().getTel());
-        assertEquals("100000",result.get(i).getUser().getUserNo());
+        assertEquals("U001-1401010001",result.get(i).getUser().getUserNo());
         assertEquals(1,result.get(i).getLibraryBook().getLbid());
         assertEquals("桑原晃弥",result.get(i).getLibraryBook().getAuthor());
         assertEquals("幻冬舎",result.get(i).getLibraryBook().getPublisher());
@@ -76,7 +76,7 @@ public class CirculationDBTest {
         assertEquals("3冊　借りる蔵",result.get(i).getUser().getUname());
         assertEquals("MAX888-456",result.get(i).getUser().getAddress());
         assertEquals("0120-3121-9999",result.get(i).getUser().getTel());
-        assertEquals("100010",result.get(i).getUser().getUserNo());
+        assertEquals("U001-1401010005",result.get(i).getUser().getUserNo());
         assertEquals(7,result.get(i).getLibraryBook().getLbid());
         assertEquals("井口耕二",result.get(i).getLibraryBook().getAuthor());
         assertEquals("帝国文学",result.get(i).getLibraryBook().getPublisher());
@@ -152,7 +152,7 @@ public class CirculationDBTest {
 	public void testGetCirculationOnIssueByBookNo() {
 		CirculationDB db = new CirculationDB();
 		Circulation  result = new Circulation();
-		result = db.getCirculationOnIssueByBookNo("200007");
+		result = db.getCirculationOnIssueByBookNo("B001-1401019999");
         assertEquals("3冊　借りる蔵", result.getUser().getUname());
         assertEquals("ビジネスモデル・イノベーション", result.getLibraryBook().getBname());
 	}
@@ -165,8 +165,8 @@ public class CirculationDBTest {
 	@Test
 	public void testCanRent() {
 		CirculationDB db = new CirculationDB();
-		assertEquals(true,db.canRent("100000"));
-		assertEquals(false,db.canRent("100010"));
+		assertEquals(true,db.canRent("U001-1401010001"));
+		assertEquals(false,db.canRent("U001-1401010005"));
 	}
 
 	/**

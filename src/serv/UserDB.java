@@ -308,8 +308,8 @@ public class UserDB extends DBAccess{
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のユーザーは存在しません。");
-				return 0;
+//				System.out.println("指定された番号のユーザーは存在しません。");
+				return -1;
 			}
 		}
 		catch(SQLException e)
@@ -335,8 +335,8 @@ public class UserDB extends DBAccess{
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のユーザーは存在しません。");
-				return 0;
+//				System.out.println("指定された番号のユーザーは存在しません。");
+				return -1;
 			}
 		}
 		catch(SQLException e)

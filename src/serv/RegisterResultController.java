@@ -26,6 +26,7 @@ public class RegisterResultController extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see UserNo
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<String> error_message = new ArrayList<String>();
@@ -45,33 +46,32 @@ public class RegisterResultController extends HttpServlet {
 	    	String uname   = request.getParameter("uname");
 	    	String address = request.getParameter("address");
 	    	String tel     = request.getParameter("tel");
-	    	String userNo;
 
-	    	if ( userdb.insert(null, uname, address, tel) == -1 ) {
+	    	if ( StringUtils.isBlank(uname) ||
+    			StringUtils.isBlank(address) ||
+    			StringUtils.isBlank(tel) ) {
+	    		error_message.add("空文字は入れないでください");
+	    	} else if ( userdb.insert(null, uname, address, tel) == -1 ) {
 				error_message.add("同じ氏名・住所・TELが登録されています。");
 			} else {
-				// これはかっこわるい
-				for (int i = 100000; i < 1000000; i++) {
-					userNo = Integer.toString(i);
-					if ( userdb.usedUserNo(userNo) ) {
-						// error_message.add("その利用者番号はすでに使われてます");
-					} else {
-				    	if ( StringUtils.isBlank(uname) ||
-				    			StringUtils.isBlank(address) ||
-				    			StringUtils.isBlank(tel) ) {
-				    		error_message.add("空文字は入れないでください");
-				    	} else {
-				    		int ret = userdb.insert(userNo, uname, address, tel);
-				    		if ( ret == -1 ) {
-				    			error_message.add("同じ氏名・住所・TELが登録されています。");
-				    		} else if ( ret == 0 ) {
-						    	error_message.add("内部エラーです");
-				    		} else {
-				    			request.setAttribute("userNo", userNo);
-				    		}
-				    	}
+		    	String userNo;
+		    	UserNo un = new UserNo();
+				// 利用者番号発行できる限り続ける
+				while ( (userNo = un.createUserNo()) != null ) {
+					if ( ! userdb.usedUserNo(userNo) ) {
+			    		int ret = userdb.insert(userNo, uname, address, tel);
+			    		if ( ret == -1 ) {
+			    			error_message.add("同じ氏名・住所・TELが登録されています。");
+			    		} else if ( ret == 0 ) {
+					    	error_message.add("内部エラーです");
+			    		} else {
+			    			request.setAttribute("userNo", userNo);
+			    		}
 				    	break;
 		    		}
+				}
+				if ( userNo == null ) {
+					error_message.add("利用者番号の発行上限に達しました");
 				}
 			}
 	    } catch (Exception ex) {

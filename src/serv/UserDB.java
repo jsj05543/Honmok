@@ -308,8 +308,8 @@ public class UserDB extends DBAccess{
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のユーザーは存在しません。");
-				return 0;
+//				System.out.println("指定された番号のユーザーは存在しません。");
+				return -1;
 			}
 		}
 		catch(SQLException e)
@@ -335,8 +335,8 @@ public class UserDB extends DBAccess{
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のユーザーは存在しません。");
-				return 0;
+//				System.out.println("指定された番号のユーザーは存在しません。");
+				return -1;
 			}
 		}
 		catch(SQLException e)
@@ -409,7 +409,7 @@ public class UserDB extends DBAccess{
 	 * @param tel 電話番号
 	 * @return true:既存データあり、false:既存データなし
 	 */
-	private Boolean isSameData(String uname, String address, String tel)
+	public Boolean isSameData(String uname, String address, String tel)
 	{
 		try
 		{
@@ -470,12 +470,16 @@ public class UserDB extends DBAccess{
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1,userNo);
 			ResultSet rs = stmt.executeQuery();
-			return rs.next();
+			if(rs.next()){
+				return true;
+			}else{
+				return false;
+			}
 		}
 		catch(SQLException e)
 		{
-			e.printStackTrace();
-			return null;
+//			e.printStackTrace();
+			return true;
 		}
 	}
 

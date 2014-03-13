@@ -28,7 +28,7 @@ ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 %>
 
 <table border=1 class="userlisttable">
-<thead><tr><th>利用者番号</th><th>氏名</th><th>住所</th><th>TEL</th><th>編集</th><tr></thead>
+<thead><tr><th>利用者番号</th><th>氏名</th><th>住所</th><th>TEL</th><th>削除済</th><th>編集</th><tr></thead>
 <%
 	for (User user : list) {
 %>
@@ -37,6 +37,7 @@ ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 		<td><a href="user_info?uid=<%= user.getUid() %>"><%= user.getUname() %></a></td>
 		<td><%= user.getAddress() %></td>
 		<td><%= user.getTel() %></td>
+		<td><%= (user.getDeleteFlag()) ? "削除済" : "" %></td>
 		<td><a href="user_edit?uid=<%= user.getUid() %>">編集</a></td>
 	</tr>
 <%	} %>

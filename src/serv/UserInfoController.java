@@ -29,6 +29,7 @@ public class UserInfoController extends HttpServlet {
 		ArrayList<String> error_message = new ArrayList<String>();
 
 		UserDB userdb = new UserDB();
+		CirculationDB cirdb = new CirculationDB();
 
 		request.setCharacterEncoding("UTF-8");
 	    response.setContentType("text/html;charset=UTF-8");
@@ -38,6 +39,8 @@ public class UserInfoController extends HttpServlet {
 	    	User user = userdb.getUserDetail(uid);
 			if( user != null ){
 				request.setAttribute("users", user );
+				ArrayList<Circulation> list = cirdb.getCirculationsOnIssueByUid(uid);
+				request.setAttribute("list", list );
 			} else {
 				error_message.add("該当するIDの利用者はいません。");
 			}

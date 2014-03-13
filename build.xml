@@ -10,6 +10,11 @@
     <property name="debuglevel" value="source,lines,vars"/>
     <property name="target" value="1.7"/>
     <property name="source" value="1.7"/>
+    <property name="src" value="./src" />
+    <property name="test" value="./test" />
+    <property name="lib" value="./lib" />
+    <property name="classes" value="./build/classes" />
+    <property name="test.class.name" value="com.xyz.MyTestSuite" />
     <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
         <pathelement location="C:/Tomcat/lib/annotations-api.jar"/>
         <pathelement location="C:/Tomcat/lib/catalina-ant.jar"/>
@@ -49,6 +54,13 @@
         <path refid="EAR ライブラリー.libraryclasspath"/>
         <path refid="JUnit 4.libraryclasspath"/>
         <pathelement location="C:/Tomcat/lib/commons-lang3-3.3.jar"/>
+    </path>
+    <path id="test.classpath">
+      <pathelement location="${classes}" />
+      <pathelement location="/path/to/junit.jar" />
+      <fileset dir="${lib}">
+        <include name="**/*.jar"/>
+      </fileset>
     </path>
     <target name="init">
         <mkdir dir="build/classes"/>
@@ -153,4 +165,5 @@
             <report format="frames" todir="${junit.output.dir}"/>
         </junitreport>
     </target>
+
 </project>

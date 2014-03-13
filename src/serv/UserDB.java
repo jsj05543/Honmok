@@ -259,6 +259,36 @@ public class UserDB extends DBAccess{
 		return list;
 	}
 
+	/**
+	 * LimitFlagを更新するメソッド
+	 * @param uid        ユーザID
+	 * @param limitFlag  LimitFlagに入れたい値
+	 * @return 処理結果( 1 で成功、0で失敗 )
+	 */
+	public int setLimitFlag(int uid, Boolean limitFlag)
+	{
+		try
+		{
+			if( this.searchId(uid)){
+				//	プリペアードステートメント
+				String sql = "UPDATE users SET limitFlag = ? WHERE uid = ?";
+				PreparedStatement stmt = con.prepareStatement(sql);
+				stmt.setBoolean(1,limitFlag);
+				stmt.setInt(2,uid);
+				//	SQLの実行
+				return stmt.executeUpdate();
+			}else{
+//				System.out.println("指定されたUIDは存在しません");
+				return -1;
+			}
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return 0;
+		}
+
+	}
 
 	/**
 	 * ユーザ情報追加

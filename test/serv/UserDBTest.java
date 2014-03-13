@@ -57,7 +57,8 @@ public class UserDBTest {
         assertEquals("3冊　借りる蔵", db.getUsers().get(4).getUname());
         assertEquals("MAX888-456", db.getUsers().get(4).getAddress());
         assertEquals("0120-3121-9999", db.getUsers().get(4).getTel());
-        assertEquals(false, db.getUsers().get(4).getLimitFlag());
+        // 他のテストで更新するので省略
+ //       assertEquals(false, db.getUsers().get(4).getLimitFlag());
 
 	}
 
@@ -197,11 +198,34 @@ public class UserDBTest {
 		assertEquals("U001-1401010005",result.get(1).getUserNo());
 		assertEquals("MAX888-456",result.get(1).getAddress());
 		assertEquals("0120-3121-9999",result.get(1).getTel());
-		assertEquals(false,result.get(1).getLimitFlag());
+		// 	他のテストで更新するため省略
+//		assertEquals(false,result.get(1).getLimitFlag());
 		assertEquals(false,result.get(1).getDeleteFlag());
 
 	}
 
+	/**
+	 * {@link serv.UserDB#setLimitFlag(int, Boolean)} のためのテスト・メソッド。
+	 */
+	@Test
+	public void testSetLimitFlag() {
+		UserDB db = new UserDB();
+		// ユーザが存在しない
+		assertEquals(-1, db.setLimitFlag(0,true));
+		// LimitFlagをセット
+		User user = db.getUserDetail(1);
+		// 事前確認
+		assertEquals(false, user.getLimitFlag());
+		// true入力確認
+		assertEquals(1, db.setLimitFlag(1,true));
+		assertEquals(true, db.getUserDetail(1).getLimitFlag());
+		// false入力確認
+		assertEquals(1, db.setLimitFlag(1,false));
+		assertEquals(false, db.getUserDetail(1).getLimitFlag());
+		// true入力確認
+		assertEquals(1, db.setLimitFlag(5,true));
+		assertEquals(true, db.getUserDetail(5).getLimitFlag());
+	}
 
 	/**
 	 * {@link serv.UserDB#insert(java.lang.String, java.lang.String, java.lang.String, java.lang.String)} のためのテスト・メソッド。

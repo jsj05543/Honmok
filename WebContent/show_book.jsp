@@ -28,7 +28,7 @@ if ( ! error_message.isEmpty() ) {
 @SuppressWarnings("unchecked")
 ArrayList<LibraryBook> libbook = (ArrayList<LibraryBook>)request.getAttribute("libbooks");
 @SuppressWarnings("unchecked")
-ArrayList<String>clist = (ArrayList<String>)request.getAttribute("libbooks");
+ArrayList<String>clist = (ArrayList<String>)request.getAttribute("clist");
 
 if(  libbook.isEmpty() ){
 %>

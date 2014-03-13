@@ -40,6 +40,12 @@ public class CirculationDB extends DBAccess{
 	}
 
 
+
+	/**
+	 * Circulation情報をとってくる本体
+	 * @param sql
+	 * @return
+	 */
 	private ArrayList<Circulation> _getCirculations(String sql)
 	{
 		ArrayList<Circulation> list = new ArrayList<Circulation>();
@@ -111,6 +117,35 @@ public class CirculationDB extends DBAccess{
 		{
 			// SQL操作
 			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE cid = (SELECT LAST_INSERT_ID())");
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				c = makeCirculation(rs,c);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return c;
+	}
+
+	/**
+	 * "circulation"テーブルから、CIDに該当する情報を取得
+	 * @return Circulationオブジェクト
+	 */
+	public Circulation getCirculationDetailByCid(Integer cid)
+	{
+		Circulation c = new Circulation();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE cid = ?");
+			stmt.setInt(1,cid);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
@@ -258,7 +293,7 @@ public class CirculationDB extends DBAccess{
 	{
 		try
 		{
-			if( this.searchId(cid) ){
+			if( this.searchCid(cid) ){
 				String sql = "UPDATE circulations SET deleteFlag = true WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,cid);
@@ -285,7 +320,7 @@ public class CirculationDB extends DBAccess{
 	{
 		try
 		{
-			if( this.searchId(cid) ){
+			if( this.searchCid(cid) ){
 				String sql = "DELETE FROM circulations WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,cid);
@@ -327,22 +362,22 @@ public class CirculationDB extends DBAccess{
 
 	/**
 	 * データ更新(本の返却があった場合に実行。返却時間を設定)
-	 * @param lbid
+	 * @param bookNo
 	 * @return データベースへの適用数(0であった場合は更新エラー)
 	 */
-	public int update(int lbid)
+	public int update(int cid)
 	{
 		try
 		{
-			if( this.searchId(lbid)){
+			if( this.searchCid(cid) ){
 				//	プリペアードステートメント
-				String sql = "UPDATE circulations SET returnDay = now() WHERE lbid = ?";
+				String sql = "UPDATE circulations SET returnDay = now() WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setInt(1,lbid);
+				stmt.setInt(1,cid);
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のメモは存在しません。");
+//				System.out.println("指定された番号のメモは存在しません。");
 				return 0;
 			}
 		}
@@ -383,11 +418,34 @@ public class CirculationDB extends DBAccess{
 	*/
 
 	/**
-	 * 既存データがあるかどうかのサーチ
+	 * LBID既存データがあるかどうかのサーチ
 	 * @param lbid LBID
 	 * @return true:既存データあり、false:既存データなし
 	 */
-	public Boolean searchId(int cid)
+	public Boolean searchLbid(int lbid)
+	{
+		try
+		{
+			//	プリペアードステートメント
+			String sql = "SELECT * FROM circulations WHERE lbid=?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1,lbid);
+			ResultSet rs = stmt.executeQuery();
+			return rs.next();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * CID既存データがあるかどうかのサーチ
+	 * @param lbid LBID
+	 * @return true:既存データあり、false:既存データなし
+	 */
+	public Boolean searchCid(int cid)
 	{
 		try
 		{

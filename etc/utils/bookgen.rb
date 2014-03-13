@@ -3533,11 +3533,11 @@ opt.parse!(ARGV)
 
 gen_count.times do |t|
 #  puts "#{SEI[rand(SEI.size)]} #{MEI[rand(MEI.size)]}"	
-	userNo = "U001-20140110" + format("%0#{4}d", t)
-	name = SEI[rand(SEI.size)] + " " + MEI[rand(MEI.size)]
-	address = ADDRESS[rand(ADDRESS.size)] + " " + rand(9999).to_s + "-" + rand(100).to_s
-	tel = "096-" + rand(999).to_s + "-" + rand(9999).to_s 
+	bookNo = "U001-20131211" + format("%0#{4}d", t)
+	bname = SEI[rand(SEI.size)] + MEI[rand(MEI.size)] + "さんが書いた本"
+	author = SEI[rand(SEI.size)] + " " + MEI[rand(MEI.size)]
+	publisher = SEI[rand(SEI.size)] + "出版社"
 #  puts "#{name} #{address} #{tel}"
-	puts "INSERT INTO users ( userNo, uname, address, tel ) VALUES ( '#{userNo}', '#{name}', '#{address}', '#{tel}' );";
+	puts "INSERT INTO books ( bname, author, publisher ) VALUES ( '#{bookNo}', '#{bname}', '#{publisher}' );";
 
 end

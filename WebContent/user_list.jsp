@@ -29,6 +29,8 @@ if ( ! error_message.isEmpty() ) {
 ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 %>
 
+<%= list.size() %> 件ヒットしました。
+
 <table border=1 class="userlisttable">
 <thead><tr><th>利用者番号</th><th>氏名</th><th>住所</th><th>TEL</th><th>削除済</th><th>編集</th><tr></thead>
 <%

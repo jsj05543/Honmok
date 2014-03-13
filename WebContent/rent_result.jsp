@@ -1,4 +1,5 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.sql.Timestamp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="serv.User" import="serv.LibraryBook" import="serv.Circulation" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -34,19 +35,27 @@ if ( ! error_message.isEmpty() ) {
 //	}
 	return;
 }
-User user = (User)request.getAttribute("user");
-LibraryBook libbook =(LibraryBook)request.getAttribute("libbook");
-//Circulation circulation = (Circulation)request.getAttribute("circulation");
+Circulation circulation = (Circulation)request.getAttribute("circulation");
 %>
 
+<h2>貸出し手続きが完了しました。</h2>
 <table>
 <tr>
+<td>貸出し日時：</td>
+<td> <%= circulation.getIssueDay() %> </td>
+</tr>
+<tr>
+<tr>
+<td>返却予定日：</td>
+<td> <%= circulation.getIssueDay() %> </td>
+</tr>
+<tr>
 <td>利用者：</td>
-<td> <%= user.getUname()  %> </td>
+<td> <%= circulation.getUser().getUname()  %> </td>
 </tr>
 <tr>
 <td>書籍名：</td>
-<td> <%= libbook.getBname()  %> </td>
+<td> <%= circulation.getLibraryBook().getBname()  %> </td>
 </tr>
 </table>
 

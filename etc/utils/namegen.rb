@@ -3533,7 +3533,7 @@ opt.parse!(ARGV)
 
 gen_count.times do |t|
 #  puts "#{SEI[rand(SEI.size)]} #{MEI[rand(MEI.size)]}"	
-	userNo = "U001-20140110" + format("%0#{4}d", t)
+	userNo = "U001-140110" + format("%0#{4}d", t)
 	name = SEI[rand(SEI.size)] + " " + MEI[rand(MEI.size)]
 	address = ADDRESS[rand(ADDRESS.size)] + " " + rand(9999).to_s + "-" + rand(100).to_s
 	tel = "096-" + rand(999).to_s + "-" + rand(9999).to_s 

@@ -3533,11 +3533,14 @@ opt.parse!(ARGV)
 
 gen_count.times do |t|
 #  puts "#{SEI[rand(SEI.size)]} #{MEI[rand(MEI.size)]}"	
-	bookNo = "U001-20131211" + format("%0#{4}d", t)
-	bname = SEI[rand(SEI.size)] + MEI[rand(MEI.size)] + "さんが書いた本"
+	bookNo = "U001-131211" + format("%0#{4}d", t)
+	bname = SEI[rand(SEI.size)] + MEI[rand(MEI.size)] + "さんが書いた本-" + t.to_s
 	author = SEI[rand(SEI.size)] + " " + MEI[rand(MEI.size)]
 	publisher = SEI[rand(SEI.size)] + "出版社"
 #  puts "#{name} #{address} #{tel}"
-	puts "INSERT INTO books ( bname, author, publisher ) VALUES ( '#{bookNo}', '#{bname}', '#{publisher}' );";
-
+	num = (t+1).to_s
+	puts "INSERT INTO books ( bname, author, publisher ) VALUES ( '#{bname}', '#{author}', '#{publisher}' );"
+#	puts "SET @d = (SELECT bid FROM books WHERE bname = '#{bname}' );"
+  puts "INSERT INTO libraryBooks ( bid, bookNo ) VALUES ( #{num}, '#{bookNo}' );"
+  puts ""
 end

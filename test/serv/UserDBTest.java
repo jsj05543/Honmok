@@ -253,6 +253,14 @@ public class UserDBTest {
 	@Test
 	public void testUsedUserNo() {
 		UserDB db = new UserDB();
+		/**
+		 * 使われていないケース
+		 */
+		assertEquals(false,db.usedUserNo("0"));
+		/**
+		 * 使われているケース
+		 */
+		assertEquals(true,db.usedUserNo("U001-1401010005"));
 	}
 
 }

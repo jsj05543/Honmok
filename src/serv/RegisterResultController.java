@@ -51,7 +51,7 @@ public class RegisterResultController extends HttpServlet {
     			StringUtils.isBlank(address) ||
     			StringUtils.isBlank(tel) ) {
 	    		error_message.add("空文字は入れないでください");
-	    	} else if ( userdb.insert(null, uname, address, tel) == -1 ) {
+	    	} else if ( userdb.isSameData(uname, address, tel) ) {
 				error_message.add("同じ氏名・住所・TELが登録されています。");
 			} else {
 		    	String userNo;

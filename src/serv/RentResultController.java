@@ -115,6 +115,10 @@ public class RentResultController extends HttpServlet {
 			}else{
 				Circulation circulation = circulationdb.getLatestCirculation();
 				request.setAttribute("circulation", circulation );
+				// 3冊目ならフラグ立てる
+				if ( circulationdb.getCirculationsOnIssueByUid( user.getUid() ).size() == 3 ) {
+					// フラグ立てる準備
+				}
 			}
 			circulationdb.close();
 		}

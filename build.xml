@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- WARNING: Eclipse auto-generated file.
+              Any modifications will be overwritten.
+              To include a user specific buildfile here, simply create one in the same
+              directory with the processing instruction <?eclipse.ant.import?>
+              as the first entry and export the buildfile again. --><project basedir="." default="build" name="Honmok">
+    <property environment="env"/>
+    <property name="ECLIPSE_HOME" value="C:/pleiades/eclipse"/>
+    <property name="junit.output.dir" value="junit"/>
+    <property name="debuglevel" value="source,lines,vars"/>
+    <property name="target" value="1.7"/>
+    <property name="source" value="1.7"/>
+    <property name="src" value="./src" />
+    <property name="test" value="./test" />
+    <property name="lib" value="./lib" />
+    <property name="classes" value="./build/classes" />
+    <property name="test.class.name" value="com.xyz.MyTestSuite" />
+    <path id="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath">
+        <pathelement location="C:/Tomcat/lib/annotations-api.jar"/>
+        <pathelement location="C:/Tomcat/lib/catalina-ant.jar"/>
+        <pathelement location="C:/Tomcat/lib/catalina-ha.jar"/>
+        <pathelement location="C:/Tomcat/lib/catalina-tribes.jar"/>
+        <pathelement location="C:/Tomcat/lib/catalina.jar"/>
+        <pathelement location="C:/Tomcat/lib/commons-lang3-3.3-javadoc.jar"/>
+        <pathelement location="C:/Tomcat/lib/commons-lang3-3.3.jar"/>
+        <pathelement location="C:/Tomcat/lib/ecj-4.3.1.jar"/>
+        <pathelement location="C:/Tomcat/lib/el-api.jar"/>
+        <pathelement location="C:/Tomcat/lib/jasper-el.jar"/>
+        <pathelement location="C:/Tomcat/lib/jasper.jar"/>
+        <pathelement location="C:/Tomcat/lib/jsp-api.jar"/>
+        <pathelement location="C:/Tomcat/lib/mysql-connector-java-5.1.28-bin.jar"/>
+        <pathelement location="C:/Tomcat/lib/servlet-api.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-api.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-coyote.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-dbcp.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-i18n-es.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-i18n-fr.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-i18n-ja.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-jdbc.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat-util.jar"/>
+        <pathelement location="C:/Tomcat/lib/tomcat7-websocket.jar"/>
+        <pathelement location="C:/Tomcat/lib/websocket-api.jar"/>
+    </path>
+    <path id="Web App ライブラリー.libraryclasspath"/>
+    <path id="EAR ライブラリー.libraryclasspath"/>
+    <path id="JUnit 4.libraryclasspath">
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.junit_4.11.0.v201303080030/junit.jar"/>
+        <pathelement location="${ECLIPSE_HOME}/plugins/org.hamcrest.core_1.3.0.v201303031735.jar"/>
+    </path>
+    <path id="Honmok.classpath">
+        <pathelement location="build/classes"/>
+        <path refid="Apache Tomcat v7.0 [Apache Tomcat v7.0].libraryclasspath"/>
+        <path refid="Web App ライブラリー.libraryclasspath"/>
+        <path refid="EAR ライブラリー.libraryclasspath"/>
+        <path refid="JUnit 4.libraryclasspath"/>
+        <pathelement location="C:/Tomcat/lib/commons-lang3-3.3.jar"/>
+    </path>
+    <path id="test.classpath">
+      <pathelement location="${classes}" />
+      <pathelement location="/path/to/junit.jar" />
+      <fileset dir="${lib}">
+        <include name="**/*.jar"/>
+      </fileset>
+    </path>
+    <target name="init">
+        <mkdir dir="build/classes"/>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="src">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+        <copy includeemptydirs="false" todir="build/classes">
+            <fileset dir="test">
+                <exclude name="**/*.launch"/>
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+    <target name="clean">
+        <delete dir="build/classes"/>
+    </target>
+    <target depends="clean" name="cleanall"/>
+    <target depends="build-subprojects,build-project" name="build"/>
+    <target name="build-subprojects"/>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}"/>
+        <javac debug="true" debuglevel="${debuglevel}" destdir="build/classes" includeantruntime="false" source="${source}" target="${target}">
+            <src path="src"/>
+            <src path="test"/>
+            <classpath refid="Honmok.classpath"/>
+        </javac>
+    </target>
+    <target description="Build all projects which reference this project. Useful to propagate changes." name="build-refprojects"/>
+    <target description="copy Eclipse compiler jars to ant lib directory" name="init-eclipse-compiler">
+        <copy todir="${ant.library.dir}">
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </copy>
+        <unzip dest="${ant.library.dir}">
+            <patternset includes="jdtCompilerAdapter.jar"/>
+            <fileset dir="${ECLIPSE_HOME}/plugins" includes="org.eclipse.jdt.core_*.jar"/>
+        </unzip>
+    </target>
+    <target description="compile project with Eclipse compiler" name="build-eclipse-compiler">
+        <property name="build.compiler" value="org.eclipse.jdt.core.JDTCompilerAdapter"/>
+        <antcall target="build"/>
+    </target>
+    <target name="CirculationDBTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="serv.CirculationDBTest" todir="${junit.output.dir}"/>
+            <classpath refid="Honmok.classpath"/>
+        </junit>
+    </target>
+    <target name="LibraryBookDBTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="serv.LibraryBookDBTest" todir="${junit.output.dir}"/>
+            <classpath refid="Honmok.classpath"/>
+        </junit>
+    </target>
+    <target name="serv">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="serv.CirculationDBTest" todir="${junit.output.dir}"/>
+            <test name="serv.LibraryBookDBTest" todir="${junit.output.dir}"/>
+            <test name="serv.UserDBTest" todir="${junit.output.dir}"/>
+            <classpath refid="Honmok.classpath"/>
+        </junit>
+    </target>
+    <target name="test">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="serv.CirculationDBTest" todir="${junit.output.dir}"/>
+            <test name="serv.LibraryBookDBTest" todir="${junit.output.dir}"/>
+            <test name="serv.UserDBTest" todir="${junit.output.dir}"/>
+            <classpath refid="Honmok.classpath"/>
+        </junit>
+    </target>
+    <target name="UserDBTest">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="serv.UserDBTest" todir="${junit.output.dir}"/>
+            <classpath refid="Honmok.classpath"/>
+        </junit>
+    </target>
+    <target name="CirculationDBTest.testUpdate">
+        <mkdir dir="${junit.output.dir}"/>
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml"/>
+            <test name="serv.CirculationDBTest" todir="${junit.output.dir}"/>
+            <classpath refid="Honmok.classpath"/>
+        </junit>
+    </target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml"/>
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}"/>
+        </junitreport>
+    </target>
+
+</project>

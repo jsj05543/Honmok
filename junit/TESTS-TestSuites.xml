@@ -1,0 +1,828 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+  <testsuite errors="0" failures="0" hostname="USER-PC" id="0" name="CirculationDBTest" package="serv" skipped="0" tests="11" time="0.623" timestamp="2014-03-13T04:16:45">
+      <properties>
+          <property name="java.vendor" value="Oracle Corporation" />
+
+          <property name="ant.file.type.Honmok" value="file" />
+
+          <property name="sun.java.launcher" value="SUN_STANDARD" />
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+
+          <property name="env.PROMPT" value="$P$G" />
+
+          <property name="lib" value="./lib" />
+
+          <property name="os.name" value="Windows 7" />
+
+          <property name="env.FP_NO_HOST_CHECK" value="NO" />
+
+          <property name="sun.boot.class.path" value="C:\jdk\jre\lib\resources.jar;C:\jdk\jre\lib\rt.jar;C:\jdk\jre\lib\sunrsasign.jar;C:\jdk\jre\lib\jsse.jar;C:\jdk\jre\lib\jce.jar;C:\jdk\jre\lib\charsets.jar;C:\jdk\jre\lib\jfr.jar;C:\jdk\jre\classes" />
+
+          <property name="env.COMPUTERNAME" value="USER-PC" />
+
+          <property name="env.ALLUSERSPROFILE" value="C:\ProgramData" />
+
+          <property name="sun.desktop" value="windows" />
+
+          <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+
+          <property name="ant.home" value="C:\ant\bin\.." />
+
+          <property name="java.runtime.version" value="1.7.0_51-b13" />
+
+          <property name="env.HOMEPATH" value="\Users\USER" />
+
+          <property name="user.name" value="USER" />
+
+          <property name="user.language" value="ja" />
+
+          <property name="sun.boot.library.path" value="C:\jdk\jre\bin" />
+
+          <property name="ant.project.default-target" value="build" />
+
+          <property name="ant.project.name" value="Honmok" />
+
+          <property name="java.version" value="1.7.0_51" />
+
+          <property name="env.PROCESSOR_IDENTIFIER" value="x86 Family 6 Model 37 Stepping 2, GenuineIntel" />
+
+          <property name="classes" value="./build/classes" />
+
+          <property name="user.timezone" value="" />
+
+          <property name="env.TEMP" value="C:\Users\USER\AppData\Local\Temp" />
+
+          <property name="sun.arch.data.model" value="32" />
+
+          <property name="java.endorsed.dirs" value="C:\jdk\jre\lib\endorsed" />
+
+          <property name="env.DXROOT" value="C:\Program Files\Sandcastle\" />
+
+          <property name="env._JAVACMD" value="C:\jdk\bin\java.exe" />
+
+          <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" />
+
+          <property name="env.HOMEDRIVE" value="C:" />
+
+          <property name="sun.jnu.encoding" value="MS932" />
+
+          <property name="file.encoding.pkg" value="sun.io" />
+
+          <property name="ECLIPSE_HOME" value="C:/pleiades/eclipse" />
+
+          <property name="file.separator" value="\" />
+
+          <property name="java.specification.name" value="Java Platform API Specification" />
+
+          <property name="env.SHFBROOT" value="C:\Program Files\EWSoftware\Sandcastle Help File Builder\" />
+
+          <property name="java.class.version" value="51.0" />
+
+          <property name="src" value="./src" />
+
+          <property name="user.country" value="JP" />
+
+          <property name="java.home" value="C:\jdk\jre" />
+
+          <property name="env.PSModulePath" value="C:\windows\system32\WindowsPowerShell\v1.0\Modules\" />
+
+          <property name="env.APPDATA" value="C:\Users\USER\AppData\Roaming" />
+
+          <property name="env.PUBLIC" value="C:\Users\Public" />
+
+          <property name="java.vm.info" value="mixed mode, sharing" />
+
+          <property name="env.ComSpec" value="C:\windows\system32\cmd.exe" />
+
+          <property name="env.OS" value="Windows_NT" />
+
+          <property name="env.CommonProgramFiles" value="C:\Program Files\Common Files" />
+
+          <property name="ant.file" value="D:\workspace\Honmok\build.xml" />
+
+          <property name="os.version" value="6.1" />
+
+          <property name="env.=ExitCode" value="00000000" />
+
+          <property name="test.class.name" value="com.xyz.MyTestSuite" />
+
+          <property name="env._USE_CLASSPATH" value="no" />
+
+          <property name="env.CYGWIN" value="tty nodosfilewarning" />
+
+          <property name="path.separator" value=";" />
+
+          <property name="java.vm.version" value="24.51-b03" />
+
+          <property name="env.PHPRC" value="C:\php\" />
+
+          <property name="user.variant" value="" />
+
+          <property name="env.USERPROFILE" value="C:\Users\USER" />
+
+          <property name="ant.library.dir" value="C:\ant\lib" />
+
+          <property name="junit.output.dir" value="junit" />
+
+          <property name="env.EMC_AUTOPLAY" value="C:\Program Files\Common Files\Roxio Shared\" />
+
+          <property name="env.JAVA_HOME" value="C:\jdk" />
+
+          <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+
+          <property name="env.TMP" value="C:\Users\USER\AppData\Local\Temp" />
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+
+          <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+
+          <property name="user.script" value="" />
+
+          <property name="user.home" value="C:\Users\USER" />
+
+          <property name="target" value="1.7" />
+
+          <property name="ant.file.Honmok" value="D:\workspace\Honmok\build.xml" />
+
+          <property name="env.ProgramData" value="C:\ProgramData" />
+
+          <property name="env.SESSIONNAME" value="Console" />
+
+          <property name="test" value="./test" />
+
+          <property name="java.specification.vendor" value="Oracle Corporation" />
+
+          <property name="env.RoxioCentral" value="C:\Program Files\Common Files\Roxio Shared\10.0\Roxio Central36\" />
+
+          <property name="env.NUMBER_OF_PROCESSORS" value="4" />
+
+          <property name="java.library.path" value="C:\jdk\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\php\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\mysql\bin;C:\jdk\bin;D:\cygwin\bin;C:\Program Files\Graphviz2.36\bin;D:\tool\doxygen\bin;C:\ant\bin;." />
+
+          <property name="java.vendor.url" value="http://java.oracle.com/" />
+
+          <property name="java.vm.vendor" value="Oracle Corporation" />
+
+          <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+
+          <property name="ant.version" value="Apache Ant(TM) version 1.9.3 compiled on December 23 2013" />
+
+          <property name="java.class.path" value="D:\workspace\Honmok\build\classes;C:\Tomcat\lib\annotations-api.jar;C:\Tomcat\lib\catalina-ant.jar;C:\Tomcat\lib\catalina-ha.jar;C:\Tomcat\lib\catalina-tribes.jar;C:\Tomcat\lib\catalina.jar;C:\Tomcat\lib\commons-lang3-3.3-javadoc.jar;C:\Tomcat\lib\commons-lang3-3.3.jar;C:\Tomcat\lib\ecj-4.3.1.jar;C:\Tomcat\lib\el-api.jar;C:\Tomcat\lib\jasper-el.jar;C:\Tomcat\lib\jasper.jar;C:\Tomcat\lib\jsp-api.jar;C:\Tomcat\lib\mysql-connector-java-5.1.28-bin.jar;C:\Tomcat\lib\servlet-api.jar;C:\Tomcat\lib\tomcat-api.jar;C:\Tomcat\lib\tomcat-coyote.jar;C:\Tomcat\lib\tomcat-dbcp.jar;C:\Tomcat\lib\tomcat-i18n-es.jar;C:\Tomcat\lib\tomcat-i18n-fr.jar;C:\Tomcat\lib\tomcat-i18n-ja.jar;C:\Tomcat\lib\tomcat-jdbc.jar;C:\Tomcat\lib\tomcat-util.jar;C:\Tomcat\lib\tomcat7-websocket.jar;C:\Tomcat\lib\websocket-api.jar;C:\pleiades\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar;C:\pleiades\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar;C:\ant\lib\ant-launcher.jar;C:\ant\lib\ant.jar;C:\ant\lib\ant-junit.jar;C:\ant\lib\ant-junit4.jar" />
+
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner serv.CirculationDBTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\workspace\Honmok\junit\TEST-serv.CirculationDBTest.xml crashfile=D:\workspace\Honmok\junitvmwatcher7718526565608782169.properties propsfile=D:\workspace\Honmok\junit4098825664785672281.properties" />
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+
+          <property name="ant.file.type" value="file" />
+
+          <property name="env.LOGONSERVER" value="\\USER-PC" />
+
+          <property name="env.windir" value="C:\windows" />
+
+          <property name="env.PROCESSOR_ARCHITECTURE" value="x86" />
+
+          <property name="java.vm.specification.version" value="1.7" />
+
+          <property name="sun.cpu.endian" value="little" />
+
+          <property name="sun.os.patch.level" value="Service Pack 1" />
+
+          <property name="debuglevel" value="source,lines,vars" />
+
+          <property name="env.ProgramFiles" value="C:\Program Files" />
+
+          <property name="env.ANT_HOME" value="C:\ant\bin\.." />
+
+          <property name="java.io.tmpdir" value="C:\Users\USER\AppData\Local\Temp\" />
+
+          <property name="env.PROCESSOR_REVISION" value="2502" />
+
+          <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+
+          <property name="env.SystemRoot" value="C:\windows" />
+
+          <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+
+          <property name="env.ANT_CMD_LINE_ARGS" value=" test junitreport" />
+
+          <property name="os.arch" value="x86" />
+
+          <property name="env.=D:" value="D:\workspace\Honmok" />
+
+          <property name="java.ext.dirs" value="C:\jdk\jre\lib\ext;C:\windows\Sun\Java\lib\ext" />
+
+          <property name="env.LOCALAPPDATA" value="C:\Users\USER\AppData\Local" />
+
+          <property name="user.dir" value="D:\workspace\Honmok" />
+
+          <property name="line.separator" value="&#xd;&#xa;" />
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+
+          <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC" />
+
+          <property name="env.Path" value="C:\php\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\mysql\bin;C:\jdk\bin;D:\cygwin\bin;C:\Program Files\Graphviz2.36\bin;D:\tool\doxygen\bin;C:\ant\bin" />
+
+          <property name="basedir" value="D:\workspace\Honmok" />
+
+          <property name="ant.java.version" value="1.7" />
+
+          <property name="ant.core.lib" value="C:\ant\lib\ant.jar" />
+
+          <property name="env.USERNAME" value="USER" />
+
+          <property name="env.SystemDrive" value="C:" />
+
+          <property name="source" value="1.7" />
+
+          <property name="file.encoding" value="MS932" />
+
+          <property name="env.VS100COMNTOOLS" value="C:\Program Files\Microsoft Visual Studio 10.0\Common7\Tools\" />
+
+          <property name="env.USERDOMAIN" value="USER-PC" />
+
+          <property name="java.specification.version" value="1.7" />
+
+          <property name="env.=C:" value="C:\Users\USER" />
+
+          <property name="ant.project.invoked-targets" value="test,junitreport" />
+
+          <property name="env.PROCESSOR_LEVEL" value="6" />
+
+      </properties>
+
+      <testcase classname="serv.CirculationDBTest" name="testGetCirculationsBool" time="0.349" />
+
+      <testcase classname="serv.CirculationDBTest" name="testGetCirculationsOnIssueByUid" time="0.023" />
+
+      <testcase classname="serv.CirculationDBTest" name="testGetCirculations" time="0.015" />
+
+      <testcase classname="serv.CirculationDBTest" name="testCanRent" time="0.011" />
+
+      <testcase classname="serv.CirculationDBTest" name="testDeleteAll" time="0.0" />
+
+      <testcase classname="serv.CirculationDBTest" name="testGetLatestCirculation" time="0.023" />
+
+      <testcase classname="serv.CirculationDBTest" name="testDelete" time="0.016" />
+
+      <testcase classname="serv.CirculationDBTest" name="testGetCirculationOnIssueByBookNo" time="0.012" />
+
+      <testcase classname="serv.CirculationDBTest" name="testGetOverDueList" time="0.009" />
+
+      <testcase classname="serv.CirculationDBTest" name="testInsert" time="0.01" />
+
+      <testcase classname="serv.CirculationDBTest" name="testUpdate" time="0.086" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="USER-PC" id="1" name="LibraryBookDBTest" package="serv" skipped="0" tests="5" time="0.383" timestamp="2014-03-13T04:16:46">
+      <properties>
+          <property name="java.vendor" value="Oracle Corporation" />
+
+          <property name="ant.file.type.Honmok" value="file" />
+
+          <property name="sun.java.launcher" value="SUN_STANDARD" />
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+
+          <property name="env.PROMPT" value="$P$G" />
+
+          <property name="lib" value="./lib" />
+
+          <property name="os.name" value="Windows 7" />
+
+          <property name="env.FP_NO_HOST_CHECK" value="NO" />
+
+          <property name="sun.boot.class.path" value="C:\jdk\jre\lib\resources.jar;C:\jdk\jre\lib\rt.jar;C:\jdk\jre\lib\sunrsasign.jar;C:\jdk\jre\lib\jsse.jar;C:\jdk\jre\lib\jce.jar;C:\jdk\jre\lib\charsets.jar;C:\jdk\jre\lib\jfr.jar;C:\jdk\jre\classes" />
+
+          <property name="env.COMPUTERNAME" value="USER-PC" />
+
+          <property name="env.ALLUSERSPROFILE" value="C:\ProgramData" />
+
+          <property name="sun.desktop" value="windows" />
+
+          <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+
+          <property name="ant.home" value="C:\ant\bin\.." />
+
+          <property name="java.runtime.version" value="1.7.0_51-b13" />
+
+          <property name="env.HOMEPATH" value="\Users\USER" />
+
+          <property name="user.name" value="USER" />
+
+          <property name="user.language" value="ja" />
+
+          <property name="sun.boot.library.path" value="C:\jdk\jre\bin" />
+
+          <property name="ant.project.default-target" value="build" />
+
+          <property name="ant.project.name" value="Honmok" />
+
+          <property name="java.version" value="1.7.0_51" />
+
+          <property name="env.PROCESSOR_IDENTIFIER" value="x86 Family 6 Model 37 Stepping 2, GenuineIntel" />
+
+          <property name="classes" value="./build/classes" />
+
+          <property name="user.timezone" value="" />
+
+          <property name="env.TEMP" value="C:\Users\USER\AppData\Local\Temp" />
+
+          <property name="sun.arch.data.model" value="32" />
+
+          <property name="java.endorsed.dirs" value="C:\jdk\jre\lib\endorsed" />
+
+          <property name="env.DXROOT" value="C:\Program Files\Sandcastle\" />
+
+          <property name="env._JAVACMD" value="C:\jdk\bin\java.exe" />
+
+          <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" />
+
+          <property name="env.HOMEDRIVE" value="C:" />
+
+          <property name="sun.jnu.encoding" value="MS932" />
+
+          <property name="file.encoding.pkg" value="sun.io" />
+
+          <property name="ECLIPSE_HOME" value="C:/pleiades/eclipse" />
+
+          <property name="file.separator" value="\" />
+
+          <property name="java.specification.name" value="Java Platform API Specification" />
+
+          <property name="env.SHFBROOT" value="C:\Program Files\EWSoftware\Sandcastle Help File Builder\" />
+
+          <property name="java.class.version" value="51.0" />
+
+          <property name="src" value="./src" />
+
+          <property name="user.country" value="JP" />
+
+          <property name="java.home" value="C:\jdk\jre" />
+
+          <property name="env.PSModulePath" value="C:\windows\system32\WindowsPowerShell\v1.0\Modules\" />
+
+          <property name="env.APPDATA" value="C:\Users\USER\AppData\Roaming" />
+
+          <property name="env.PUBLIC" value="C:\Users\Public" />
+
+          <property name="java.vm.info" value="mixed mode, sharing" />
+
+          <property name="env.ComSpec" value="C:\windows\system32\cmd.exe" />
+
+          <property name="env.OS" value="Windows_NT" />
+
+          <property name="env.CommonProgramFiles" value="C:\Program Files\Common Files" />
+
+          <property name="ant.file" value="D:\workspace\Honmok\build.xml" />
+
+          <property name="os.version" value="6.1" />
+
+          <property name="env.=ExitCode" value="00000000" />
+
+          <property name="test.class.name" value="com.xyz.MyTestSuite" />
+
+          <property name="env._USE_CLASSPATH" value="no" />
+
+          <property name="env.CYGWIN" value="tty nodosfilewarning" />
+
+          <property name="path.separator" value=";" />
+
+          <property name="java.vm.version" value="24.51-b03" />
+
+          <property name="env.PHPRC" value="C:\php\" />
+
+          <property name="user.variant" value="" />
+
+          <property name="env.USERPROFILE" value="C:\Users\USER" />
+
+          <property name="ant.library.dir" value="C:\ant\lib" />
+
+          <property name="junit.output.dir" value="junit" />
+
+          <property name="env.EMC_AUTOPLAY" value="C:\Program Files\Common Files\Roxio Shared\" />
+
+          <property name="env.JAVA_HOME" value="C:\jdk" />
+
+          <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+
+          <property name="env.TMP" value="C:\Users\USER\AppData\Local\Temp" />
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+
+          <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+
+          <property name="user.script" value="" />
+
+          <property name="user.home" value="C:\Users\USER" />
+
+          <property name="target" value="1.7" />
+
+          <property name="ant.file.Honmok" value="D:\workspace\Honmok\build.xml" />
+
+          <property name="env.ProgramData" value="C:\ProgramData" />
+
+          <property name="env.SESSIONNAME" value="Console" />
+
+          <property name="test" value="./test" />
+
+          <property name="java.specification.vendor" value="Oracle Corporation" />
+
+          <property name="env.RoxioCentral" value="C:\Program Files\Common Files\Roxio Shared\10.0\Roxio Central36\" />
+
+          <property name="env.NUMBER_OF_PROCESSORS" value="4" />
+
+          <property name="java.library.path" value="C:\jdk\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\php\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\mysql\bin;C:\jdk\bin;D:\cygwin\bin;C:\Program Files\Graphviz2.36\bin;D:\tool\doxygen\bin;C:\ant\bin;." />
+
+          <property name="java.vendor.url" value="http://java.oracle.com/" />
+
+          <property name="java.vm.vendor" value="Oracle Corporation" />
+
+          <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+
+          <property name="ant.version" value="Apache Ant(TM) version 1.9.3 compiled on December 23 2013" />
+
+          <property name="java.class.path" value="D:\workspace\Honmok\build\classes;C:\Tomcat\lib\annotations-api.jar;C:\Tomcat\lib\catalina-ant.jar;C:\Tomcat\lib\catalina-ha.jar;C:\Tomcat\lib\catalina-tribes.jar;C:\Tomcat\lib\catalina.jar;C:\Tomcat\lib\commons-lang3-3.3-javadoc.jar;C:\Tomcat\lib\commons-lang3-3.3.jar;C:\Tomcat\lib\ecj-4.3.1.jar;C:\Tomcat\lib\el-api.jar;C:\Tomcat\lib\jasper-el.jar;C:\Tomcat\lib\jasper.jar;C:\Tomcat\lib\jsp-api.jar;C:\Tomcat\lib\mysql-connector-java-5.1.28-bin.jar;C:\Tomcat\lib\servlet-api.jar;C:\Tomcat\lib\tomcat-api.jar;C:\Tomcat\lib\tomcat-coyote.jar;C:\Tomcat\lib\tomcat-dbcp.jar;C:\Tomcat\lib\tomcat-i18n-es.jar;C:\Tomcat\lib\tomcat-i18n-fr.jar;C:\Tomcat\lib\tomcat-i18n-ja.jar;C:\Tomcat\lib\tomcat-jdbc.jar;C:\Tomcat\lib\tomcat-util.jar;C:\Tomcat\lib\tomcat7-websocket.jar;C:\Tomcat\lib\websocket-api.jar;C:\pleiades\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar;C:\pleiades\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar;C:\ant\lib\ant-launcher.jar;C:\ant\lib\ant.jar;C:\ant\lib\ant-junit.jar;C:\ant\lib\ant-junit4.jar" />
+
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner serv.LibraryBookDBTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\workspace\Honmok\junit\TEST-serv.LibraryBookDBTest.xml crashfile=D:\workspace\Honmok\junitvmwatcher6258443764087717924.properties propsfile=D:\workspace\Honmok\junit7637943827584033158.properties" />
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+
+          <property name="ant.file.type" value="file" />
+
+          <property name="env.LOGONSERVER" value="\\USER-PC" />
+
+          <property name="env.windir" value="C:\windows" />
+
+          <property name="env.PROCESSOR_ARCHITECTURE" value="x86" />
+
+          <property name="java.vm.specification.version" value="1.7" />
+
+          <property name="sun.cpu.endian" value="little" />
+
+          <property name="sun.os.patch.level" value="Service Pack 1" />
+
+          <property name="debuglevel" value="source,lines,vars" />
+
+          <property name="env.ProgramFiles" value="C:\Program Files" />
+
+          <property name="env.ANT_HOME" value="C:\ant\bin\.." />
+
+          <property name="java.io.tmpdir" value="C:\Users\USER\AppData\Local\Temp\" />
+
+          <property name="env.PROCESSOR_REVISION" value="2502" />
+
+          <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+
+          <property name="env.SystemRoot" value="C:\windows" />
+
+          <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+
+          <property name="env.ANT_CMD_LINE_ARGS" value=" test junitreport" />
+
+          <property name="os.arch" value="x86" />
+
+          <property name="env.=D:" value="D:\workspace\Honmok" />
+
+          <property name="java.ext.dirs" value="C:\jdk\jre\lib\ext;C:\windows\Sun\Java\lib\ext" />
+
+          <property name="env.LOCALAPPDATA" value="C:\Users\USER\AppData\Local" />
+
+          <property name="user.dir" value="D:\workspace\Honmok" />
+
+          <property name="line.separator" value="&#xd;&#xa;" />
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+
+          <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC" />
+
+          <property name="env.Path" value="C:\php\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\mysql\bin;C:\jdk\bin;D:\cygwin\bin;C:\Program Files\Graphviz2.36\bin;D:\tool\doxygen\bin;C:\ant\bin" />
+
+          <property name="basedir" value="D:\workspace\Honmok" />
+
+          <property name="ant.java.version" value="1.7" />
+
+          <property name="ant.core.lib" value="C:\ant\lib\ant.jar" />
+
+          <property name="env.USERNAME" value="USER" />
+
+          <property name="env.SystemDrive" value="C:" />
+
+          <property name="source" value="1.7" />
+
+          <property name="file.encoding" value="MS932" />
+
+          <property name="env.VS100COMNTOOLS" value="C:\Program Files\Microsoft Visual Studio 10.0\Common7\Tools\" />
+
+          <property name="env.USERDOMAIN" value="USER-PC" />
+
+          <property name="java.specification.version" value="1.7" />
+
+          <property name="env.=C:" value="C:\Users\USER" />
+
+          <property name="ant.project.invoked-targets" value="test,junitreport" />
+
+          <property name="env.PROCESSOR_LEVEL" value="6" />
+
+      </properties>
+
+      <testcase classname="serv.LibraryBookDBTest" name="testExist" time="0.29" />
+
+      <testcase classname="serv.LibraryBookDBTest" name="testGetLibraryBooks" time="0.0" />
+
+      <testcase classname="serv.LibraryBookDBTest" name="testGetLibraryBookDetailByBname" time="0.016" />
+
+      <testcase classname="serv.LibraryBookDBTest" name="testDeleteAll" time="0.0" />
+
+      <testcase classname="serv.LibraryBookDBTest" name="testGetLibraryBookDetailByBookNo" time="0.014" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+  <testsuite errors="0" failures="0" hostname="USER-PC" id="2" name="UserDBTest" package="serv" skipped="0" tests="11" time="0.708" timestamp="2014-03-13T04:16:46">
+      <properties>
+          <property name="java.vendor" value="Oracle Corporation" />
+
+          <property name="ant.file.type.Honmok" value="file" />
+
+          <property name="sun.java.launcher" value="SUN_STANDARD" />
+
+          <property name="sun.management.compiler" value="HotSpot Client Compiler" />
+
+          <property name="env.PROMPT" value="$P$G" />
+
+          <property name="lib" value="./lib" />
+
+          <property name="os.name" value="Windows 7" />
+
+          <property name="env.FP_NO_HOST_CHECK" value="NO" />
+
+          <property name="sun.boot.class.path" value="C:\jdk\jre\lib\resources.jar;C:\jdk\jre\lib\rt.jar;C:\jdk\jre\lib\sunrsasign.jar;C:\jdk\jre\lib\jsse.jar;C:\jdk\jre\lib\jce.jar;C:\jdk\jre\lib\charsets.jar;C:\jdk\jre\lib\jfr.jar;C:\jdk\jre\classes" />
+
+          <property name="env.COMPUTERNAME" value="USER-PC" />
+
+          <property name="env.ALLUSERSPROFILE" value="C:\ProgramData" />
+
+          <property name="sun.desktop" value="windows" />
+
+          <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+
+          <property name="ant.home" value="C:\ant\bin\.." />
+
+          <property name="java.runtime.version" value="1.7.0_51-b13" />
+
+          <property name="env.HOMEPATH" value="\Users\USER" />
+
+          <property name="user.name" value="USER" />
+
+          <property name="user.language" value="ja" />
+
+          <property name="sun.boot.library.path" value="C:\jdk\jre\bin" />
+
+          <property name="ant.project.default-target" value="build" />
+
+          <property name="ant.project.name" value="Honmok" />
+
+          <property name="java.version" value="1.7.0_51" />
+
+          <property name="env.PROCESSOR_IDENTIFIER" value="x86 Family 6 Model 37 Stepping 2, GenuineIntel" />
+
+          <property name="classes" value="./build/classes" />
+
+          <property name="user.timezone" value="" />
+
+          <property name="env.TEMP" value="C:\Users\USER\AppData\Local\Temp" />
+
+          <property name="sun.arch.data.model" value="32" />
+
+          <property name="java.endorsed.dirs" value="C:\jdk\jre\lib\endorsed" />
+
+          <property name="env.DXROOT" value="C:\Program Files\Sandcastle\" />
+
+          <property name="env._JAVACMD" value="C:\jdk\bin\java.exe" />
+
+          <property name="sun.cpu.isalist" value="pentium_pro+mmx pentium_pro pentium+mmx pentium i486 i386 i86" />
+
+          <property name="env.HOMEDRIVE" value="C:" />
+
+          <property name="sun.jnu.encoding" value="MS932" />
+
+          <property name="file.encoding.pkg" value="sun.io" />
+
+          <property name="ECLIPSE_HOME" value="C:/pleiades/eclipse" />
+
+          <property name="file.separator" value="\" />
+
+          <property name="java.specification.name" value="Java Platform API Specification" />
+
+          <property name="env.SHFBROOT" value="C:\Program Files\EWSoftware\Sandcastle Help File Builder\" />
+
+          <property name="java.class.version" value="51.0" />
+
+          <property name="src" value="./src" />
+
+          <property name="user.country" value="JP" />
+
+          <property name="java.home" value="C:\jdk\jre" />
+
+          <property name="env.PSModulePath" value="C:\windows\system32\WindowsPowerShell\v1.0\Modules\" />
+
+          <property name="env.APPDATA" value="C:\Users\USER\AppData\Roaming" />
+
+          <property name="env.PUBLIC" value="C:\Users\Public" />
+
+          <property name="java.vm.info" value="mixed mode, sharing" />
+
+          <property name="env.ComSpec" value="C:\windows\system32\cmd.exe" />
+
+          <property name="env.OS" value="Windows_NT" />
+
+          <property name="env.CommonProgramFiles" value="C:\Program Files\Common Files" />
+
+          <property name="ant.file" value="D:\workspace\Honmok\build.xml" />
+
+          <property name="os.version" value="6.1" />
+
+          <property name="env.=ExitCode" value="00000000" />
+
+          <property name="test.class.name" value="com.xyz.MyTestSuite" />
+
+          <property name="env._USE_CLASSPATH" value="no" />
+
+          <property name="env.CYGWIN" value="tty nodosfilewarning" />
+
+          <property name="path.separator" value=";" />
+
+          <property name="java.vm.version" value="24.51-b03" />
+
+          <property name="env.PHPRC" value="C:\php\" />
+
+          <property name="user.variant" value="" />
+
+          <property name="env.USERPROFILE" value="C:\Users\USER" />
+
+          <property name="ant.library.dir" value="C:\ant\lib" />
+
+          <property name="junit.output.dir" value="junit" />
+
+          <property name="env.EMC_AUTOPLAY" value="C:\Program Files\Common Files\Roxio Shared\" />
+
+          <property name="env.JAVA_HOME" value="C:\jdk" />
+
+          <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+
+          <property name="env.TMP" value="C:\Users\USER\AppData\Local\Temp" />
+
+          <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+
+          <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+
+          <property name="user.script" value="" />
+
+          <property name="user.home" value="C:\Users\USER" />
+
+          <property name="target" value="1.7" />
+
+          <property name="ant.file.Honmok" value="D:\workspace\Honmok\build.xml" />
+
+          <property name="env.ProgramData" value="C:\ProgramData" />
+
+          <property name="env.SESSIONNAME" value="Console" />
+
+          <property name="test" value="./test" />
+
+          <property name="java.specification.vendor" value="Oracle Corporation" />
+
+          <property name="env.RoxioCentral" value="C:\Program Files\Common Files\Roxio Shared\10.0\Roxio Central36\" />
+
+          <property name="env.NUMBER_OF_PROCESSORS" value="4" />
+
+          <property name="java.library.path" value="C:\jdk\jre\bin;C:\windows\Sun\Java\bin;C:\windows\system32;C:\windows;C:\php\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\mysql\bin;C:\jdk\bin;D:\cygwin\bin;C:\Program Files\Graphviz2.36\bin;D:\tool\doxygen\bin;C:\ant\bin;." />
+
+          <property name="java.vendor.url" value="http://java.oracle.com/" />
+
+          <property name="java.vm.vendor" value="Oracle Corporation" />
+
+          <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+
+          <property name="ant.version" value="Apache Ant(TM) version 1.9.3 compiled on December 23 2013" />
+
+          <property name="java.class.path" value="D:\workspace\Honmok\build\classes;C:\Tomcat\lib\annotations-api.jar;C:\Tomcat\lib\catalina-ant.jar;C:\Tomcat\lib\catalina-ha.jar;C:\Tomcat\lib\catalina-tribes.jar;C:\Tomcat\lib\catalina.jar;C:\Tomcat\lib\commons-lang3-3.3-javadoc.jar;C:\Tomcat\lib\commons-lang3-3.3.jar;C:\Tomcat\lib\ecj-4.3.1.jar;C:\Tomcat\lib\el-api.jar;C:\Tomcat\lib\jasper-el.jar;C:\Tomcat\lib\jasper.jar;C:\Tomcat\lib\jsp-api.jar;C:\Tomcat\lib\mysql-connector-java-5.1.28-bin.jar;C:\Tomcat\lib\servlet-api.jar;C:\Tomcat\lib\tomcat-api.jar;C:\Tomcat\lib\tomcat-coyote.jar;C:\Tomcat\lib\tomcat-dbcp.jar;C:\Tomcat\lib\tomcat-i18n-es.jar;C:\Tomcat\lib\tomcat-i18n-fr.jar;C:\Tomcat\lib\tomcat-i18n-ja.jar;C:\Tomcat\lib\tomcat-jdbc.jar;C:\Tomcat\lib\tomcat-util.jar;C:\Tomcat\lib\tomcat7-websocket.jar;C:\Tomcat\lib\websocket-api.jar;C:\pleiades\eclipse\plugins\org.junit_4.11.0.v201303080030\junit.jar;C:\pleiades\eclipse\plugins\org.hamcrest.core_1.3.0.v201303031735.jar;C:\ant\lib\ant-launcher.jar;C:\ant\lib\ant.jar;C:\ant\lib\ant-junit.jar;C:\ant\lib\ant-junit4.jar" />
+
+          <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner serv.UserDBTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\workspace\Honmok\junit\TEST-serv.UserDBTest.xml crashfile=D:\workspace\Honmok\junitvmwatcher2922602062326063542.properties propsfile=D:\workspace\Honmok\junit4735616122919602924.properties" />
+
+          <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+
+          <property name="ant.file.type" value="file" />
+
+          <property name="env.LOGONSERVER" value="\\USER-PC" />
+
+          <property name="env.windir" value="C:\windows" />
+
+          <property name="env.PROCESSOR_ARCHITECTURE" value="x86" />
+
+          <property name="java.vm.specification.version" value="1.7" />
+
+          <property name="sun.cpu.endian" value="little" />
+
+          <property name="sun.os.patch.level" value="Service Pack 1" />
+
+          <property name="debuglevel" value="source,lines,vars" />
+
+          <property name="env.ProgramFiles" value="C:\Program Files" />
+
+          <property name="env.ANT_HOME" value="C:\ant\bin\.." />
+
+          <property name="java.io.tmpdir" value="C:\Users\USER\AppData\Local\Temp\" />
+
+          <property name="env.PROCESSOR_REVISION" value="2502" />
+
+          <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+
+          <property name="env.SystemRoot" value="C:\windows" />
+
+          <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+
+          <property name="env.ANT_CMD_LINE_ARGS" value=" test junitreport" />
+
+          <property name="os.arch" value="x86" />
+
+          <property name="env.=D:" value="D:\workspace\Honmok" />
+
+          <property name="java.ext.dirs" value="C:\jdk\jre\lib\ext;C:\windows\Sun\Java\lib\ext" />
+
+          <property name="env.LOCALAPPDATA" value="C:\Users\USER\AppData\Local" />
+
+          <property name="user.dir" value="D:\workspace\Honmok" />
+
+          <property name="line.separator" value="&#xd;&#xa;" />
+
+          <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
+
+          <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC" />
+
+          <property name="env.Path" value="C:\php\;C:\windows\system32;C:\windows;C:\windows\System32\Wbem;C:\windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Common Files\Roxio Shared\10.0\DLLShared\;C:\Program Files\Common Files\Roxio Shared\DLLShared\;C:\Program Files\Git\cmd;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\VSShell\Common7\IDE\;C:\Program Files\Microsoft SQL Server\100\Tools\Binn\;C:\Program Files\Microsoft SQL Server\100\DTS\Binn\;C:\mysql\bin;C:\jdk\bin;D:\cygwin\bin;C:\Program Files\Graphviz2.36\bin;D:\tool\doxygen\bin;C:\ant\bin" />
+
+          <property name="basedir" value="D:\workspace\Honmok" />
+
+          <property name="ant.java.version" value="1.7" />
+
+          <property name="ant.core.lib" value="C:\ant\lib\ant.jar" />
+
+          <property name="env.USERNAME" value="USER" />
+
+          <property name="env.SystemDrive" value="C:" />
+
+          <property name="source" value="1.7" />
+
+          <property name="file.encoding" value="MS932" />
+
+          <property name="env.VS100COMNTOOLS" value="C:\Program Files\Microsoft Visual Studio 10.0\Common7\Tools\" />
+
+          <property name="env.USERDOMAIN" value="USER-PC" />
+
+          <property name="java.specification.version" value="1.7" />
+
+          <property name="env.=C:" value="C:\Users\USER" />
+
+          <property name="ant.project.invoked-targets" value="test,junitreport" />
+
+          <property name="env.PROCESSOR_LEVEL" value="6" />
+
+      </properties>
+
+      <testcase classname="serv.UserDBTest" name="testGetUsers" time="0.329" />
+
+      <testcase classname="serv.UserDBTest" name="testGetUserDetailByUname" time="0.013" />
+
+      <testcase classname="serv.UserDBTest" name="testDeleteAll" time="0.001" />
+
+      <testcase classname="serv.UserDBTest" name="testIsSameData" time="0.012" />
+
+      <testcase classname="serv.UserDBTest" name="testGetUserDetailString" time="0.012" />
+
+      <testcase classname="serv.UserDBTest" name="testGetUsersAll" time="0.014" />
+
+      <testcase classname="serv.UserDBTest" name="testDelete" time="0.075" />
+
+      <testcase classname="serv.UserDBTest" name="testUsedUserNo" time="0.017" />
+
+      <testcase classname="serv.UserDBTest" name="testInsert" time="0.041" />
+
+      <testcase classname="serv.UserDBTest" name="testUpdate" time="0.07" />
+
+      <testcase classname="serv.UserDBTest" name="testGetUserDetailInt" time="0.017" />
+
+      <system-out><![CDATA[]]></system-out>
+
+      <system-err><![CDATA[]]></system-err>
+
+  </testsuite>
+</testsuites>

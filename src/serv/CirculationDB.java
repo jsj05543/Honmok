@@ -44,7 +44,7 @@ public class CirculationDB extends DBAccess{
 	/**
 	 * Circulation情報をとってくる本体
 	 * @param sql
-	 * @return
+	 * @return sql文の実行結果のCiciculationオブジェクトの配列。該当なしの場合null
 	 */
 	private ArrayList<Circulation> _getCirculations(String sql)
 	{
@@ -286,7 +286,7 @@ public class CirculationDB extends DBAccess{
 
 	/**
 	 * 特定データ削除
-	 * @param lbid
+	 * @param cid 削除するCirculationID
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
 	public int delete(int cid)
@@ -313,7 +313,7 @@ public class CirculationDB extends DBAccess{
 
 	/**
 	 * 特定データ削除
-	 * @param lbid
+	 * @param cid 削除するCirculationID
 	 * @return データベースへの適用数(0であった場合は、更新エラー）
 	 */
 	protected int deleteForce(int cid)
@@ -362,12 +362,11 @@ public class CirculationDB extends DBAccess{
 
 	/**
 	 * データ更新(本の返却があった場合に実行。返却時間を設定)
-	 * @param bookNo
+	 * @param cid 更新するCirculationID
 	 * @return データベースへの適用数(0であった場合は更新エラー)
 	 */
 	public int update(int cid)
 	{
-		System.out.println(lbid);
 		try
 		{
 			if( this.searchCid(cid) ){
@@ -443,7 +442,7 @@ public class CirculationDB extends DBAccess{
 
 	/**
 	 * CID既存データがあるかどうかのサーチ
-	 * @param lbid LBID
+	 * @param cid 検索対象のCID
 	 * @return true:既存データあり、false:既存データなし
 	 */
 	public Boolean searchCid(int cid)

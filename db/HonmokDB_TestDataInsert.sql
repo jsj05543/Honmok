@@ -59,7 +59,7 @@ INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 2, 2 );
 -- 貸し出し＆延滞
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( '2014-02-01 15:49:22', 3, 3 );
 SET @d = now() - INTERVAL 7 DAY;
-INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 4, 3 );
+INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 4, 5 );
 -- 3冊借りている状態
 SET @d = now() - INTERVAL 2 DAY;
 INSERT INTO circulations ( issueDay, uid, lbid ) VALUES ( @d, 5, 6 );

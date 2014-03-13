@@ -1,0 +1,5 @@
+<map id="serv.DBAccess" name="serv.DBAccess">
+<area shape="rect" id="node2" href="$d4/d81/classserv_1_1_circulation_d_b.html" title="serv.CirculationDB" alt="" coords="5,80,133,107"/>
+<area shape="rect" id="node3" href="$d9/d3c/classserv_1_1_library_book_d_b.html" title="serv.LibraryBookDB" alt="" coords="157,80,293,107"/>
+<area shape="rect" id="node4" href="$d3/d36/classserv_1_1_user_d_b.html" title="serv.UserDB" alt="" coords="318,80,412,107"/>
+</map>

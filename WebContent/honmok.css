@@ -80,8 +80,8 @@ table.usertable {
 
 /* 書籍情報一覧用 class=booktable */
 table.booktable {
-	color: red; /* デバッグ用 */
-	border-color: red; /* デバッグ用 */
+/* 	color: red; デバッグ用 */
+/* 	border-color: red; デバッグ用 */
 }
 
 /* 延滞リスト表示用 class=overduetable */

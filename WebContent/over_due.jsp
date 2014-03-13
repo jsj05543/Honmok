@@ -31,7 +31,7 @@ ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list
 %>
 
 <table border=1 class="overduetable">
-<thead><tr><th>貸し出し日</th><th>利用者番号</th><th>氏名</th><th>TEL</th><th>図書書籍番号</th><th>書籍名</th><th>筆者</th></tr></thead>
+<thead><tr><th>貸し出し日</th><th>利用者番号</th><th>氏名</th><th>TEL</th><th>図書書籍番号</th><th>書籍名</th><th>著者</th></tr></thead>
 <%
 	for (Circulation cir : list) {
 		User user = cir.getUser();

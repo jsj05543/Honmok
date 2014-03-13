@@ -48,7 +48,7 @@ ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list
 
 <h2>今借りている本のリスト</h2>
 <table border=1 class="userbooktable">
-<thead><tr><th>貸し出し日</th><th>図書書籍番号</th><th>書籍名</th><th>筆者</th><th>出版社</th></tr></thead>
+<thead><tr><th>貸し出し日</th><th>図書書籍番号</th><th>書籍名</th><th>著者</th><th>出版社</th></tr></thead>
 <%
 	for (Circulation cir : list) {
 		LibraryBook lbook = cir.getLibraryBook();

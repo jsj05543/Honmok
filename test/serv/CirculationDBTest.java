@@ -204,9 +204,21 @@ public class CirculationDBTest {
 
 	/**
 	 * {@link serv.CirculationDB#update(int)} のためのテスト・メソッド。
+	 * - 返却処理を行って、1が返ってくること。かつ、その貸し出し情報の中身もチェック
 	 */
 	@Test
 	public void testUpdate() {
+		CirculationDB db = new CirculationDB();
+
+		// 貸し出し処理
+		db.insert(2, 4);
+		// 異常な返却処理
+		assertEquals(0,db.update(-1));
+		// 正常な返却処理
+		int cid = db.getCirculationOnIssueByBookNo("B001-1401015013").getCid();
+		assertEquals(1,db.update(cid));
+        // 後処理。挿入したデータを削除（DELETE)
+        db.deleteForce(cid);
 	}
 
 }

@@ -258,7 +258,7 @@ public class CirculationDB extends DBAccess{
 	{
 		try
 		{
-			if( this.searchId(cid) ){
+			if( this.searchCid(cid) ){
 				String sql = "UPDATE circulations SET deleteFlag = true WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,cid);
@@ -285,7 +285,7 @@ public class CirculationDB extends DBAccess{
 	{
 		try
 		{
-			if( this.searchId(cid) ){
+			if( this.searchCid(cid) ){
 				String sql = "DELETE FROM circulations WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,cid);
@@ -327,22 +327,22 @@ public class CirculationDB extends DBAccess{
 
 	/**
 	 * データ更新(本の返却があった場合に実行。返却時間を設定)
-	 * @param lbid
+	 * @param bookNo
 	 * @return データベースへの適用数(0であった場合は更新エラー)
 	 */
-	public int update(int lbid)
+	public int update(int cid)
 	{
 		try
 		{
-			if( this.searchId(lbid)){
+			if( this.searchCid(cid) ){
 				//	プリペアードステートメント
-				String sql = "UPDATE circulations SET returnDay = now() WHERE lbid = ?";
+				String sql = "UPDATE circulations SET returnDay = now() WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
-				stmt.setInt(1,lbid);
+				stmt.setInt(1,cid);
 				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
-				System.out.println("指定された番号のメモは存在しません。");
+//				System.out.println("指定された番号のメモは存在しません。");
 				return 0;
 			}
 		}
@@ -383,11 +383,34 @@ public class CirculationDB extends DBAccess{
 	*/
 
 	/**
-	 * 既存データがあるかどうかのサーチ
+	 * LBID既存データがあるかどうかのサーチ
 	 * @param lbid LBID
 	 * @return true:既存データあり、false:既存データなし
 	 */
-	public Boolean searchId(int cid)
+	public Boolean searchLbid(int lbid)
+	{
+		try
+		{
+			//	プリペアードステートメント
+			String sql = "SELECT * FROM circulations WHERE lbid=?";
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setInt(1,lbid);
+			ResultSet rs = stmt.executeQuery();
+			return rs.next();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return false;
+		}
+	}
+
+	/**
+	 * CID既存データがあるかどうかのサーチ
+	 * @param lbid LBID
+	 * @return true:既存データあり、false:既存データなし
+	 */
+	public Boolean searchCid(int cid)
 	{
 		try
 		{

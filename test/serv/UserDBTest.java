@@ -136,11 +136,21 @@ public class UserDBTest {
 
 	/**
 	 * {@link serv.UserDB#getUserDetail(java.lang.String)} のためのテスト・メソッド。
+	 * - 指定したユーザNoが存在しない場合
+	 * - 指定したユーザNoが存在する場合は、ユーザ情報の詳細が返ってくること
 	 */
 	@Test
 	public void testGetUserDetailString() {
 		UserDB db = new UserDB();
-		User user = db.getUserDetail("U001-1401010004");
+		/**
+		 * 存在しないユーザ
+		 */
+		User user = db.getUserDetail("U");
+		assertEquals(null,user);
+		/**
+		 * 存在するユーザ
+		 */
+		user = db.getUserDetail("U001-1401010004");
 		assertEquals("延滞　する蔵",user.getUname());
 		assertEquals("延滞町888-456",user.getAddress());
 		assertEquals("U001-1401010004",user.getUserNo());

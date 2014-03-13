@@ -109,6 +109,16 @@ table.rentresulttable tr:nth-child(odd) {
 	background: none;
 }
 
+/* 返却処理の結果 class=returnresulttable */
+table.returnresulttable,
+table.returnresulttable tr,
+table.returnresulttable td,
+table.returnresulttable tr:nth-child(even),
+table.returnresulttable tr:nth-child(odd) {
+/* 	color: red; デバッグ用 */
+	background: none;
+}
+
 /* トップページのリンク表示用 class=toppage_list */
 table.toppage_list,
 table.toppage_list tr,

@@ -29,7 +29,7 @@ Circulation circulation = (Circulation)request.getAttribute("circulation");
 %>
 
 <h2>返却手続きが完了しました。ありがとうございました。</h2>
-<table>
+<table class="returnresulttable">
 <tr>
 <td>返却日：</td>
 <td> <%= circulation.getIssueDay() %> </td>

@@ -2,6 +2,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="serv.User"%>
 <%@page import="serv.Circulation"%>
+<%@page import="org.apache.commons.lang3.StringEscapeUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -35,9 +36,9 @@ ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list
 <thead><tr><th>利用者番号</th><th>氏名</th><th>住所</th><th>TEL</th><tr></thead>
 <tr>
 <td><%= user.getUserNo() %></td>
-<td><%= user.getUname() %></td>
-<td><%= user.getAddress() %></td>
-<td><%= user.getTel() %></td>
+<td><%= StringEscapeUtils.escapeHtml4( user.getUname() ) %></td>
+<td><%= StringEscapeUtils.escapeHtml4( user.getAddress() ) %></td>
+<td><%= StringEscapeUtils.escapeHtml4( user.getTel() ) %></td>
 </tr>
 </table>
 

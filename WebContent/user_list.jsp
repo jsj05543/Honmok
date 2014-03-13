@@ -1,6 +1,8 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="serv.User"%>
+<%@page import="org.apache.commons.lang3.StringEscapeUtils"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="serv.User" %>
+    pageEncoding="UTF-8" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -34,9 +36,9 @@ ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 %>
 	<tr>
 		<td><%= user.getUserNo() %></td>
-		<td><a href="user_info?uid=<%= user.getUid() %>"><%= user.getUname() %></a></td>
-		<td><%= user.getAddress() %></td>
-		<td><%= user.getTel() %></td>
+		<td><a href="user_info?uid=<%= user.getUid() %>"><%= StringEscapeUtils.escapeHtml4( user.getUname() ) %></a></td>
+		<td><%= StringEscapeUtils.escapeHtml4( user.getAddress() ) %></td>
+		<td><%= StringEscapeUtils.escapeHtml4( user.getTel() ) %></td>
 		<td><%= (user.getDeleteFlag()) ? "削除済" : "" %></td>
 		<td><a href="user_edit?uid=<%= user.getUid() %>">編集</a></td>
 	</tr>

@@ -2,6 +2,7 @@ package serv;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -57,10 +58,9 @@ public class RentResultController extends HttpServlet {
 				circulationdb.close();
 
 				try{
-					for( int i=0; i<overDueList.size(); i++ ){
-						if( overDueList.get(i).getUser().getUid() != uid ){
-							overDueList.remove(i);
-						}
+					for (Iterator<Circulation> itr = overDueList.iterator(); itr.hasNext();) {
+						Circulation cir = (Circulation) itr.next();
+						if ( cir.getUser().getUid() != uid ) { itr.remove(); }
 					}
 					if(  overDueList.size() != 0 ){
 						request.setAttribute("overDueList", overDueList );

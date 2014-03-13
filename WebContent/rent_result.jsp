@@ -26,13 +26,14 @@ if ( ! error_message.isEmpty() ) {
 	}
 
 	// 未返却のリスト表示行う（未実装）
-//	@SuppressWarnings("unchecked")
-//	ArrayList<Circulation> overDueList = (ArrayList<Circulation>)request.getAttribute("overDueList");
-//	if( ! overDueList.isEmpty() ){
-//		for( Circulation c : overDueList ){
-//
-//		}
-//	}
+// 	@SuppressWarnings("unchecked")
+// 	ArrayList<Circulation> overDueList = (ArrayList<Circulation>)request.getAttribute("overDueList");
+// 	if( overDueList != null && ! overDueList.isEmpty() ){
+// 		for( Circulation c : overDueList ){
+// 			out.println( c.getLibraryBook().getBname() + "<br>");
+// 			out.println( c.getUser().getUserNo() + "<br>");
+// 		}
+// 	}
 	return;
 }
 Circulation circulation = (Circulation)request.getAttribute("circulation");

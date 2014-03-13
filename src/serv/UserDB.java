@@ -28,13 +28,13 @@ public class UserDB extends DBAccess{
 
 	/**
 	 * "user"テーブルへのアクセス。true指定で削除ユーザを含む全データを出力。flase指定の場合は、引数なしと同等。
-	 * @param delete_flag
+	 * @param deleteFlag
 	 * @return ArrayList uersテーブルの配列データ、DBアクセスエラーの場合は、nullを返す。
 	 */
-	public ArrayList<User> getUsers(Boolean deletFlag)
+	public ArrayList<User> getUsers(Boolean deleteFlag)
 	{
 		String sql = null;
-		if ( deletFlag ){
+		if ( deleteFlag ){
 			sql = "SELECT * FROM users";
 		}else{
 			sql = "SELECT * FROM users WHERE deleteFlag = false";

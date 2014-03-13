@@ -81,7 +81,7 @@ public class Circulation {
 		return user;
 	}
 	/**
-	 * @param uid セットする uid
+	 * @param user セットするUserオブジェクト
 	 */
 	public void setUser(User user) {
 		this.user = user;
@@ -93,7 +93,7 @@ public class Circulation {
 		return librarybook;
 	}
 	/**
-	 * @param lbid セットする lbid
+	 * @param librarybook セットするLibraryBookオブジェクト
 	 */
 	public void setLibraryBook(LibraryBook librarybook) {
 		this.librarybook = librarybook;

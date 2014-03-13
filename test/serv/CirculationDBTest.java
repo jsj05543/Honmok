@@ -84,7 +84,7 @@ public class CirculationDBTest {
 	}
 
 	/**
-	 * {@link serv.CirculationDB#getCirculations(boolean)} のためのテスト・メソッド。
+	 * {@link serv.CirculationDB#getCirculations(Boolean)} のためのテスト・メソッド。
 	 */
 	@Test
 	public void testGetCirculationsBool() {
@@ -116,7 +116,7 @@ public class CirculationDBTest {
 	}
 
 	/**
-	 * {@link serv.CirculationDB#getCirculationsOnIssueByUid()} のためのテスト・メソッド。
+	 * {@link serv.CirculationDB#getCirculationsOnIssueByUid(int)} のためのテスト・メソッド。
 	 */
 	@Test
 	public void testGetCirculationsOnIssueByUid() {
@@ -146,7 +146,7 @@ public class CirculationDBTest {
 	}
 
 	/**
-	 * {@link serv.CirculationDB#getCirculationOnIssueByBookNo()} のためのテスト・メソッド。
+	 * {@link serv.CirculationDB#getCirculationOnIssueByBookNo(java.lang.String)} のためのテスト・メソッド。
 	 */
 	@Test
 	public void testGetCirculationOnIssueByBookNo() {

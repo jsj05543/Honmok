@@ -62,7 +62,7 @@ public class UserDBTest {
 	}
 
 	/**
-	 * {@link serv.UserDB#getUsers(boolean)} のためのテスト・メソッド。
+	 * {@link serv.UserDB#getUsers(Boolean)} のためのテスト・メソッド。
 	 * 正常系：テストデータとして既に入れている情報が取得できることを確認する。
 	 * 異常系：なし
 	 */
@@ -98,7 +98,7 @@ public class UserDBTest {
 	}
 
 	/**
-	 * {@link serv.UserDB#isSameData()} のためのテスト・メソッド。
+	 * {@link serv.UserDB#isSameData(java.lang.String,java.lang.String,java.lang.String)} のためのテスト・メソッド。
 	 *  - 同一情報がない場合は、falseが返ってくること
 	 *  - 全ての情報が同じ場合は、trueが返ってくること
 	 */

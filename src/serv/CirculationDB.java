@@ -332,11 +332,12 @@ public class CirculationDB extends DBAccess{
 	 */
 	public int update(int lbid)
 	{
+		System.out.println(lbid);
 		try
 		{
 			if( this.searchId(lbid)){
 				//	プリペアードステートメント
-				String sql = "UPDATE circulations SET returnDay = now() WHERE lbid = ?";
+				String sql = "UPDATE circulations SET returnDay = now() WHERE cid = ?";
 				PreparedStatement stmt = con.prepareStatement(sql);
 				stmt.setInt(1,lbid);
 				//	SQLの実行

@@ -43,8 +43,6 @@ public class RentResultController extends HttpServlet {
 
 		// 貸出し可能な利用者であることを確認。
 		if( user != null ){
-			// 利用者を確定（表示表jspに渡す）
-			request.setAttribute("user", user);
 
 			// 貸出の冊数限度の確認
 			if( user.getLimitFlag() != true  ){
@@ -91,22 +89,16 @@ public class RentResultController extends HttpServlet {
 
 		// 貸し出し可能な本であることを確認する。
 		if( libbook != null ){
-			request.setAttribute("libbook", libbook);
-			int lbid = libbook.getLbid();
 
-			// 貸出しリスト格納用のArrayListを作成
-			// Circulation.library.getBid() を利用して書き換えることが可能
-			ArrayList<Circulation> circulationList = new ArrayList<Circulation>();
 			// 貸出しデータベースに接続
 			CirculationDB circulationdb = new CirculationDB();
 
 			// 貸しだしされている本でないことを確認
-			if( ! circulationdb.searchId(lbid) ){
+			if( circulationdb.getCirculationOnIssueByBookNo(bookNo) != null ){
 				allowBook = true;
 			}else{
 				error_message.add("すでに貸し出されている本です。返却処理を行ってください。");
 			}
-
 			circulationdb.close();
 
 		}else{
@@ -121,8 +113,8 @@ public class RentResultController extends HttpServlet {
 				// 貸出し処理のエラー（insertエラー）
 				error_message.add("内部エラー。 貸出し処理に失敗しました。");
 			}else{
-//				Circulation circulation = Insertした貸出し情報を取得
-//				request.setAttribute("circulation", circulation );
+				Circulation circulation = circulationdb.getLatestCirculation();
+				request.setAttribute("circulation", circulation );
 			}
 			circulationdb.close();
 		}
@@ -131,5 +123,5 @@ public class RentResultController extends HttpServlet {
 		RequestDispatcher dispatch = request.getRequestDispatcher("rent_result.jsp");
 		dispatch.forward(request, response);
 	}
-
 }
+

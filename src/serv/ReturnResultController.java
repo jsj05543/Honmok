@@ -32,7 +32,7 @@ public class ReturnResultController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		Boolean allowReturn = false;
+
 		ArrayList<String> error_message = new ArrayList<String>();
 
 		request.setCharacterEncoding("UTF-8");
@@ -47,26 +47,20 @@ public class ReturnResultController extends HttpServlet {
 			circulationdb.close();
 
 			if( circulation != null ){
-				allowReturn = true;
+
+				if( circulationdb.update( circulation.getCid() ) ==0 ){
+					// 貸出し処理のエラー（updateエラー）
+					error_message.add("内部エラー。 返却処理に失敗しました。");
+				}else{
+					circulation = circulationdb.getLatestCirculation();
+					request.setAttribute("circulation", circulation );
+				}
+
 			}else{
 				error_message.add("この書籍は貸し出されていないため返却できません。");
 			}
 		}else{
 			error_message.add("内部エラー。 不明な書籍Noが入力されました。");
-		}
-
-		if( allowReturn ){
-			// 貸出しデータベースに接続
-			CirculationDB circulationdb = new CirculationDB();
-			Circulation circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
-
-			if( circulationdb.update( circulation.getLibraryBook().getLbid()  ) != 1 ){
-				// 貸出し処理のエラー（insertエラー）
-				error_message.add("内部エラー。 返却処理に失敗しました。");
-			}else{
-				// Circulation circulation = Insertした貸出し情報を取得
-				request.setAttribute("circulation", circulation );
-			}
 		}
 
 		request.setAttribute("error_message", error_message);

@@ -25,11 +25,6 @@ public class ReturnController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		//
-		// ここに実装する
-		//
-
 		RequestDispatcher dispatch = request.getRequestDispatcher("return.jsp");
 		dispatch.forward(request, response);
 	}

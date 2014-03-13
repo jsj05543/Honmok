@@ -44,7 +44,6 @@ public class ReturnResultController extends HttpServlet {
 		if( libbook != null ){
 			CirculationDB circulationdb = new CirculationDB();
 			Circulation circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
-			circulationdb.close();
 
 			if( circulation != null ){
 
@@ -52,13 +51,14 @@ public class ReturnResultController extends HttpServlet {
 					// 貸出し処理のエラー（updateエラー）
 					error_message.add("内部エラー。 返却処理に失敗しました。");
 				}else{
-					circulation = circulationdb.getLatestCirculation();
+					circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
 					request.setAttribute("circulation", circulation );
 				}
-
 			}else{
 				error_message.add("この書籍は貸し出されていないため返却できません。");
 			}
+			circulationdb.close();
+
 		}else{
 			error_message.add("内部エラー。 不明な書籍Noが入力されました。");
 		}

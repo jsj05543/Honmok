@@ -35,14 +35,6 @@ Circulation circulation = (Circulation)request.getAttribute("circulation");
 <td>返却日：</td>
 <td> <%= circulation.getReturnDay()  %> </td>
 </tr>
-<tr>
-<td>利用者：</td>
-<td> <%= circulation.getUser().getUname()  %> </td>
-</tr>
-<tr>
-<td>書籍名：</td>
-<td> <%= circulation.getLibraryBook().getBname()  %> </td>
-</tr>
 </table>
 
 </body>

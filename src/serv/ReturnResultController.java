@@ -51,7 +51,6 @@ public class ReturnResultController extends HttpServlet {
 					// 貸出し処理のエラー（updateエラー）
 					error_message.add("内部エラー。 返却処理に失敗しました。");
 				}else{
-					circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
 					request.setAttribute("circulation", circulation );
 				}
 			}else{

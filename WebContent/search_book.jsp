@@ -14,16 +14,16 @@
 <h1>本の情報表示画面</h1>
 
 <!-- コンテンツ -->
-<form action="show_book" method="post">
+<form action="SearchBookResultController" method="post">
 	<div class="form_text">書籍番号で検索：</div>
-	<input type="text" name="search_id" class="form_textbox">
+	<input type="text" name="search_bookNo" class="form_textbox">
 	<input type="submit" value="検索" class="form_submit_button_yoko">
 	<div class="clearFloat"></div>
 </form>
 
-<form action="show_book" method="post">
+<form action="SearchBookResultController" method="post">
 	<div class="form_text">書籍名で検索：</div>
-	<input type="text" name="search_name" class="form_textbox">
+	<input type="text" name="search_bookName" class="form_textbox">
 	<input type="submit" value="検索" class="form_submit_button_yoko">
 	<div class="clearFloat"></div>
 </form>

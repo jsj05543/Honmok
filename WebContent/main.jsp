@@ -15,31 +15,28 @@
 
 <!-- コンテンツ -->
 
-<ul>
-	<li>貸し出し　　　　～この辺に各ページの説明を書く？～</li>
-	<li>本の情報表示</li>
-	<li>返却</li>
-	<li>利用者登録</li>
-</ul>
-
-
-サンプル
-
-<table border="1">
-<tr>
-<td>aaa</td>
-<td>bbb</td>
-</tr>
+<table border="1" class="toppage_list">
+<tbody>
+	<tr>
+		<td><a href="rent">貸し出し</a></td>
+		<td class="setsumei">←本を借りる方は</td>
+	</tr>
+	<tr>
+		<td><a href="search_book">本の情報表示</a></td>
+		<td class="setsumei">←蔵書を検索したい方は</td>
+	</tr>
+	<tr>
+		<td><a href="return">返却</a></td>
+		<td class="setsumei">←本を返却する方は</td>
+	</tr>
+	<tr>
+		<td><a href="register">利用者登録</a></td>
+		<td class="setsumei">←利用者登録をしたい方は</td>
+	</tr>
+</tbody>
 </table>
-<br />
 
-<table border="1" class="usertable">
-<tr>
-<td>aaa</td>
-<td>bbb</td>
-</tr>
-</table>
-<br />
+
 
 </body>
 </html>

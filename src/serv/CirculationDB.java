@@ -367,6 +367,7 @@ public class CirculationDB extends DBAccess{
 	 */
 	public int update(int cid)
 	{
+		System.out.println(lbid);
 		try
 		{
 			if( this.searchCid(cid) ){

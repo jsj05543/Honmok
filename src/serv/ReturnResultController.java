@@ -1,7 +1,7 @@
 package serv;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,31 +32,38 @@ public class ReturnResultController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		UserDB userdb = new UserDB();
-		User user = new User();
+
+		ArrayList<String> error_message = new ArrayList<String>();
 
 		request.setCharacterEncoding("UTF-8");
-		String uid = request.getParameter("uid");
-		String bid = request.getParameter("bid");
+		String bookNo = request.getParameter("bookNo");
 
-	    response.setContentType("text/html;charset=UTF-8");
-	    PrintWriter out = response.getWriter();
+		LibraryBookDB librarybookdb = new LibraryBookDB();
+		LibraryBook libbook = librarybookdb.getLibraryBookDetailByBookNo(bookNo);
 
+		if( libbook != null ){
+			CirculationDB circulationdb = new CirculationDB();
+			Circulation circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
 
-		user = userdb.getUserDetail(uid);
+			if( circulation != null ){
 
-		if( user == null ){
-			out.println("");
+				if( circulationdb.update( circulation.getCid() ) ==0 ){
+					// 貸出し処理のエラー（updateエラー）
+					error_message.add("内部エラー。 返却処理に失敗しました。");
+				}else{
+					circulation = circulationdb.getCirculationOnIssueByBookNo(bookNo);
+					request.setAttribute("circulation", circulation );
+				}
+			}else{
+				error_message.add("この書籍は貸し出されていないため返却できません。");
+			}
+			circulationdb.close();
+
 		}else{
-			out.println(user.getUname());
+			error_message.add("内部エラー。 不明な書籍Noが入力されました。");
 		}
 
-
-
-		//
-		// ここに実裁��
-		//
-
+		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("return_result.jsp");
 		dispatch.forward(request, response);
 	}

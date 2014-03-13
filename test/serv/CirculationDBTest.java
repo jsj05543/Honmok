@@ -217,6 +217,11 @@ public class CirculationDBTest {
 		// 正常な返却処理
 		int cid = db.getCirculationOnIssueByBookNo("B001-1401015013").getCid();
 		assertEquals(1,db.update(cid));
+		// 各内容をチェック
+		Circulation result = db.getCirculationDetailByCid(cid);
+		assertEquals("大阿蘇 次郎",result.getUser().getUname());
+		assertEquals("羅生門",result.getLibraryBook().getBname());
+		assertNotNull(result.getReturnDay());
         // 後処理。挿入したデータを削除（DELETE)
         db.deleteForce(cid);
 	}

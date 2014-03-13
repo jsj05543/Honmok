@@ -40,6 +40,12 @@ public class CirculationDB extends DBAccess{
 	}
 
 
+
+	/**
+	 * Circulation情報をとってくる本体
+	 * @param sql
+	 * @return
+	 */
 	private ArrayList<Circulation> _getCirculations(String sql)
 	{
 		ArrayList<Circulation> list = new ArrayList<Circulation>();
@@ -111,6 +117,35 @@ public class CirculationDB extends DBAccess{
 		{
 			// SQL操作
 			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE cid = (SELECT LAST_INSERT_ID())");
+			ResultSet rs = stmt.executeQuery();
+
+			if (rs.next()) {
+				c = makeCirculation(rs,c);
+			}
+
+			rs.close();
+			stmt.close();
+		}
+		catch(SQLException e)
+		{
+//			e.printStackTrace();
+			return null;
+		}
+		return c;
+	}
+
+	/**
+	 * "circulation"テーブルから、CIDに該当する情報を取得
+	 * @return Circulationオブジェクト
+	 */
+	public Circulation getCirculationDetailByCid(Integer cid)
+	{
+		Circulation c = new Circulation();
+		try
+		{
+			// SQL操作
+			PreparedStatement stmt = this.con.prepareStatement("SELECT * FROM CirculationsDetail WHERE cid = ?");
+			stmt.setInt(1,cid);
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {

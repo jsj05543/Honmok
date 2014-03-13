@@ -94,7 +94,7 @@ public class RentResultController extends HttpServlet {
 			CirculationDB circulationdb = new CirculationDB();
 
 			// 貸しだしされている本でないことを確認
-			if( circulationdb.getCirculationOnIssueByBookNo(bookNo) != null ){
+			if( circulationdb.getCirculationOnIssueByBookNo(bookNo) == null ){
 				allowBook = true;
 			}else{
 				error_message.add("すでに貸し出されている本です。返却処理を行ってください。");

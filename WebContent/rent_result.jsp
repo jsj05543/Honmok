@@ -40,7 +40,7 @@ Circulation circulation = (Circulation)request.getAttribute("circulation");
 %>
 
 <h2>貸出し手続きが完了しました。</h2>
-<table>
+<table class="rentresulttable">
 <tr>
 <td>貸出し日時：</td>
 <td> <%= circulation.getIssueDay() %> </td>

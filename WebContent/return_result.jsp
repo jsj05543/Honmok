@@ -28,12 +28,19 @@ if ( ! error_message.isEmpty() ) {
 Circulation circulation = (Circulation)request.getAttribute("circulation");
 %>
 
-<h2>返却が完了しました。ありがとうございました。</h2>
-
-<table>
+<h2>返却手続きが完了しました。ありがとうございました。</h2>
+<table class="returnresulttable">
 <tr>
 <td>返却日：</td>
-<td> <%= circulation.getReturnDay()  %> </td>
+<td> <%= circulation.getIssueDay() %> </td>
+</tr>
+<tr>
+<td>利用者：</td>
+<td> <%= circulation.getUser().getUname()  %> </td>
+</tr>
+<tr>
+<td>書籍名：</td>
+<td> <%= circulation.getLibraryBook().getBname()  %> </td>
 </tr>
 </table>
 

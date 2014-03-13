@@ -148,3 +148,27 @@ div.getUserNo {
 	display: inline;
 	font-size: 300%;
 }
+
+div.error_message {
+	padding: 3px 10px 3px 10px;
+	font-weight: bold;
+	color: #660000;
+	background-color: #dd8888;
+	border-style: solid;
+	border-collapse: collapse;
+	border-color: #660000;
+	border-width: 2px;
+	margin: 10px;
+}
+
+div.updateMessage {
+	padding: 3px 10px 3px 10px;
+	font-weight: bold;
+	color: #006600;
+	background-color: #66dd66;
+	border-style: solid;
+	border-collapse: collapse;
+	border-color: #006600;
+	border-width: 2px;
+	margin: 10px;
+}

@@ -3533,7 +3533,7 @@ opt.parse!(ARGV)
 
 gen_count.times do |t|
 #  puts "#{SEI[rand(SEI.size)]} #{MEI[rand(MEI.size)]}"	
-	bookNo = "U001-131211" + format("%0#{4}d", t)
+	bookNo = "B001-131211" + format("%0#{4}d", t)
 	bname = SEI[rand(SEI.size)] + MEI[rand(MEI.size)] + "さんが書いた本-" + t.to_s
 	author = SEI[rand(SEI.size)] + " " + MEI[rand(MEI.size)]
 	publisher = SEI[rand(SEI.size)] + "出版社"

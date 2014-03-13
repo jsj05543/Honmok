@@ -27,20 +27,33 @@ if ( ! error_message.isEmpty() ) {
 }
 @SuppressWarnings("unchecked")
 ArrayList<LibraryBook> libbook = (ArrayList<LibraryBook>)request.getAttribute("libbooks");
+@SuppressWarnings("unchecked")
+ArrayList<String>clist = (ArrayList<String>)request.getAttribute("libbooks");
+
+if(  libbook.isEmpty() ){
 %>
+
+<h3>該当する書籍はありませんでした。</h3>
+
+<%
+}else{
+%>
+
+<%= libbook.size() %> 件ヒットしました。
 
 <table border=1 class="booktable">
 <thead><tr><th>書籍番号</th><th>タイトル</th><th>著者</th><th>出版社</th><th>貸出し状況</th></thead>
 <%
-	for ( LibraryBook lb : libbook ) {
+	for ( int i=0; i<libbook.size(); i++ ) {
 %>
 	<tr>
-		<td><%= lb.getBookNo() %></td>
-		<td><%= lb.getBname() %></td>
-		<td><%= lb.getAuthor() %></td>
-		<td><%= lb.getPublisher() %></td>
-		<td><%= lb.getPublisher() %></td>
+		<td><%= libbook.get(i).getBookNo() %></td>
+		<td><%= libbook.get(i).getBname() %></td>
+		<td><%= libbook.get(i).getAuthor() %></td>
+		<td><%= libbook.get(i).getPublisher() %></td>
+		<td><%= clist.get(i) %></td>
 	</tr>
+<%	} %>
 <%	} %>
 </table>
 

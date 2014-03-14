@@ -52,9 +52,11 @@ public class ReturnResultController extends HttpServlet {
 					error_message.add("内部エラー。 返却処理に失敗しました。");
 				}else{
 					request.setAttribute("circulation", circulation );
-					// 3冊目ならフラグ立てる
-					if ( circulationdb.getCirculationsOnIssueByUid( circulation.getUser().getUid() ).size() == 3 ) {
-						// フラグ下ろす
+					// 3→2冊目に変わるならフラグ下ろす
+					if ( circulationdb.getCirculationsOnIssueByUid( circulation.getUser().getUid() ).size() < 3 ) {
+						UserDB userdb = new UserDB();
+						userdb.setLimitFlag( circulation.getUser().getUid(), false );
+						userdb.close();
 					}
 
 				}

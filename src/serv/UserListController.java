@@ -56,6 +56,7 @@ public class UserListController extends HttpServlet {
     	} else {
 	    	error_message.add("不正な呼び出しです(POSTパラメータエラー)");
     	}
+    	userdb.close();
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_list.jsp");
 		dispatch.forward(request, response);

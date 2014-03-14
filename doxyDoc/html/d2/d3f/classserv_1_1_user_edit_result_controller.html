@@ -209,10 +209,11 @@ serv.UserEditResultController 連携図</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        } <span class="keywordflow">catch</span> (Exception ex) {</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            error_message.add(<span class="stringliteral">&quot;変更/削除できませんでした(例外発生)&quot;</span>);</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        request.setAttribute(<span class="stringliteral">&quot;error_message&quot;</span>, error_message);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        RequestDispatcher dispatch = request.getRequestDispatcher(<span class="stringliteral">&quot;user_edit_result.jsp&quot;</span>);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        dispatch.forward(request, response);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        userdb.close();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        request.setAttribute(<span class="stringliteral">&quot;error_message&quot;</span>, error_message);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        RequestDispatcher dispatch = request.getRequestDispatcher(<span class="stringliteral">&quot;user_edit_result.jsp&quot;</span>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        dispatch.forward(request, response);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -222,7 +223,7 @@ serv.UserEditResultController 連携図</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-2014年03月13日(木) 11時32分11秒作成 - Honmok / 構成:  &#160;<a href="http://www.doxygen.org/index.html">
+2014年03月14日(金) 11時15分22秒作成 - Honmok / 構成:  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

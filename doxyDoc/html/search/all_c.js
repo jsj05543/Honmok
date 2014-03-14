@@ -22,6 +22,7 @@ var searchData=
   ['testgetusersall',['testGetUsersAll',['../d4/d51/classserv_1_1_user_d_b_test.html#a2c2636bbb815e936e775a4823f1eec8b',1,'serv::UserDBTest']]],
   ['testinsert',['testInsert',['../da/dd3/classserv_1_1_circulation_d_b_test.html#ade3fbed816d77288c85464a674539f08',1,'serv.CirculationDBTest.testInsert()'],['../d4/d51/classserv_1_1_user_d_b_test.html#a0ab85dac7792b8c4227933593aa3c62a',1,'serv.UserDBTest.testInsert()']]],
   ['testissamedata',['testIsSameData',['../d4/d51/classserv_1_1_user_d_b_test.html#a10a116fe74b2ae64f4882f30b4349ea4',1,'serv::UserDBTest']]],
+  ['testsetlimitflag',['testSetLimitFlag',['../d4/d51/classserv_1_1_user_d_b_test.html#addab50ca47414555494115a82069742f',1,'serv::UserDBTest']]],
   ['testupdate',['testUpdate',['../da/dd3/classserv_1_1_circulation_d_b_test.html#a2750b16937278c534183c3ac849bd479',1,'serv.CirculationDBTest.testUpdate()'],['../d4/d51/classserv_1_1_user_d_b_test.html#a7cbe0210621356e09e89f506748866fe',1,'serv.UserDBTest.testUpdate()']]],
   ['testuseduserno',['testUsedUserNo',['../d4/d51/classserv_1_1_user_d_b_test.html#a0faad3622e0fabfed8cbbf32a10f1370',1,'serv::UserDBTest']]]
 ];

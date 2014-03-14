@@ -108,6 +108,8 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 <tr class="separator:a3f0aa143c374e3b13d2d71557e846c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8375b8165184c28dff7ce896d0e3c9a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d51/classserv_1_1_user_d_b_test.html#a8375b8165184c28dff7ce896d0e3c9a8">testGetUserDetailByUname</a> ()</td></tr>
 <tr class="separator:a8375b8165184c28dff7ce896d0e3c9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addab50ca47414555494115a82069742f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d51/classserv_1_1_user_d_b_test.html#addab50ca47414555494115a82069742f">testSetLimitFlag</a> ()</td></tr>
+<tr class="separator:addab50ca47414555494115a82069742f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ab85dac7792b8c4227933593aa3c62a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d51/classserv_1_1_user_d_b_test.html#a0ab85dac7792b8c4227933593aa3c62a">testInsert</a> ()</td></tr>
 <tr class="separator:a0ab85dac7792b8c4227933593aa3c62a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa2e9f0772fcd28532f8ef5694a99fee7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d51/classserv_1_1_user_d_b_test.html#aa2e9f0772fcd28532f8ef5694a99fee7">testDelete</a> ()</td></tr>
@@ -137,15 +139,15 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 <p><a class="el" href="../../d3/d36/classserv_1_1_user_d_b.html#ad5deea29d961c913754054beadb7a56d">serv.UserDB#delete(int)</a> のためのテスト・メソッド。 </p>
 <p>異常系：存在しないデータを削除しようとする</p>
 <p>正常系：一度データ挿入して削除確認（必ずデータが存在する）</p>
-<div class="fragment"><div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;                             {</div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        assertEquals(-1,db.delete(-1));</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        db.insert(<span class="stringliteral">&quot;t200000&quot;</span>, <span class="stringliteral">&quot;テスト　太郎&quot;</span>, <span class="stringliteral">&quot;テスト町3丁目&quot;</span>, <span class="stringliteral">&quot;9696&quot;</span>);</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        <span class="keywordtype">int</span> uid = db.getLatestUser().getUid();</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;        assertEquals(1,db.delete(uid));</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;        <span class="comment">// 挿入したデータの削除</span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        db.deleteForce(uid);</div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                             {</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        assertEquals(-1,db.delete(-1));</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        db.insert(<span class="stringliteral">&quot;t200000&quot;</span>, <span class="stringliteral">&quot;テスト　太郎&quot;</span>, <span class="stringliteral">&quot;テスト町3丁目&quot;</span>, <span class="stringliteral">&quot;9696&quot;</span>);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="keywordtype">int</span> uid = db.getLatestUser().getUid();</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        assertEquals(1,db.delete(uid));</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;        <span class="comment">// 挿入したデータの削除</span></div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        db.deleteForce(uid);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -165,8 +167,8 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 <ul>
 <li>今回は使用しないためテスト対象外 </li>
 </ul>
-<div class="fragment"><div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                                {</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                                {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -184,44 +186,45 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 </div><div class="memdoc">
 <p><a class="el" href="../../">serv.UserDB#getUserDetailByUname(java.lang.String)</a> のためのテスト・メソッド。 </p>
 <p>該当しない氏名を入力した場合はNullが返る。</p>
-<div class="fragment"><div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;                                           {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        assertEquals(null, db.getUserDetailByUname(<span class="stringliteral">&quot;aa&quot;</span>));</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        assertEquals(null, db.getUserDetailByUname(<span class="stringliteral">&quot;大阿蘇村&quot;</span>));</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        assertEquals(null, db.getUserDetailByUname(<span class="stringliteral">&quot;肥後123-45&quot;</span>));</div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="comment">/*</span></div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">         * 該当したデータが配列で返る。1件該当</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        ArrayList&lt;User&gt; result = db.getUserDetailByUname(<span class="stringliteral">&quot;肥後　太郎&quot;</span>);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        assertEquals(1,result.get(0).getUid());</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        assertEquals(<span class="stringliteral">&quot;肥後　太郎&quot;</span>,result.get(0).getUname());</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010001&quot;</span>,result.get(0).getUserNo());</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        assertEquals(<span class="stringliteral">&quot;肥後123-456&quot;</span>,result.get(0).getAddress());</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>,result.get(0).getTel());</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getLimitFlag());</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getDeleteFlag());</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        <span class="comment">/*</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;<span class="comment">         * 該当したデータが配列で返る。複数該当</span></div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">         */</span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        result = db.getUserDetailByUname(<span class="stringliteral">&quot;蔵&quot;</span>);</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        <span class="comment">// 1番目の該当</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        assertEquals(4,result.get(0).getUid());</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞　する蔵&quot;</span>,result.get(0).getUname());</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010004&quot;</span>,result.get(0).getUserNo());</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞町888-456&quot;</span>,result.get(0).getAddress());</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-9999&quot;</span>,result.get(0).getTel());</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getLimitFlag());</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getDeleteFlag());</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        <span class="comment">// 2番目の該当</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        assertEquals(5,result.get(1).getUid());</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        assertEquals(<span class="stringliteral">&quot;3冊　借りる蔵&quot;</span>,result.get(1).getUname());</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010005&quot;</span>,result.get(1).getUserNo());</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        assertEquals(<span class="stringliteral">&quot;MAX888-456&quot;</span>,result.get(1).getAddress());</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-9999&quot;</span>,result.get(1).getTel());</div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(1).getLimitFlag());</div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(1).getDeleteFlag());</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;                                           {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        assertEquals(null, db.getUserDetailByUname(<span class="stringliteral">&quot;aa&quot;</span>));</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        assertEquals(null, db.getUserDetailByUname(<span class="stringliteral">&quot;大阿蘇村&quot;</span>));</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        assertEquals(null, db.getUserDetailByUname(<span class="stringliteral">&quot;肥後123-45&quot;</span>));</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="comment">         * 該当したデータが配列で返る。1件該当</span></div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;        ArrayList&lt;User&gt; result = db.getUserDetailByUname(<span class="stringliteral">&quot;肥後　太郎&quot;</span>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        assertEquals(1,result.get(0).getUid());</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        assertEquals(<span class="stringliteral">&quot;肥後　太郎&quot;</span>,result.get(0).getUname());</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010001&quot;</span>,result.get(0).getUserNo());</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        assertEquals(<span class="stringliteral">&quot;肥後123-456&quot;</span>,result.get(0).getAddress());</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>,result.get(0).getTel());</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getLimitFlag());</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getDeleteFlag());</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">         * 該当したデータが配列で返る。複数該当</span></div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;        result = db.getUserDetailByUname(<span class="stringliteral">&quot;蔵&quot;</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        <span class="comment">// 1番目の該当</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        assertEquals(4,result.get(0).getUid());</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞　する蔵&quot;</span>,result.get(0).getUname());</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010004&quot;</span>,result.get(0).getUserNo());</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞町888-456&quot;</span>,result.get(0).getAddress());</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-9999&quot;</span>,result.get(0).getTel());</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getLimitFlag());</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(0).getDeleteFlag());</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="comment">// 2番目の該当</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        assertEquals(5,result.get(1).getUid());</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        assertEquals(<span class="stringliteral">&quot;3冊　借りる蔵&quot;</span>,result.get(1).getUname());</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010005&quot;</span>,result.get(1).getUserNo());</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        assertEquals(<span class="stringliteral">&quot;MAX888-456&quot;</span>,result.get(1).getAddress());</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-9999&quot;</span>,result.get(1).getTel());</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;        <span class="comment">//  他のテストで更新するため省略</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">//      assertEquals(false,result.get(1).getLimitFlag());</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        assertEquals(<span class="keyword">false</span>,result.get(1).getDeleteFlag());</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -238,13 +241,13 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="../../d3/d36/classserv_1_1_user_d_b.html#a82e1c169eaa0328dd63e3ab80bb7d946">serv.UserDB#getUserDetail(int)</a> のためのテスト・メソッド。 UIDを指定して、戻ってきたデータの内容をチェック </p>
-<div class="fragment"><div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                                       {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        User user = db.getUserDetail(4);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞　する蔵&quot;</span>,user.getUname());</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞町888-456&quot;</span>,user.getAddress());</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010004&quot;</span>,user.getUserNo());</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                                       {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        User user = db.getUserDetail(4);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞　する蔵&quot;</span>,user.getUname());</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞町888-456&quot;</span>,user.getAddress());</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010004&quot;</span>,user.getUserNo());</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -267,15 +270,15 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 </ul>
 <p>存在しないユーザ</p>
 <p>存在するユーザ</p>
-<div class="fragment"><div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                                          {</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        User user = db.getUserDetail(<span class="stringliteral">&quot;U&quot;</span>);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        assertEquals(null,user);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        user = db.getUserDetail(<span class="stringliteral">&quot;U001-1401010004&quot;</span>);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞　する蔵&quot;</span>,user.getUname());</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞町888-456&quot;</span>,user.getAddress());</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010004&quot;</span>,user.getUserNo());</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                                          {</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        User user = db.getUserDetail(<span class="stringliteral">&quot;U&quot;</span>);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        assertEquals(null,user);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        user = db.getUserDetail(<span class="stringliteral">&quot;U001-1401010004&quot;</span>);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞　する蔵&quot;</span>,user.getUname());</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;        assertEquals(<span class="stringliteral">&quot;延滞町888-456&quot;</span>,user.getAddress());</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        assertEquals(<span class="stringliteral">&quot;U001-1401010004&quot;</span>,user.getUserNo());</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -326,9 +329,10 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        assertEquals(<span class="stringliteral">&quot;3冊　借りる蔵&quot;</span>, db.getUsers().get(4).getUname());</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        assertEquals(<span class="stringliteral">&quot;MAX888-456&quot;</span>, db.getUsers().get(4).getAddress());</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-9999&quot;</span>, db.getUsers().get(4).getTel());</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        assertEquals(<span class="keyword">false</span>, db.getUsers().get(4).getLimitFlag());</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="comment">// 他のテストで更新するので省略</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; <span class="comment">//       assertEquals(false, db.getUsers().get(4).getLimitFlag());</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -345,22 +349,22 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="../../d3/d36/classserv_1_1_user_d_b.html#a25e189bc5a2cfa5f6a285a0bfbcb3ec3">serv.UserDB#getUsers(Boolean)</a> のためのテスト・メソッド。 正常系：テストデータとして既に入れている情報が取得できることを確認する。 異常系：なし </p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                                  {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="comment">// 数</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        assertEquals(5, db.getUsers(<span class="keyword">false</span>).size());</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="comment">// 数</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        assertEquals(6, db.getUsers(<span class="keyword">true</span>).size());</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="comment">// 六人目</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        assertEquals(6, db.getUsers(<span class="keyword">true</span>).get(5).getUid());</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        assertEquals(<span class="stringliteral">&quot;削除　された蔵&quot;</span>, db.getUsers(<span class="keyword">true</span>).get(5).getUname());</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        assertEquals(<span class="stringliteral">&quot;DEL888-456&quot;</span>, db.getUsers(<span class="keyword">true</span>).get(5).getAddress());</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-8888&quot;</span>, db.getUsers(<span class="keyword">true</span>).get(5).getTel());</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        assertEquals(<span class="keyword">false</span>, db.getUsers(<span class="keyword">true</span>).get(5).getLimitFlag());</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        assertEquals(<span class="keyword">true</span>, db.getUsers(<span class="keyword">true</span>).get(5).getDeleteFlag());</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                                  {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="comment">// 数</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        assertEquals(5, db.getUsers(<span class="keyword">false</span>).size());</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="comment">// 数</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        assertEquals(6, db.getUsers(<span class="keyword">true</span>).size());</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="comment">// 六人目</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        assertEquals(6, db.getUsers(<span class="keyword">true</span>).get(5).getUid());</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        assertEquals(<span class="stringliteral">&quot;削除　された蔵&quot;</span>, db.getUsers(<span class="keyword">true</span>).get(5).getUname());</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        assertEquals(<span class="stringliteral">&quot;DEL888-456&quot;</span>, db.getUsers(<span class="keyword">true</span>).get(5).getAddress());</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        assertEquals(<span class="stringliteral">&quot;0120-3121-8888&quot;</span>, db.getUsers(<span class="keyword">true</span>).get(5).getTel());</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        assertEquals(<span class="keyword">false</span>, db.getUsers(<span class="keyword">true</span>).get(5).getLimitFlag());</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        assertEquals(<span class="keyword">true</span>, db.getUsers(<span class="keyword">true</span>).get(5).getDeleteFlag());</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -377,13 +381,13 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="../../">serv.UserDB#insert(java.lang.String, java.lang.String, java.lang.String, java.lang.String)</a> のためのテスト・メソッド。 </p>
-<div class="fragment"><div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                             {</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        assertEquals(1,db.insert(<span class="stringliteral">&quot;t200000&quot;</span>, <span class="stringliteral">&quot;テスト　太郎&quot;</span>, <span class="stringliteral">&quot;テスト町3丁目&quot;</span>, <span class="stringliteral">&quot;9696&quot;</span>));</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="comment">// 挿入したデータの削除</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        <span class="keywordtype">int</span> uid = db.getLatestUser().getUid();</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        db.deleteForce(uid);</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                             {</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;        assertEquals(1,db.insert(<span class="stringliteral">&quot;t200000&quot;</span>, <span class="stringliteral">&quot;テスト　太郎&quot;</span>, <span class="stringliteral">&quot;テスト町3丁目&quot;</span>, <span class="stringliteral">&quot;9696&quot;</span>));</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="comment">// 挿入したデータの削除</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordtype">int</span> uid = db.getLatestUser().getUid();</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        db.deleteForce(uid);</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -404,31 +408,65 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 <li>同一情報がない場合は、falseが返ってくること</li>
 <li>全ての情報が同じ場合は、trueが返ってくること </li>
 </ul>
-<div class="fragment"><div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        Method method =  UserDB.class.getDeclaredMethod(<span class="stringliteral">&quot;isSameData&quot;</span>, String.class, String.class, String.class);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <span class="comment">// trueをセットすることで、privateメソッドへアクセス可能となります。</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        method.setAccessible(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;        <span class="comment">// privateメソッドを実行します。</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        Boolean result;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="comment">// Case 1 : 同一情報がない場合</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;aa&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;bb&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;cc&quot;</span>));</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        assertEquals(<span class="keyword">false</span>, result);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <span class="comment">// Case 2 : ひとつか異なる場合</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123-456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>));</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        assertEquals(<span class="keyword">false</span>, result);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        <span class="comment">// Case 3 : ひとつが異なる場合</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後　太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>));</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="comment">// Case 4 : ひとつが異なる場合</span></div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後　太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123-456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;01201515-3776&quot;</span>));</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        assertEquals(<span class="keyword">false</span>, result);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="comment">// Case 5 : 全てが同一である場合</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後　太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123-456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>));</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        assertEquals(<span class="keyword">true</span>, result);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        Method method =  UserDB.class.getDeclaredMethod(<span class="stringliteral">&quot;isSameData&quot;</span>, String.class, String.class, String.class);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <span class="comment">// trueをセットすることで、privateメソッドへアクセス可能となります。</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        method.setAccessible(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="comment">// privateメソッドを実行します。</span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        Boolean result;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        <span class="comment">// Case 1 : 同一情報がない場合</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;aa&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;bb&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;cc&quot;</span>));</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        assertEquals(<span class="keyword">false</span>, result);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="comment">// Case 2 : ひとつか異なる場合</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123-456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>));</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        assertEquals(<span class="keyword">false</span>, result);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        <span class="comment">// Case 3 : ひとつが異なる場合</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後　太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>));</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="comment">// Case 4 : ひとつが異なる場合</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後　太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123-456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;01201515-3776&quot;</span>));</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        assertEquals(<span class="keyword">false</span>, result);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="comment">// Case 5 : 全てが同一である場合</span></div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        result = (Boolean)method.invoke(db, <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後　太郎&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;肥後123-456&quot;</span>), <span class="keyword">new</span> String(<span class="stringliteral">&quot;0120-1515-3776&quot;</span>));</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        assertEquals(<span class="keyword">true</span>, result);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="addab50ca47414555494115a82069742f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void serv.UserDBTest.testSetLimitFlag </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="../../d3/d36/classserv_1_1_user_d_b.html#a7474dc0dce1b1bc4cb53304bc6567c81">serv.UserDB#setLimitFlag(int, Boolean)</a> のためのテスト・メソッド。 </p>
+<div class="fragment"><div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                                   {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;        <span class="comment">// ユーザが存在しない</span></div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        assertEquals(-1, db.setLimitFlag(0,<span class="keyword">true</span>));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="comment">// LimitFlagをセット</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;        User user = db.getUserDetail(1);</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="comment">// 事前確認</span></div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        assertEquals(<span class="keyword">false</span>, user.getLimitFlag());</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        <span class="comment">// true入力確認</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        assertEquals(1, db.setLimitFlag(1,<span class="keyword">true</span>));</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;        assertEquals(<span class="keyword">true</span>, db.getUserDetail(1).getLimitFlag());</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        <span class="comment">// false入力確認</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        assertEquals(1, db.setLimitFlag(1,<span class="keyword">false</span>));</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        assertEquals(<span class="keyword">false</span>, db.getUserDetail(1).getLimitFlag());</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <span class="comment">// true入力確認</span></div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        assertEquals(1, db.setLimitFlag(5,<span class="keyword">true</span>));</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        assertEquals(<span class="keyword">true</span>, db.getUserDetail(5).getLimitFlag());</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -445,15 +483,15 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="../../">serv.UserDB#update(int, java.lang.String, java.lang.String, java.lang.String)</a> のためのテスト・メソッド。 </p>
-<div class="fragment"><div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;                             {</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;        db.insert(<span class="stringliteral">&quot;t200000&quot;</span>, <span class="stringliteral">&quot;テスト　太郎&quot;</span>, <span class="stringliteral">&quot;テスト町3丁目&quot;</span>, <span class="stringliteral">&quot;9696&quot;</span>);</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;        <span class="keywordtype">int</span> uid = db.getLatestUser().getUid();</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        assertEquals(1,db.update(uid, <span class="stringliteral">&quot;更新　太郎&quot;</span>, <span class="stringliteral">&quot;更新　住所&quot;</span>, <span class="stringliteral">&quot;テスト番号&quot;</span>));</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        assertEquals(<span class="stringliteral">&quot;更新　太郎&quot;</span>,db.getUserDetail(uid).getUname());</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="comment">// 挿入したデータの削除</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        db.deleteForce(uid);</div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                             {</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        db.insert(<span class="stringliteral">&quot;t200000&quot;</span>, <span class="stringliteral">&quot;テスト　太郎&quot;</span>, <span class="stringliteral">&quot;テスト町3丁目&quot;</span>, <span class="stringliteral">&quot;9696&quot;</span>);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="keywordtype">int</span> uid = db.getLatestUser().getUid();</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        assertEquals(1,db.update(uid, <span class="stringliteral">&quot;更新　太郎&quot;</span>, <span class="stringliteral">&quot;更新　住所&quot;</span>, <span class="stringliteral">&quot;テスト番号&quot;</span>));</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        assertEquals(<span class="stringliteral">&quot;更新　太郎&quot;</span>,db.getUserDetail(uid).getUname());</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;        <span class="comment">// 挿入したデータの削除</span></div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;        db.deleteForce(uid);</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -472,11 +510,11 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 <p><a class="el" href="../../">serv.UserDB#usedUserNo(java.lang.String)</a> のためのテスト・メソッド。 </p>
 <p>使われていないケース</p>
 <p>使われているケース</p>
-<div class="fragment"><div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;                                 {</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;        assertEquals(<span class="keyword">false</span>,db.usedUserNo(<span class="stringliteral">&quot;0&quot;</span>));</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;        assertEquals(<span class="keyword">true</span>,db.usedUserNo(<span class="stringliteral">&quot;U001-1401010005&quot;</span>));</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    }</div>
+<div class="fragment"><div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                                 {</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;        UserDB db = <span class="keyword">new</span> UserDB();</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        assertEquals(<span class="keyword">false</span>,db.usedUserNo(<span class="stringliteral">&quot;0&quot;</span>));</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        assertEquals(<span class="keyword">true</span>,db.usedUserNo(<span class="stringliteral">&quot;U001-1401010005&quot;</span>));</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -486,7 +524,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'検索');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-2014年03月13日(木) 11時32分11秒作成 - Honmok / 構成:  &#160;<a href="http://www.doxygen.org/index.html">
+2014年03月14日(金) 11時15分22秒作成 - Honmok / 構成:  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

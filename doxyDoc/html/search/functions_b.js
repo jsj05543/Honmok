@@ -6,5 +6,6 @@ var searchData=
   ['usereditresultcontroller',['UserEditResultController',['../d2/d3f/classserv_1_1_user_edit_result_controller.html#adfb3b32b0df4a3792c64a3e0de3013d8',1,'serv::UserEditResultController']]],
   ['userinfocontroller',['UserInfoController',['../d6/db1/classserv_1_1_user_info_controller.html#ae298457aa503b563d3096e5b7abafd15',1,'serv::UserInfoController']]],
   ['userlistcontroller',['UserListController',['../dc/dbd/classserv_1_1_user_list_controller.html#a5ac0b5f10057eee7f5bd65c6750bde5c',1,'serv::UserListController']]],
+  ['userno',['UserNo',['../d6/d07/classserv_1_1_user_no.html#ac31d976572529d2ba64a5d8233e85e14',1,'serv::UserNo']]],
   ['usersearchcontroller',['UserSearchController',['../da/d04/classserv_1_1_user_search_controller.html#a6d380c0d417cfe6e69db43826a4b1042',1,'serv::UserSearchController']]]
 ];

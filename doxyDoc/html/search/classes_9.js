@@ -7,5 +7,6 @@ var searchData=
   ['usereditresultcontroller',['UserEditResultController',['../d2/d3f/classserv_1_1_user_edit_result_controller.html',1,'serv']]],
   ['userinfocontroller',['UserInfoController',['../d6/db1/classserv_1_1_user_info_controller.html',1,'serv']]],
   ['userlistcontroller',['UserListController',['../dc/dbd/classserv_1_1_user_list_controller.html',1,'serv']]],
+  ['userno',['UserNo',['../d6/d07/classserv_1_1_user_no.html',1,'serv']]],
   ['usersearchcontroller',['UserSearchController',['../da/d04/classserv_1_1_user_search_controller.html',1,'serv']]]
 ];

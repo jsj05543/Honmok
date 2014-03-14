@@ -26,6 +26,7 @@ var searchData=
   ['getpublisher',['getPublisher',['../d1/d54/classserv_1_1_book.html#a8ef5495ac8b1fd460388712217fcc5e2',1,'serv::Book']]],
   ['getreturnday',['getReturnDay',['../d3/d7a/classserv_1_1_circulation.html#a8bae1f5454ac5793577b97d330e53c4a',1,'serv::Circulation']]],
   ['gettel',['getTel',['../dd/d34/classserv_1_1_user.html#a3bde420dc346445e3291b24b551fb0ec',1,'serv::User']]],
+  ['getterm',['getTerm',['../d3/d7a/classserv_1_1_circulation.html#aa949f9bf508b8b1cc26ab84f05f2150d',1,'serv::Circulation']]],
   ['getuid',['getUid',['../dd/d34/classserv_1_1_user.html#a673f2c1b0fd6de931daff1bb8dcb3e43',1,'serv::User']]],
   ['getuname',['getUname',['../dd/d34/classserv_1_1_user.html#ae663f860f4ccc50d573a9926c7c32bb0',1,'serv::User']]],
   ['getuser',['getUser',['../d3/d7a/classserv_1_1_circulation.html#ae9dc4d6b9b1143519a2a9a77f19a6cfd',1,'serv::Circulation']]],

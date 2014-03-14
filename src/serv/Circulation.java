@@ -33,6 +33,10 @@ public class Circulation {
 	 */
 	private LibraryBook librarybook;
 	/**
+	 * 貸し出し可能期間(日)
+	 */
+	private int term;
+	/**
 	 * 削除フラグ
 	 */
 	private Boolean deleteFlag;
@@ -97,6 +101,18 @@ public class Circulation {
 	 */
 	public void setLibraryBook(LibraryBook librarybook) {
 		this.librarybook = librarybook;
+	}
+	/**
+	 * @return term
+	 */
+	public int getTerm() {
+		return term;
+	}
+	/**
+	 * @param term セットする term
+	 */
+	public void setTerm(int term) {
+		this.term = term;
 	}
 	/**
 	 * @return deleteFlag

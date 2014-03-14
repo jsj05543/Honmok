@@ -451,6 +451,8 @@ public class CirculationDB extends DBAccess{
 		c.setIssueDay(rs.getTimestamp("issueDay"));
 		// 返却日
 		c.setReturnDay(rs.getTimestamp("returnDay"));
+		// Term
+		c.setTerm(rs.getInt("term"));
 		// deleteFlag
 		c.setDeleteFlag(rs.getBoolean("deleteFlag"));
 

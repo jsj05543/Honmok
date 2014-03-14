@@ -56,23 +56,9 @@ public class UserDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				User u = new User();
-				// UIDをDBから取得
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
-				// Limitフラグ
-				u.setLimitFlag(rs.getBoolean("limitFlag"));
-				// Limitフラグ
-				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
-				// 配列に保存
-				list.add(u);
+				User user = new User();
+				makeUser(rs,user);
+				list.add(user);
 			}
 
 			rs.close();
@@ -93,7 +79,7 @@ public class UserDB extends DBAccess{
 	 */
 	public User getUserDetail(int uid)
 	{
-		User u = new User();
+		User user = new User();
 		try
 		{
 			// SQL操作
@@ -102,31 +88,18 @@ public class UserDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			if ( rs.next() ){
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
-				// Limitフラグ
-				u.setLimitFlag(rs.getBoolean("limitFlag"));
-				// Limitフラグ
-				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
+				makeUser(rs,user);
 			}else{
-				u = null;
+				user = null;
 			}
 			rs.close();
 			stmt.close();
 		}
 		catch(SQLException e)
 		{
-//			e.printStackTrace();
-			u = null;
+			user = null;
 		}
-		return u;
+		return user;
 	}
 
 	/**
@@ -136,7 +109,7 @@ public class UserDB extends DBAccess{
 	 */
 	public User getUserDetail(String userNo)
 	{
-		User u = new User();
+		User user = new User();
 		try
 		{
 			// SQL操作
@@ -145,21 +118,9 @@ public class UserDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			if ( rs.next() ){
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
-				// Limitフラグ
-				u.setLimitFlag(rs.getBoolean("limitFlag"));
-				// Limitフラグ
-				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
+				makeUser(rs,user);
 			}else{
-				u = null;
+				user = null;
 			}
 			rs.close();
 			stmt.close();
@@ -167,9 +128,9 @@ public class UserDB extends DBAccess{
 		catch(SQLException e)
 		{
 //			e.printStackTrace();
-			u = null;
+			user = null;
 		}
-		return u;
+		return user;
 	}
 
 	/**
@@ -178,7 +139,7 @@ public class UserDB extends DBAccess{
 	 */
 	public User getLatestUser()
 	{
-		User u = new User();
+		User user = new User();
 		try
 		{
 			// SQL操作
@@ -186,19 +147,7 @@ public class UserDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
-				// Limitフラグ
-				u.setLimitFlag(rs.getBoolean("limitFlag"));
-				// Limitフラグ
-				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
+				makeUser(rs,user);
 			}
 
 			rs.close();
@@ -206,10 +155,9 @@ public class UserDB extends DBAccess{
 		}
 		catch(SQLException e)
 		{
-//			e.printStackTrace();
 			return null;
 		}
-		return u;
+		return user;
 	}
 
 	/**
@@ -228,22 +176,9 @@ public class UserDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			while ( rs.next() ){
-				User u = new User();
-				u.setUid(rs.getInt("uid"));
-				// 利用者番号をDBから取得
-				u.setUserNo(rs.getString("userNo"));
-				// ユーザ名
-				u.setUname(rs.getString("uname"));
-				// 住所
-				u.setAddress(rs.getString("address"));
-				// 電話番号
-				u.setTel(rs.getString("tel"));
-				// Limitフラグ
-				u.setLimitFlag(rs.getBoolean("limitFlag"));
-				// Limitフラグ
-				u.setDeleteFlag(rs.getBoolean("deleteFlag"));
-
-				list.add(u);
+				User user = new User();
+				makeUser(rs,user);
+				list.add(user);
 			}
 			rs.close();
 			stmt.close();
@@ -418,7 +353,7 @@ public class UserDB extends DBAccess{
 				stmt.setString(2,address);
 				stmt.setString(3,tel);
 				stmt.setInt(4,uid);
-								//	SQLの実行
+				//	SQLの実行
 				return stmt.executeUpdate();
 			}else{
 				System.out.println("指定されたUIDは存在しません");
@@ -512,5 +447,24 @@ public class UserDB extends DBAccess{
 			return true;
 		}
 	}
+
+	/**
+	 * データ格納メソッド
+	 * @param rs
+	 * @param user
+	 * @throws SQLException
+	 */
+	private void makeUser(ResultSet rs, User user) throws SQLException{
+		// User
+		user.setUid(rs.getInt("uid"));
+		user.setUserNo(rs.getString("userNo"));
+		user.setUname(rs.getString("uname"));
+		user.setAddress(rs.getString("address"));
+		user.setTel(rs.getString("tel"));
+		user.setLimitFlag(rs.getBoolean("limitFlag"));
+		user.setDeleteFlag(rs.getBoolean("deleteFlag"));
+	}
+
+
 
 }

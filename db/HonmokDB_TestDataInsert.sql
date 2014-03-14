@@ -1,8 +1,8 @@
 -- 既存データを削除
-DELETE from users;
-DELETE from books;
-DELETE from libraryBooks;
-DELETE from circulations;
+#DELETE from users;
+#DELETE from books;
+#DELETE from libraryBooks;
+#DELETE from circulations;
 
 
 SET NAMES utf8;

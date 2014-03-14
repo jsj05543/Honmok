@@ -2,6 +2,7 @@ package serv;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 
 import javax.servlet.RequestDispatcher;
@@ -115,6 +116,9 @@ public class RentResultController extends HttpServlet {
 			}else{
 				Circulation circulation = circulationdb.getLatestCirculation();
 				request.setAttribute("circulation", circulation );
+				Calendar yotei = Calendar.getInstance();
+				yotei.add( Calendar.DATE, circulation.getTerm() );
+				request.setAttribute("yotei", yotei.getTime() );
 				// 3冊目ならフラグ立てる
 				if ( circulationdb.getCirculationsOnIssueByUid( user.getUid() ).size() >= 3 ) {
 					UserDB userdb_tmp = new UserDB();

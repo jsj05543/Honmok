@@ -3,6 +3,7 @@
 <%@page import="serv.LibraryBook"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.commons.lang3.StringEscapeUtils"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -29,6 +30,7 @@ if ( ! error_message.isEmpty() ) {
 	return;
 }
 ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list");
+SimpleDateFormat date_format = new SimpleDateFormat("yyyy/MM/dd");
 %>
 
 <%= list.size() %> 件ヒットしました。
@@ -41,7 +43,7 @@ ArrayList<Circulation> list = (ArrayList<Circulation>)request.getAttribute("list
 		LibraryBook lbook = cir.getLibraryBook();
 %>
 	<tr>
-		<td><%= cir.getIssueDay() %></td>
+		<td><%= date_format.format( cir.getIssueDay() ) %></td>
 		<td><%= user.getUserNo() %></td>
 		<td><a href="user_info?uid=<%= user.getUid() %>"><%= StringEscapeUtils.escapeHtml4( user.getUname() ) %></a></td>
 		<td><%= StringEscapeUtils.escapeHtml4( user.getTel() ) %></td>

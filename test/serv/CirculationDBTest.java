@@ -62,6 +62,7 @@ public class CirculationDBTest {
         // 一番目のデータの詳細をチェック
         int i = 0;
         assertEquals(1,result.get(i).getCid());
+        assertEquals(7,result.get(i).getTerm());
         assertEquals("肥後　太郎",result.get(i).getUser().getUname());
         assertEquals("肥後123-456",result.get(i).getUser().getAddress());
         assertEquals("0120-1515-3776",result.get(i).getUser().getTel());
@@ -73,6 +74,7 @@ public class CirculationDBTest {
         // 五番目データの詳細をチェック
         i = 5;
         assertEquals(6,result.get(i).getCid());
+        assertEquals(7,result.get(i).getTerm());
         assertEquals("3冊　借りる蔵",result.get(i).getUser().getUname());
         assertEquals("MAX888-456",result.get(i).getUser().getAddress());
         assertEquals("0120-3121-9999",result.get(i).getUser().getTel());
@@ -141,6 +143,7 @@ public class CirculationDBTest {
 		result = db.getLatestCirculation();
         assertEquals("大阿蘇 次郎", result.getUser().getUname());
         assertEquals("あなたへの伝言", result.getLibraryBook().getBname());
+        assertEquals(7,result.getTerm());
         // 後処理。挿入したデータを削除（DELETE)
         db.deleteForce(result.getCid());
 	}

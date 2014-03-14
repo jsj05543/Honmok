@@ -73,7 +73,7 @@ INSERT INTO circulations ( issueDay, returnDay, uid, lbid, deleteFlag ) VALUES (
 --
 
 -- 削除フラグによらず全データ取得
-CREATE VIEW CirculationsDetailAll AS SELECT circulations.cid, circulations.issueDay, circulations.returnDay, circulations.deleteFlag,
+CREATE VIEW CirculationsDetailAll AS SELECT circulations.cid, circulations.issueDay, circulations.returnDay, circulations.term, circulations.deleteFlag,
 users.uid, users.userNo, users.uname, users.address, users.tel, users.limitFlag,
 librarybooks.lbid, librarybooks.bookNo,
 books.bid, books.isbn, books.bname, books.author, books.publisher, books.page

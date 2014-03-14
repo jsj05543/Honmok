@@ -20,6 +20,7 @@
 	<input type="submit" value="検索" class="form_submit_button_yoko">
 	<div class="clearFloat"></div>
 </form>
+※ 書籍番号が完全一致する書籍を検索します<br><br>
 
 <form action="search_book_result" method="post">
 	<div class="form_text">書籍名で検索：</div>
@@ -27,6 +28,7 @@
 	<input type="submit" value="検索" class="form_submit_button_yoko">
 	<div class="clearFloat"></div>
 </form>
+※ AND検索など2語以上の検索には未対応です
 
 
 </body>

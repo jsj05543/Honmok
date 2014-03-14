@@ -45,6 +45,7 @@ public class UserEditController extends HttpServlet {
 			error_message.add("数字以外が入力されました。");
 			error_message.add("該当するIDの利用者はいません。");
 	    }
+		userdb.close();
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("user_edit.jsp");
 		dispatch.forward(request, response);

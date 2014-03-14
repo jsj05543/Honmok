@@ -1,4 +1,5 @@
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="serv.User" import="serv.LibraryBook" import="serv.Circulation" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -26,17 +27,18 @@ if ( ! error_message.isEmpty() ) {
 	return;
 }
 Circulation circulation = (Circulation)request.getAttribute("circulation");
+SimpleDateFormat date_format = new SimpleDateFormat("yyyy/MM/dd");
 %>
 
 <h2>返却手続きが完了しました。ありがとうございました。</h2>
 <table class="returnresulttable">
 <tr>
 <td>返却日：</td>
-<td> <%= circulation.getIssueDay() %> </td>
+<td> <%= date_format.format( circulation.getIssueDay() ) %> </td>
 </tr>
 <tr>
 <td>利用者：</td>
-<td> <%= circulation.getUser().getUname()  %> </td>
+<td> <%= circulation.getUser().getUname() %> </td>
 </tr>
 <tr>
 <td>書籍名：</td>

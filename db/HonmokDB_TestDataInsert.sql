@@ -1,8 +1,8 @@
 -- 既存データを削除
-DELETE from users;
-DELETE from books;
-DELETE from libraryBooks;
-DELETE from circulations;
+#DELETE from users;
+#DELETE from books;
+#DELETE from libraryBooks;
+#DELETE from circulations;
 
 
 SET NAMES utf8;
@@ -85,3 +85,11 @@ LEFT JOIN books ON librarybooks.bid = books.bid;
 -- 削除フラグ除く全データ取得
 CREATE VIEW CirculationsDetail AS SELECT * FROM CirculationsDetailAll WHERE deleteFlag = false;
 
+#CREATE VIEW LibraryBooksDetailAll AS SELECT circulations.cid, circulations.issueDay, circulations.returnDay, circulations.deleteFlag,
+#users.uid, users.userNo, users.uname, users.address, users.tel, users.limitFlag,
+#librarybooks.lbid, librarybooks.bookNo,
+#books.bid, books.isbn, books.bname, books.author, books.publisher, books.page
+#FROM circulations 
+#RIGHT JOIN users ON circulations.uid = users.uid 
+#RIGHT JOIN librarybooks ON circulations.lbid = librarybooks.lbid
+#RIGHT JOIN books ON librarybooks.bid = books.bid;

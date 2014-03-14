@@ -120,7 +120,7 @@ public class CirculationDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				c = makeCirculation(rs,c);
+				makeCirculation(rs,c);
 			}
 
 			rs.close();
@@ -149,7 +149,7 @@ public class CirculationDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				c = makeCirculation(rs,c);
+				makeCirculation(rs,c);
 			}
 
 			rs.close();
@@ -178,7 +178,7 @@ public class CirculationDB extends DBAccess{
 			ResultSet rs = stmt.executeQuery();
 
 			if (rs.next()) {
-				c = makeCirculation(rs,c);
+				makeCirculation(rs,c);
 			}else{
 				c = null;
 			}
@@ -388,34 +388,6 @@ public class CirculationDB extends DBAccess{
 		}
 	}
 
-	/**
-	 * 同一データ（氏名、住所、電話番号が全て同じ）があるかどうかのサーチ
-	 * @param uname 氏名
-	 * @param address 住所
-	 * @param tel 電話番号
-	 * @return true:既存データあり、false:既存データなし
-	 */
-	/*
-	private Boolean isSameData(String uname, String address, String tel)
-	{
-		try
-		{
-			//	プリペアードステートメント
-			String sql = "SELECT * FROM user WHERE uname=? address=? tel=?";
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setString(1,uname);
-			stmt.setString(2,address);
-			stmt.setString(3,tel);
-			ResultSet rs = stmt.executeQuery();
-			return rs.next();
-		}
-		catch(SQLException e)
-		{
-			e.printStackTrace();
-			return true;
-		}
-	}
-	*/
 
 	/**
 	 * LBID既存データがあるかどうかのサーチ
@@ -465,7 +437,14 @@ public class CirculationDB extends DBAccess{
 
 
 
-	private Circulation makeCirculation(ResultSet rs, Circulation c) throws SQLException{
+	/**
+	 * SQLからのデータをJavaのオブジェクトに格納するメソッド
+	 * @param rs ResultSetオブジェクト
+	 * @param c Circulationオブジェクト
+	 * @return データ格納済みCirculationオブジェクト
+	 * @throws SQLException
+	 */
+	private void makeCirculation(ResultSet rs, Circulation c) throws SQLException{
 		// CIDをDBから取得
 		c.setCid(rs.getInt("cid"));
 		// 貸出日
@@ -482,6 +461,8 @@ public class CirculationDB extends DBAccess{
 		user.setUname(rs.getString("uname"));
 		user.setAddress(rs.getString("address"));
 		user.setTel(rs.getString("tel"));
+		user.setLimitFlag(rs.getBoolean("limitFlag"));
+		user.setDeleteFlag(rs.getBoolean("deleteFlag"));
 		// Userオブジェクトをセット
 		c.setUser(user);
 
@@ -498,7 +479,6 @@ public class CirculationDB extends DBAccess{
 		// LibraryBookオブジェクトをセット
 		c.setLibraryBook(book);
 
-		return c;
 	}
 
 

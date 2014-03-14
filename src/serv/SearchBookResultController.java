@@ -41,7 +41,9 @@ public class SearchBookResultController extends HttpServlet {
 		if(  bookNo != null && bookNo.length() != 0  ){
 			LibraryBookDB librarybookdb = new LibraryBookDB();
 			LibraryBook libbook = librarybookdb.getLibraryBookDetailByBookNo(bookNo);
-			libbooks.add( libbook );
+			if( libbook != null ){
+				libbooks.add( libbook );
+			}
 			librarybookdb.close();
 		}else if(  bookName!= null && bookName.length() != 0 ){
 			LibraryBookDB librarybookdb = new LibraryBookDB();

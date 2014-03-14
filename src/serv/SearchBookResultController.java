@@ -32,7 +32,7 @@ public class SearchBookResultController extends HttpServlet {
 		// TODO Auto-generated method stub
 		ArrayList<String> error_message = new ArrayList<String>();
 		ArrayList<LibraryBook> libbooks = new ArrayList<LibraryBook>();
-
+		ArrayList<String> clist = new ArrayList<String>();
 		request.setCharacterEncoding("UTF-8");
 
 		String bookNo = request.getParameter("search_bookNo");
@@ -51,6 +51,20 @@ public class SearchBookResultController extends HttpServlet {
 			error_message.add("検索条件を入力してください。");
 		}
 
+		CirculationDB circulationdb = new CirculationDB();
+		for( int i=0; i<libbooks.size(); i++ ){
+			Circulation tmpc = circulationdb.getCirculationOnIssueByBookNo(libbooks.get(i).getBookNo() );
+
+			if( tmpc != null ){
+				clist.add( tmpc.getUser().getUserNo() );
+			}else{
+				clist.add("貸出し可");
+			}
+			circulationdb.close();
+		}
+
+
+		request.setAttribute("clist", clist);
 		request.setAttribute("libbooks", libbooks);
 		request.setAttribute("error_message", error_message);
 		RequestDispatcher dispatch = request.getRequestDispatcher("show_book.jsp");

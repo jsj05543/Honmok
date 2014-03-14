@@ -1,6 +1,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.sql.Timestamp"%>
 <%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="serv.User" import="serv.LibraryBook" import="serv.Circulation" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -38,6 +39,7 @@ if ( ! error_message.isEmpty() ) {
 	return;
 }
 Circulation circulation = (Circulation)request.getAttribute("circulation");
+Date yotei = (Date)request.getAttribute("yotei");
 SimpleDateFormat time_format = new SimpleDateFormat("yyyy/MM/dd hh:mm");
 SimpleDateFormat date_format = new SimpleDateFormat("yyyy/MM/dd");
 %>
@@ -51,7 +53,7 @@ SimpleDateFormat date_format = new SimpleDateFormat("yyyy/MM/dd");
 <tr>
 <tr>
 <td>返却予定日：</td>
-<td> <%= date_format.format( circulation.getIssueDay() ) %> </td>
+<td> <%= date_format.format( yotei ) %> </td>
 </tr>
 <tr>
 <td>利用者：</td>

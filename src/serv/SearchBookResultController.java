@@ -58,7 +58,8 @@ public class SearchBookResultController extends HttpServlet {
 			Circulation tmpc = circulationdb.getCirculationOnIssueByBookNo(libbooks.get(i).getBookNo() );
 
 			if( tmpc != null ){
-				clist.add( tmpc.getUser().getUserNo() );
+				String tmpstr = "貸出し中（" + tmpc.getUser().getUserNo() + "）";
+				clist.add( tmpstr );
 			}else{
 				clist.add("貸出し可");
 			}
